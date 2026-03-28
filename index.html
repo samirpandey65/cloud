@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CloudNova – Cloud Services & DevOps Solutions</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="container nav-inner">
+      <div class="logo">&#9729;&#65039; CloudNova</div>
+      <ul class="nav-links">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#packages">Packages</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#testimonials">Reviews</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#contact" class="btn-nav">Get Free Audit</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger">&#9776;</button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container hero-content">
+      <span class="badge">&#128640; Trusted Cloud Partner</span>
+      <h1>Scale Faster.<br/>Spend Smarter.<br/><span>Cloud Done Right.</span></h1>
+      <p>We help startups &amp; businesses set up, optimize, and manage cloud infrastructure on AWS, Azure &amp; GCP &mdash; so you focus on building, not firefighting.</p>
+      <div class="hero-btns">
+        <a href="#contact" class="btn-primary">Get Free Cloud Audit</a>
+        <a href="#packages" class="btn-outline">View Packages</a>
+      </div>
+      <div class="hero-stats">
+        <div><strong>30%</strong><span>Avg Cost Saved</span></div>
+        <div><strong>50+</strong><span>Projects Done</span></div>
+        <div><strong>24/7</strong><span>Support</span></div>
+      </div>
+    </div>
+    <div class="hero-bg"></div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services section" id="services">
+    <div class="container">
+      <h2 class="section-title">What We Do</h2>
+      <p class="section-sub">End-to-end cloud services tailored for startups and growing businesses.</p>
+      <div class="grid-3">
+        <div class="card" onclick="openService(0)">
+          <div class="icon">&#9729;&#65039;</div>
+          <h3>Cloud Setup &amp; Migration</h3>
+          <p>Move your infrastructure to AWS, Azure, or GCP with zero downtime and full security compliance.</p>
+          <span class="card-link">Learn more &rarr;</span>
+        </div>
+        <div class="card" onclick="openService(1)">
+          <div class="icon">&#9881;&#65039;</div>
+          <h3>DevOps Automation</h3>
+          <p>CI/CD pipelines, Docker, Kubernetes &mdash; automate your deployments and ship faster.</p>
+          <span class="card-link">Learn more &rarr;</span>
+        </div>
+        <div class="card" onclick="openService(2)">
+          <div class="icon">&#128176;</div>
+          <h3>Cost Optimization</h3>
+          <p>Audit your cloud spend and cut bills by up to 30% without sacrificing performance.</p>
+          <span class="card-link">Learn more &rarr;</span>
+        </div>
+        <div class="card" onclick="openService(3)">
+          <div class="icon">&#128202;</div>
+          <h3>Monitoring &amp; Alerts</h3>
+          <p>Real-time dashboards with Grafana, Prometheus &amp; CloudWatch. Know before it breaks.</p>
+          <span class="card-link">Learn more &rarr;</span>
+        </div>
+        <div class="card" onclick="openService(4)">
+          <div class="icon">&#128272;</div>
+          <h3>Cloud Security</h3>
+          <p>IAM policies, VPC hardening, compliance checks &mdash; your data stays safe.</p>
+          <span class="card-link">Learn more &rarr;</span>
+        </div>
+        <div class="card" onclick="openService(5)">
+          <div class="icon">&#128295;</div>
+          <h3>Managed Support</h3>
+          <p>Monthly retainer plans with dedicated support, incident response, and regular reviews.</p>
+          <span class="card-link">Learn more &rarr;</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PACKAGES -->
+  <section class="packages section" id="packages">
+    <div class="container">
+      <h2 class="section-title">Simple Pricing</h2>
+      <p class="section-sub">No hidden fees. Pick a plan that fits your stage.</p>
+      <div class="grid-3">
+        <div class="price-card">
+          <h3>Starter</h3>
+          <div class="price">&#8377;10,000<span>/project</span></div>
+          <ul>
+            <li>&#9989; AWS / Azure basic setup</li>
+            <li>&#9989; EC2 + S3 + IAM</li>
+            <li>&#9989; Security basics</li>
+            <li>&#9989; 1-week delivery</li>
+            <li>&#10060; CI/CD pipeline</li>
+            <li>&#10060; Monitoring</li>
+          </ul>
+          <a href="#contact" class="btn-primary">Get Started</a>
+        </div>
+        <div class="price-card featured">
+          <span class="popular">Most Popular</span>
+          <h3>Growth</h3>
+          <div class="price">&#8377;40,000<span>/project</span></div>
+          <ul>
+            <li>&#9989; Everything in Starter</li>
+            <li>&#9989; CI/CD pipeline setup</li>
+            <li>&#9989; Docker + Kubernetes</li>
+            <li>&#9989; Monitoring + Alerts</li>
+            <li>&#9989; Auto scaling</li>
+            <li>&#9989; 2-week delivery</li>
+          </ul>
+          <a href="#contact" class="btn-primary">Get Started</a>
+        </div>
+        <div class="price-card">
+          <h3>Pro</h3>
+          <div class="price">&#8377;1,00,000<span>/project</span></div>
+          <ul>
+            <li>&#9989; Everything in Growth</li>
+            <li>&#9989; Full DevOps pipeline</li>
+            <li>&#9989; Cost audit &amp; optimization</li>
+            <li>&#9989; Security hardening</li>
+            <li>&#9989; 30-day support</li>
+            <li>&#9989; SLA included</li>
+          </ul>
+          <a href="#contact" class="btn-primary">Get Started</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about section" id="about">
+    <div class="container">
+      <div class="about-wrapper">
+        <div class="about-left">
+          <span class="badge-dark">&#127775; Our Story</span>
+          <h2>Built for Startups.<br/>Trusted by Businesses.</h2>
+          <p>CloudNova is a cloud services company focused on helping startups and growing businesses build reliable, secure, and cost-efficient infrastructure. We specialize in AWS, Azure, and GCP &mdash; from initial setup to full DevOps automation.</p>
+          <p>Our mission is simple: make enterprise-grade cloud infrastructure accessible and affordable for every business, regardless of size.</p>
+          <a href="#contact" class="btn-primary about-cta">Work With Us &rarr;</a>
+        </div>
+        <div class="about-right">
+          <div class="about-stat-grid">
+            <div class="about-stat"><strong>2+</strong><span>Years in Business</span></div>
+            <div class="about-stat"><strong>50+</strong><span>Projects Delivered</span></div>
+            <div class="about-stat"><strong>30%</strong><span>Avg Cost Reduction</span></div>
+            <div class="about-stat"><strong>100%</strong><span>Client Satisfaction</span></div>
+          </div>
+          <div class="about-values">
+            <div class="value-item">&#9989; AWS, Azure &amp; GCP Certified</div>
+            <div class="value-item">&#9989; NDA &amp; SLA on every project</div>
+            <div class="value-item">&#9989; 24/7 monitoring &amp; support</div>
+            <div class="value-item">&#9989; Transparent pricing, no surprises</div>
+            <div class="value-item">&#9989; Remote-first, available worldwide</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials section" id="testimonials">
+    <div class="container">
+      <h2 class="section-title">What Clients Say</h2>
+      <p class="section-sub">Real feedback from startups and businesses we've helped.</p>
+      <div class="grid-3">
+        <div class="tcard">
+          <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p>"CloudNova cut our AWS bill by 35% in the first month. Their cost audit was eye-opening &mdash; we had no idea we were wasting that much."</p>
+          <div class="tauthor">
+            <div class="tavatar">&#129489;</div>
+            <div>
+              <strong>Priya Sharma</strong>
+              <span>CTO, FinTrack Startup</span>
+            </div>
+          </div>
+        </div>
+        <div class="tcard featured-t">
+          <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p>"They set up our entire CI/CD pipeline in under a week. Deployments went from 2 hours to 8 minutes. Absolutely worth every rupee."</p>
+          <div class="tauthor">
+            <div class="tavatar">&#128104;</div>
+            <div>
+              <strong>Rohan Mehta</strong>
+              <span>Founder, ShopEasy</span>
+            </div>
+          </div>
+        </div>
+        <div class="tcard">
+          <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p>"Professional, fast, and always available. Our Kubernetes migration was seamless. I'd recommend CloudNova to any growing startup."</p>
+          <div class="tauthor">
+            <div class="tavatar">&#128105;</div>
+            <div>
+              <strong>Ananya Iyer</strong>
+              <span>VP Engineering, MedApp</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq section" id="faq">
+    <div class="container">
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <p class="section-sub">Got questions? We've got answers.</p>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">Do I need to be technical to work with you? <span>+</span></button>
+          <div class="faq-a">Not at all. We handle all the technical work. You just tell us your goals and we take care of the rest &mdash; from setup to ongoing support.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">Which cloud providers do you support? <span>+</span></button>
+          <div class="faq-a">We work with AWS, Microsoft Azure, and Google Cloud Platform (GCP). We'll recommend the best fit based on your use case and budget.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">How long does a typical project take? <span>+</span></button>
+          <div class="faq-a">Starter projects take 1 week, Growth projects 2 weeks, and Pro engagements 3&ndash;4 weeks. We always give you a clear timeline before starting.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">What is the free cloud audit? <span>+</span></button>
+          <div class="faq-a">We review your current cloud setup &mdash; costs, security, architecture &mdash; and send you a detailed report with recommendations. It's completely free, no commitment required.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">Do you offer monthly support plans? <span>+</span></button>
+          <div class="faq-a">Yes! Our managed support retainer starts at &#8377;5,000/month and includes incident response, monitoring, and regular check-ins.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">Is my data safe with you? <span>+</span></button>
+          <div class="faq-a">Absolutely. We sign an NDA before every engagement. We follow security best practices and never store your credentials or sensitive data.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact section" id="contact">
+    <div class="container">
+      <h2 class="section-title">Get Your FREE Cloud Audit</h2>
+      <p class="section-sub">Tell us about your setup &mdash; we'll review it and send you a report within 24 hours. No strings attached.</p>
+      <form class="contact-form" onsubmit="handleSubmit(event)">
+        <div class="form-row">
+          <input type="text" placeholder="Your Name" required />
+          <input type="email" placeholder="Work Email" required />
+        </div>
+        <div class="form-row">
+          <input type="text" placeholder="Company / Startup Name" />
+          <select>
+            <option value="">Current Cloud Provider</option>
+            <option>AWS</option>
+            <option>Azure</option>
+            <option>Google Cloud</option>
+            <option>Not on cloud yet</option>
+          </select>
+        </div>
+        <textarea placeholder="Describe your current setup or what you need help with..." rows="4"></textarea>
+        <button type="submit" class="btn-primary">Send &amp; Get Free Audit &rarr;</button>
+      </form>
+      <div id="form-success" class="form-success" style="display:none">
+        &#9989; Thanks! We'll reach out within 24 hours.
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICE MODAL -->
+  <div class="svc-overlay" id="svcOverlay" onclick="closeService(event)">
+    <div class="svc-modal" id="svcModal">
+      <button class="svc-close" onclick="closeService()">&times;</button>
+      <div class="svc-icon" id="svc-icon"></div>
+      <h2 id="svc-title"></h2>
+      <p class="svc-desc" id="svc-desc"></p>
+      <div class="svc-section">
+        <h4>What&rsquo;s Included</h4>
+        <ul id="svc-includes"></ul>
+      </div>
+      <div class="svc-section">
+        <h4>Tools &amp; Technologies</h4>
+        <div class="svc-tags" id="svc-tags"></div>
+      </div>
+      <div class="svc-section">
+        <h4>Ideal For</h4>
+        <p id="svc-ideal"></p>
+      </div>
+      <a href="#contact" class="btn-primary svc-cta" onclick="closeService()">Get Started &rarr;</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="logo">&#9729;&#65039; CloudNova</div>
+      <p>&copy; 2025 CloudNova. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="mailto:samirpandey65@gmail.com">hello@cloudnova.in</a>
+        <a href="#">LinkedIn</a>
+        <a href="#">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WHATSAPP BUTTON -->
+  <a href="https://wa.me/918855865379?text=Hi%20CloudNova!%20I%20want%20a%20free%20cloud%20audit." class="whatsapp-btn" target="_blank" title="Chat on WhatsApp">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="white" width="28" height="28"><path d="M16 0C7.163 0 0 7.163 0 16c0 2.822.736 5.472 2.027 7.774L0 32l8.437-2.01A15.93 15.93 0 0016 32c8.837 0 16-7.163 16-16S24.837 0 16 0zm0 29.333a13.27 13.27 0 01-6.771-1.854l-.486-.29-5.01 1.194 1.234-4.874-.317-.5A13.267 13.267 0 012.667 16C2.667 8.636 8.636 2.667 16 2.667S29.333 8.636 29.333 16 23.364 29.333 16 29.333zm7.27-9.862c-.398-.199-2.354-1.162-2.719-1.294-.365-.133-.631-.199-.897.199-.266.398-1.03 1.294-1.263 1.56-.232.266-.465.299-.863.1-.398-.2-1.681-.62-3.203-1.977-1.184-1.057-1.983-2.362-2.215-2.76-.232-.398-.025-.613.174-.811.179-.178.398-.465.597-.698.2-.232.266-.398.398-.664.133-.266.067-.498-.033-.697-.1-.2-.897-2.162-1.23-2.96-.324-.778-.653-.673-.897-.686l-.764-.013c-.266 0-.697.1-1.063.498-.365.398-1.395 1.362-1.395 3.323s1.428 3.854 1.627 4.12c.2.266 2.81 4.29 6.808 6.018.951.41 1.694.655 2.272.839.955.304 1.824.261 2.511.158.766-.114 2.354-.962 2.686-1.891.332-.93.332-1.727.232-1.892-.1-.165-.365-.265-.763-.464z"/></svg>
+    <span>Chat with us</span>
+  </a>
+
+  <script src="script.js"></script>
+</body>
+</html>
