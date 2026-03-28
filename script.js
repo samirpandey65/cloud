@@ -104,6 +104,27 @@ function handleSubmit(e) {
   document.getElementById('form-success').style.display = 'block';
 }
 
+// Scroll reveal
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), entry.target.dataset.delay || 0);
+    }
+  });
+}, { threshold: 0.1 });
+
+// Cards with stagger delay
+document.querySelectorAll('.card, .price-card, .tcard, .about-stat, .value-item, .faq-item').forEach((el, i) => {
+  el.classList.add('reveal');
+  el.dataset.delay = (i % 3) * 120;
+  revealObserver.observe(el);
+});
+
+// Section titles
+document.querySelectorAll('.section-title, .section-sub, .about-left, .about-right').forEach(el => {
+  revealObserver.observe(el);
+});
+
 // Animate cards on scroll
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
