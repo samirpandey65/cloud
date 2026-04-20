@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CloudZentra – Admin</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --blue: #2563eb; --blue-dark: #1d4ed8; --dark: #0f172a;
+      --gray: #64748b; --light: #f8fafc; --border: #e2e8f0; --white: #fff;
+      --red: #ef4444; --green: #16a34a;
+    }
+    body { font-family: 'Inter', sans-serif; background: var(--light); color: var(--dark); }
+
+    /* LOGIN */
+    #login-screen {
+      min-height: 100vh; display: flex; align-items: center; justify-content: center;
+    }
+    .login-box {
+      background: var(--white); border-radius: 20px; padding: 48px 40px;
+      width: 100%; max-width: 420px; box-shadow: 0 8px 40px rgba(0,0,0,0.1);
+    }
+    .login-box h1 { font-size: 1.6rem; font-weight: 800; margin-bottom: 6px; }
+    .login-box p { color: var(--gray); font-size: 0.9rem; margin-bottom: 28px; }
+    .login-box input {
+      width: 100%; padding: 12px 16px; border: 1.5px solid var(--border);
+      border-radius: 10px; font-family: inherit; font-size: 0.95rem;
+      margin-bottom: 14px; outline: none; transition: border-color 0.2s;
+    }
+    .login-box input:focus { border-color: var(--blue); }
+    .login-box button {
+      width: 100%; padding: 13px; background: var(--blue); color: var(--white);
+      border: none; border-radius: 10px; font-size: 1rem; font-weight: 700;
+      cursor: pointer; transition: background 0.2s;
+    }
+    .login-box button:hover { background: var(--blue-dark); }
+    #login-error { color: var(--red); font-size: 0.88rem; margin-top: 10px; display: none; }
+
+    /* DASHBOARD */
+    #dashboard { display: none; }
+    .topbar {
+      background: var(--white); border-bottom: 1px solid var(--border);
+      padding: 0 32px; height: 64px; display: flex; align-items: center;
+      justify-content: space-between; position: sticky; top: 0; z-index: 10;
+    }
+    .topbar .logo { font-size: 1.2rem; font-weight: 800; color: var(--blue); }
+    .topbar-right { display: flex; align-items: center; gap: 16px; }
+    .logout-btn {
+      padding: 8px 18px; background: var(--light); border: 1.5px solid var(--border);
+      border-radius: 8px; font-size: 0.88rem; font-weight: 600; cursor: pointer;
+      transition: background 0.2s;
+    }
+    .logout-btn:hover { background: var(--border); }
+
+    .main { max-width: 1100px; margin: 0 auto; padding: 32px 24px; }
+
+    /* TABS */
+    .tabs { display: flex; gap: 8px; margin-bottom: 28px; border-bottom: 2px solid var(--border); }
+    .tab-btn {
+      padding: 10px 22px; background: none; border: none; font-family: inherit;
+      font-size: 0.95rem; font-weight: 600; color: var(--gray); cursor: pointer;
+      border-bottom: 2px solid transparent; margin-bottom: -2px; transition: color 0.2s;
+    }
+    .tab-btn.active { color: var(--blue); border-bottom-color: var(--blue); }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* STATS */
+    .stats-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; margin-bottom: 28px; }
+    .stat-card {
+      background: var(--white); border: 1px solid var(--border); border-radius: 14px;
+      padding: 24px 20px;
+    }
+    .stat-card span { font-size: 0.8rem; color: var(--gray); font-weight: 500; display: block; margin-bottom: 6px; }
+    .stat-card strong { font-size: 2rem; font-weight: 800; color: var(--blue); }
+
+    /* TABLE */
+    .table-toolbar { display: flex; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; }
+    .table-toolbar input, .table-toolbar select {
+      padding: 9px 14px; border: 1.5px solid var(--border); border-radius: 8px;
+      font-family: inherit; font-size: 0.9rem; outline: none;
+    }
+    .table-wrap { background: var(--white); border-radius: 14px; border: 1px solid var(--border); overflow: hidden; }
+    table { width: 100%; border-collapse: collapse; }
+    th { background: var(--light); padding: 12px 16px; text-align: left; font-size: 0.8rem; font-weight: 700; color: var(--gray); text-transform: uppercase; letter-spacing: 0.4px; }
+    td { padding: 13px 16px; font-size: 0.9rem; border-top: 1px solid var(--border); }
+    tr:hover td { background: #f1f5f9; cursor: pointer; }
+    .badge-unread { background: #dbeafe; color: var(--blue); padding: 3px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; }
+    .badge-read { background: var(--light); color: var(--gray); padding: 3px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; }
+    .del-btn { background: none; border: none; color: var(--red); cursor: pointer; font-size: 1rem; padding: 4px 8px; border-radius: 6px; transition: background 0.2s; }
+    .del-btn:hover { background: #fee2e2; }
+    .empty-row td { text-align: center; color: var(--gray); padding: 40px; }
+
+    /* VIEW MODAL */
+    .modal-overlay {
+      display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.45);
+      z-index: 500; align-items: center; justify-content: center; padding: 20px;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal-box {
+      background: var(--white); border-radius: 18px; padding: 36px 32px;
+      width: 100%; max-width: 520px; position: relative; max-height: 90vh; overflow-y: auto;
+    }
+    .modal-close {
+      position: absolute; top: 14px; right: 18px; background: none; border: none;
+      font-size: 1.5rem; cursor: pointer; color: var(--gray);
+    }
+    .modal-box h3 { font-size: 1.2rem; font-weight: 800; margin-bottom: 20px; }
+    .detail-row { margin-bottom: 14px; }
+    .detail-row label { font-size: 0.75rem; font-weight: 700; color: var(--gray); text-transform: uppercase; letter-spacing: 0.4px; display: block; margin-bottom: 4px; }
+    .detail-row p { font-size: 0.93rem; color: var(--dark); }
+
+    /* SETTINGS */
+    .settings-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .settings-card {
+      background: var(--white); border: 1px solid var(--border); border-radius: 14px; padding: 28px 24px;
+    }
+    .settings-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 18px; padding-bottom: 12px; border-bottom: 1px solid var(--border); }
+    .field { margin-bottom: 14px; }
+    .field label { font-size: 0.8rem; font-weight: 600; color: var(--gray); display: block; margin-bottom: 6px; }
+    .field input { width: 100%; padding: 10px 14px; border: 1.5px solid var(--border); border-radius: 8px; font-family: inherit; font-size: 0.92rem; outline: none; transition: border-color 0.2s; }
+    .field input:focus { border-color: var(--blue); }
+    .save-btn {
+      padding: 10px 22px; background: var(--blue); color: var(--white);
+      border: none; border-radius: 8px; font-size: 0.92rem; font-weight: 700;
+      cursor: pointer; transition: background 0.2s; margin-top: 4px;
+    }
+    .save-btn:hover { background: var(--blue-dark); }
+    .save-msg { font-size: 0.82rem; color: var(--green); margin-top: 8px; display: none; }
+
+    /* SOCIAL TOGGLES */
+    .social-row {
+      display: flex; align-items: center; gap: 10px; margin-bottom: 12px;
+    }
+    .social-row .soc-label { font-size: 0.85rem; font-weight: 600; width: 90px; flex-shrink: 0; }
+    .social-row input[type="text"] { flex: 1; padding: 8px 12px; border: 1.5px solid var(--border); border-radius: 8px; font-family: inherit; font-size: 0.88rem; outline: none; transition: border-color 0.2s; }
+    .social-row input[type="text"]:focus { border-color: var(--blue); }
+    .toggle { position: relative; width: 40px; height: 22px; flex-shrink: 0; }
+    .toggle input { opacity: 0; width: 0; height: 0; }
+    .slider {
+      position: absolute; inset: 0; background: var(--border); border-radius: 22px;
+      cursor: pointer; transition: background 0.2s;
+    }
+    .slider::before {
+      content: ''; position: absolute; width: 16px; height: 16px; background: var(--white);
+      border-radius: 50%; left: 3px; top: 3px; transition: transform 0.2s;
+    }
+    .toggle input:checked + .slider { background: var(--blue); }
+    .toggle input:checked + .slider::before { transform: translateX(18px); }
+
+    @media (max-width: 768px) {
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .settings-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="login-screen">
+  <div class="login-box">
+    <h1>☁️ CloudZentra</h1>
+    <p>Admin Dashboard — Sign in to continue</p>
+    <input type="text" id="login-user" placeholder="Username" autocomplete="off"/>
+    <input type="password" id="login-pass" placeholder="Password"/>
+    <button onclick="doLogin()">Sign In</button>
+    <div id="login-error">❌ Invalid username or password.</div>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div id="dashboard">
+  <div class="topbar">
+    <div class="logo">☁️ CloudZentra Admin</div>
+    <div class="topbar-right">
+      <span id="topbar-user" style="font-size:0.88rem;color:var(--gray);"></span>
+      <button class="logout-btn" onclick="doLogout()">Logout</button>
+    </div>
+  </div>
+
+  <div class="main">
+    <div class="tabs">
+      <button class="tab-btn active" onclick="switchTab('submissions',this)">📋 Submissions</button>
+      <button class="tab-btn" onclick="switchTab('settings',this)">⚙️ Settings</button>
+    </div>
+
+    <!-- SUBMISSIONS TAB -->
+    <div class="tab-panel active" id="tab-submissions">
+      <div class="stats-grid">
+        <div class="stat-card"><span>Total Requests</span><strong id="s-total">0</strong></div>
+        <div class="stat-card"><span>Unread</span><strong id="s-unread">0</strong></div>
+        <div class="stat-card"><span>AWS Clients</span><strong id="s-aws">0</strong></div>
+        <div class="stat-card"><span>Not on Cloud</span><strong id="s-noc">0</strong></div>
+      </div>
+      <div class="table-toolbar">
+        <input type="text" id="search-input" placeholder="Search name or email…" oninput="renderTable()"/>
+        <select id="filter-select" onchange="renderTable()">
+          <option value="all">All</option>
+          <option value="unread">Unread</option>
+          <option value="read">Read</option>
+        </select>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Name</th><th>Email</th><th>Company</th><th>Cloud</th><th>Date</th><th>Status</th><th></th></tr></thead>
+          <tbody id="submissions-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- SETTINGS TAB -->
+    <div class="tab-panel" id="tab-settings">
+      <div class="settings-grid">
+
+        <!-- Change Password -->
+        <div class="settings-card">
+          <h3>🔐 Change Login Credentials</h3>
+          <div class="field"><label>New Username</label><input type="text" id="set-username" placeholder="Enter new username"/></div>
+          <div class="field"><label>Current Password</label><input type="password" id="set-cur-pass" placeholder="Current password"/></div>
+          <div class="field"><label>New Password</label><input type="password" id="set-new-pass" placeholder="Min 8 characters"/></div>
+          <div class="field"><label>Confirm New Password</label><input type="password" id="set-confirm-pass" placeholder="Repeat new password"/></div>
+          <button class="save-btn" onclick="saveCredentials()">Save Credentials</button>
+          <div class="save-msg" id="msg-creds">✅ Credentials updated!</div>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="settings-card">
+          <h3>📬 Contact Info</h3>
+          <div class="field"><label>Contact Email</label><input type="email" id="set-email" placeholder="info@cloudzentra.in"/></div>
+          <div class="field"><label>WhatsApp Number <small style="color:var(--gray)">(country code + number)</small></label><input type="text" id="set-wa-num" placeholder="918855865379"/></div>
+          <div class="field"><label>WhatsApp Message</label><input type="text" id="set-wa-msg" placeholder="Hi CloudZentra! I want a free cloud audit."/></div>
+          <button class="save-btn" onclick="saveContact()">Save Contact Info</button>
+          <div class="save-msg" id="msg-contact">✅ Contact info updated!</div>
+        </div>
+
+        <!-- Social Links -->
+        <div class="settings-card" style="grid-column: 1 / -1;">
+          <h3>🔗 Social Media Links <small style="color:var(--gray);font-weight:400;font-size:0.82rem;">— Toggle to show/hide in footer</small></h3>
+          <div id="social-rows"></div>
+          <button class="save-btn" onclick="saveSocials()">Save Social Links</button>
+          <div class="save-msg" id="msg-socials">✅ Social links updated!</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- VIEW MODAL -->
+<div class="modal-overlay" id="viewModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()">×</button>
+    <h3>Submission Details</h3>
+    <div class="detail-row"><label>Name</label><p id="v-name"></p></div>
+    <div class="detail-row"><label>Email</label><p id="v-email"></p></div>
+    <div class="detail-row"><label>Company</label><p id="v-company"></p></div>
+    <div class="detail-row"><label>Cloud Provider</label><p id="v-cloud"></p></div>
+    <div class="detail-row"><label>Message</label><p id="v-msg"></p></div>
+    <div class="detail-row"><label>Submitted</label><p id="v-date"></p></div>
+  </div>
+</div>
+
+<script>
+// ─── DEFAULT CREDENTIALS (SHA-256 hash of "CloudZentra@2025") ───────────────
+// Password is NEVER stored as plain text — only as a hash
+const DEFAULT_HASH = '87349fc7fea04de4845cc4bf2c5a283a955749559c6c45668c067498aa439dbc';
+
+async function sha256(str) {
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
+}
+
+function getStoredHash() { return localStorage.getItem('cz_pass_hash') || DEFAULT_HASH; }
+function getStoredUser() { return localStorage.getItem('cz_username') || 'admin'; }
+
+// ─── LOGIN ───────────────────────────────────────────────────────────────────
+async function doLogin() {
+  const user = document.getElementById('login-user').value.trim();
+  const pass = document.getElementById('login-pass').value;
+  const hash = await sha256(pass);
+  if (user === getStoredUser() && hash === getStoredHash()) {
+    sessionStorage.setItem('cz_auth', '1');
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('dashboard').style.display = 'block';
+    document.getElementById('topbar-user').textContent = user;
+    document.getElementById('login-error').style.display = 'none';
+    initDashboard();
+  } else {
+    document.getElementById('login-error').style.display = 'block';
+  }
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && document.getElementById('login-screen').style.display !== 'none') doLogin();
+});
+
+function doLogout() {
+  sessionStorage.removeItem('cz_auth');
+  location.reload();
+}
+
+// Auto-login if session active
+if (sessionStorage.getItem('cz_auth') === '1') {
+  document.getElementById('login-screen').style.display = 'none';
+  document.getElementById('dashboard').style.display = 'block';
+  document.getElementById('topbar-user').textContent = getStoredUser();
+  document.addEventListener('DOMContentLoaded', initDashboard);
+}
+
+// ─── TABS ────────────────────────────────────────────────────────────────────
+function switchTab(name, btn) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  btn.classList.add('active');
+  if (name === 'settings') loadSettingsForm();
+}
+
+// ─── SUBMISSIONS ─────────────────────────────────────────────────────────────
+function getSubmissions() { return JSON.parse(localStorage.getItem('cn_submissions') || '[]'); }
+function saveSubmissions(data) { localStorage.setItem('cn_submissions', JSON.stringify(data)); }
+
+function renderStats(data) {
+  document.getElementById('s-total').textContent = data.length;
+  document.getElementById('s-unread').textContent = data.filter(d => !d.read).length;
+  document.getElementById('s-aws').textContent = data.filter(d => d.cloud === 'AWS').length;
+  document.getElementById('s-noc').textContent = data.filter(d => d.cloud === 'Not on cloud yet').length;
+}
+
+function renderTable() {
+  const data = getSubmissions();
+  const q = document.getElementById('search-input').value.toLowerCase();
+  const f = document.getElementById('filter-select').value;
+  const tbody = document.getElementById('submissions-tbody');
+  const filtered = data.filter(d => {
+    const matchQ = !q || d.name.toLowerCase().includes(q) || d.email.toLowerCase().includes(q);
+    const matchF = f === 'all' || (f === 'read' ? d.read : !d.read);
+    return matchQ && matchF;
+  });
+  if (!filtered.length) {
+    tbody.innerHTML = '<tr class="empty-row"><td colspan="7">No submissions found.</td></tr>';
+    return;
+  }
+  tbody.innerHTML = filtered.map((d, i) => `
+    <tr onclick="viewSubmission('${d.id}')">
+      <td>${esc(d.name)}</td>
+      <td>${esc(d.email)}</td>
+      <td>${esc(d.company || '—')}</td>
+      <td>${esc(d.cloud || '—')}</td>
+      <td>${new Date(d.date).toLocaleDateString()}</td>
+      <td><span class="${d.read ? 'badge-read' : 'badge-unread'}">${d.read ? 'Read' : 'Unread'}</span></td>
+      <td><button class="del-btn" onclick="delSubmission(event,'${d.id}')">🗑</button></td>
+    </tr>`).join('');
+}
+
+function esc(str) {
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function viewSubmission(id) {
+  const data = getSubmissions();
+  const d = data.find(x => x.id === id);
+  if (!d) return;
+  d.read = true;
+  saveSubmissions(data);
+  document.getElementById('v-name').textContent = d.name;
+  document.getElementById('v-email').textContent = d.email;
+  document.getElementById('v-company').textContent = d.company || '—';
+  document.getElementById('v-cloud').textContent = d.cloud || '—';
+  document.getElementById('v-msg').textContent = d.message || '—';
+  document.getElementById('v-date').textContent = new Date(d.date).toLocaleString();
+  document.getElementById('viewModal').classList.add('open');
+  renderTable(); renderStats(data);
+}
+
+function delSubmission(e, id) {
+  e.stopPropagation();
+  if (!confirm('Delete this submission?')) return;
+  const data = getSubmissions().filter(x => x.id !== id);
+  saveSubmissions(data);
+  renderTable(); renderStats(data);
+}
+
+function closeModal() { document.getElementById('viewModal').classList.remove('open'); }
+document.getElementById('viewModal').addEventListener('click', e => { if (e.target === document.getElementById('viewModal')) closeModal(); });
+
+// ─── SETTINGS ────────────────────────────────────────────────────────────────
+const SOCIALS = [
+  { key: 'linkedin',  label: 'LinkedIn',  icon: '💼' },
+  { key: 'twitter',   label: 'X/Twitter', icon: '🐦' },
+  { key: 'instagram', label: 'Instagram', icon: '📸' },
+  { key: 'facebook',  label: 'Facebook',  icon: '📘' },
+  { key: 'youtube',   label: 'YouTube',   icon: '▶️' },
+];
+
+function getSocialConfig() { return JSON.parse(localStorage.getItem('cz_socials') || '{}'); }
+function getContactConfig() {
+  return JSON.parse(localStorage.getItem('cz_contact') || JSON.stringify({
+    email: 'info@cloudzentra.in',
+    waNum: '918855865379',
+    waMsg: 'Hi CloudZentra! I want a free cloud audit.'
+  }));
+}
+
+function loadSettingsForm() {
+  // Contact
+  const c = getContactConfig();
+  document.getElementById('set-email').value = c.email || '';
+  document.getElementById('set-wa-num').value = c.waNum || '';
+  document.getElementById('set-wa-msg').value = c.waMsg || '';
+  // Username
+  document.getElementById('set-username').value = getStoredUser();
+  // Socials
+  const sc = getSocialConfig();
+  document.getElementById('social-rows').innerHTML = SOCIALS.map(s => `
+    <div class="social-row">
+      <span class="soc-label">${s.icon} ${s.label}</span>
+      <input type="text" id="soc-url-${s.key}" placeholder="https://..." value="${esc(sc[s.key]?.url || '')}"/>
+      <label class="toggle">
+        <input type="checkbox" id="soc-on-${s.key}" ${sc[s.key]?.enabled ? 'checked' : ''}/>
+        <span class="slider"></span>
+      </label>
+    </div>`).join('');
+}
+
+async function saveCredentials() {
+  const newUser = document.getElementById('set-username').value.trim();
+  const curPass = document.getElementById('set-cur-pass').value;
+  const newPass = document.getElementById('set-new-pass').value;
+  const confPass = document.getElementById('set-confirm-pass').value;
+  const msg = document.getElementById('msg-creds');
+  msg.style.display = 'none';
+
+  if (!newUser) { alert('Username cannot be empty.'); return; }
+  const curHash = await sha256(curPass);
+  if (curHash !== getStoredHash()) { alert('Current password is incorrect.'); return; }
+  if (newPass && newPass.length < 8) { alert('New password must be at least 8 characters.'); return; }
+  if (newPass && newPass !== confPass) { alert('Passwords do not match.'); return; }
+
+  localStorage.setItem('cz_username', newUser);
+  if (newPass) localStorage.setItem('cz_pass_hash', await sha256(newPass));
+  document.getElementById('topbar-user').textContent = newUser;
+  document.getElementById('set-cur-pass').value = '';
+  document.getElementById('set-new-pass').value = '';
+  document.getElementById('set-confirm-pass').value = '';
+  msg.style.display = 'block';
+  setTimeout(() => msg.style.display = 'none', 3000);
+}
+
+function saveContact() {
+  const c = {
+    email: document.getElementById('set-email').value.trim(),
+    waNum: document.getElementById('set-wa-num').value.trim(),
+    waMsg: document.getElementById('set-wa-msg').value.trim()
+  };
+  localStorage.setItem('cz_contact', JSON.stringify(c));
+  const msg = document.getElementById('msg-contact');
+  msg.style.display = 'block';
+  setTimeout(() => msg.style.display = 'none', 3000);
+}
+
+function saveSocials() {
+  const sc = {};
+  SOCIALS.forEach(s => {
+    sc[s.key] = {
+      url: document.getElementById('soc-url-' + s.key).value.trim(),
+      enabled: document.getElementById('soc-on-' + s.key).checked
+    };
+  });
+  localStorage.setItem('cz_socials', JSON.stringify(sc));
+  const msg = document.getElementById('msg-socials');
+  msg.style.display = 'block';
+  setTimeout(() => msg.style.display = 'none', 3000);
+}
+
+// ─── INIT ─────────────────────────────────────────────────────────────────────
+function initDashboard() {
+  const data = getSubmissions();
+  renderStats(data);
+  renderTable();
+  setInterval(() => { renderStats(getSubmissions()); renderTable(); }, 10000);
+}
+
+if (document.getElementById('dashboard').style.display === 'block') initDashboard();
+</script>
+</body>
+</html>

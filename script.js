@@ -1,3 +1,40 @@
+// ─── LOAD ADMIN CONFIG ───────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  // Contact info from admin settings
+  const c = JSON.parse(localStorage.getItem('cz_contact') || '{"email":"info@cloudzentra.in","waNum":"918855865379","waMsg":"Hi CloudZentra! I want a free cloud audit."}');
+
+  const emailLink = document.getElementById('footer-email');
+  if (emailLink) { emailLink.href = 'mailto:' + c.email; emailLink.textContent = c.email; }
+
+  const waBtn = document.getElementById('whatsapp-btn');
+  if (waBtn) waBtn.href = 'https://wa.me/' + c.waNum + '?text=' + encodeURIComponent(c.waMsg);
+
+  // Social links from admin settings
+  const SOCIAL_META = {
+    linkedin:  { label: 'LinkedIn' },
+    twitter:   { label: 'X / Twitter' },
+    instagram: { label: 'Instagram' },
+    facebook:  { label: 'Facebook' },
+    youtube:   { label: 'YouTube' }
+  };
+  const sc = JSON.parse(localStorage.getItem('cz_socials') || '{}');
+  const socialContainer = document.getElementById('footer-socials');
+  if (socialContainer) {
+    socialContainer.innerHTML = '';
+    Object.entries(SOCIAL_META).forEach(([key, meta]) => {
+      if (sc[key] && sc[key].enabled && sc[key].url) {
+        const a = document.createElement('a');
+        a.href = sc[key].url;
+        a.textContent = meta.label;
+        a.target = '_blank';
+        a.rel = 'noopener noreferrer';
+        socialContainer.appendChild(a);
+      }
+    });
+  }
+});
+// ─────────────────────────────────────────────────────────────────────────────
+
 // Service modal data
 const services = [
   {
@@ -100,7 +137,21 @@ window.addEventListener('scroll', () => {
 // Contact form
 function handleSubmit(e) {
   e.preventDefault();
-  e.target.style.display = 'none';
+  const form = e.target;
+  const submission = {
+    id: Date.now().toString(),
+    date: new Date().toISOString(),
+    read: false,
+    name:    form.querySelector('[name="name"]').value.trim(),
+    email:   form.querySelector('[name="email"]').value.trim(),
+    company: form.querySelector('[name="company"]').value.trim(),
+    cloud:   form.querySelector('[name="cloud"]').value,
+    message: form.querySelector('[name="message"]').value.trim()
+  };
+  const existing = JSON.parse(localStorage.getItem('cn_submissions') || '[]');
+  existing.unshift(submission);
+  localStorage.setItem('cn_submissions', JSON.stringify(existing));
+  form.style.display = 'none';
   document.getElementById('form-success').style.display = 'block';
 }
 
