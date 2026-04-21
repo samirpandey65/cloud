@@ -3,3 +3,4 @@ email.config.json
 leads.json
 .env
 wrangler.jsonc
+.wrangler/
