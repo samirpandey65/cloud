@@ -9,6 +9,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const waBtn = document.getElementById('whatsapp-btn');
   if (waBtn) waBtn.href = 'https://wa.me/' + c.waNum + '?text=' + encodeURIComponent(c.waMsg);
 
+  const heroWaBtn = document.getElementById('hero-wa-btn');
+  if (heroWaBtn) heroWaBtn.href = 'https://wa.me/' + c.waNum + '?text=' + encodeURIComponent(c.waMsg);
+
   // Social links from admin settings
   const SOCIAL_META = {
     linkedin:  { label: 'LinkedIn' },
@@ -182,11 +185,16 @@ const SMART_REPLIES = {
   'Azure|Cost Optimization':                 'Azure environments often have underutilised resources driving up costs. Based on what you shared, better resource management could help.',
   'Azure|Security':                          'Azure security benefits from tighter policies and Defender configuration. Based on what you shared, there is scope to harden your environment.',
   'Azure|DevOps / CI-CD':                    'Azure DevOps pipelines can be optimised for faster, more reliable releases. Based on what you shared, we can streamline your workflow.',
+  'Azure|Cloud Migration':                   'Azure migrations require careful planning to avoid downtime and data loss. Based on what you shared, a structured migration roadmap would ensure a smooth transition.',
   'Azure|Monitoring':                        'Azure monitoring setups often lack centralised dashboards. Based on what you shared, we can improve observability across your environment.',
+  'Azure|General Inquiry':                   'Azure is a powerful platform with many services. Based on what you shared, we can help you identify the right services and architecture for your needs.',
   'Google Cloud|Monitoring':                 'Google Cloud setups often struggle with alert noise and visibility gaps. Based on what you shared, we can help improve observability and real-time insights.',
   'Google Cloud|Cost Optimization':          'GCP billing can be complex with committed use discounts often missed. Based on what you shared, there is likely savings to unlock.',
   'Google Cloud|Security':                   'GCP security requires careful IAM and VPC configuration. Based on what you shared, a focused review could close key gaps.',
   'Google Cloud|DevOps / CI-CD':             'GCP teams benefit greatly from Cloud Build and automated pipelines. Based on what you shared, we can help speed up your delivery.',
+  'Google Cloud|Cloud Migration':            'Migrating to Google Cloud requires careful workload assessment and planning. Based on what you shared, we can map out a smooth and efficient transition.',
+  'Google Cloud|General Inquiry':            'Google Cloud offers strong data and AI capabilities. Based on what you shared, we can help you choose the right services and get started efficiently.',
+  'AWS|General Inquiry':                     'AWS has a vast range of services and it can be overwhelming to navigate. Based on what you shared, we can help you identify the right setup for your needs.',
   'Multiple clouds|DevOps / CI-CD':          'Multi-cloud environments often face challenges with deployment consistency and pipeline standardisation. Based on what you shared, having a unified CI/CD strategy across environments makes a significant difference.',
   'Multiple clouds|Cost Optimization':       'Managing costs across multiple clouds is complex — billing models differ and waste is easy to miss. Based on what you shared, a unified cost visibility approach could help.',
   'Multiple clouds|Security':                'Security in multi-cloud setups requires consistent policies across all environments. Based on what you shared, a unified security posture review would be valuable.',
@@ -209,11 +217,16 @@ const SOLUTIONS = {
   'Azure|Cost Optimization':                 ['Identify underutilised VMs', 'Set up Cost Management alerts', 'Review reserved capacity'],
   'Azure|Security':                          ['Configure Azure Defender', 'Review RBAC policies', 'Enable Azure Sentinel'],
   'Azure|DevOps / CI-CD':                    ['Set up Azure DevOps pipelines', 'Containerise with AKS', 'Automate with Terraform'],
+  'Azure|Cloud Migration':                   ['Structured migration roadmap & planning', 'Zero-downtime cutover strategy', 'Post-migration performance optimisation', 'Secure data migration & validation'],
   'Azure|Monitoring':                        ['Set up Azure Monitor dashboards', 'Configure Application Insights', 'Centralise logs with Log Analytics'],
+  'Azure|General Inquiry':                   ['Azure service selection & architecture', 'Cost & performance planning', 'Security & compliance setup'],
   'Google Cloud|Monitoring':                 ['Set up Cloud Monitoring dashboards', 'Reduce alert noise with smart policies', 'Centralise logs with Cloud Logging'],
   'Google Cloud|Cost Optimization':          ['Review committed use discounts', 'Identify idle Compute Engine VMs', 'Set up billing alerts'],
   'Google Cloud|Security':                   ['Audit IAM bindings', 'Configure VPC firewall rules', 'Enable Security Command Center'],
   'Google Cloud|DevOps / CI-CD':             ['Set up Cloud Build pipelines', 'Deploy with GKE', 'Automate with Terraform'],
+  'Google Cloud|Cloud Migration':            ['Workload assessment & migration planning', 'Zero-downtime migration strategy', 'Post-migration optimisation & validation'],
+  'Google Cloud|General Inquiry':            ['GCP service selection & architecture', 'Cost & performance planning', 'Security & compliance setup'],
+  'AWS|General Inquiry':                     ['AWS service selection & architecture', 'Cost & performance planning', 'Security & compliance setup'],
   'Multiple clouds|DevOps / CI-CD':          ['Standardise CI/CD pipelines across all environments', 'Automate deployments with Jenkins / GitHub Actions', 'Securely manage secrets & configs across clouds', 'Improve build & release reliability'],
   'Multiple clouds|Cost Optimization':       ['Unified cost visibility across all clouds', 'Identify duplicate or idle resources', 'Set up cross-cloud budget alerts'],
   'Multiple clouds|Security':                ['Consistent IAM policies across environments', 'Centralised security monitoring', 'Cross-cloud compliance checks'],

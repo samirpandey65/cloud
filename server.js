@@ -4,10 +4,22 @@ const path  = require('path');
 const nodemailer = require('nodemailer');
 
 const CONFIG_FILE = path.join(__dirname, 'email.config.json');
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 // ─── HELPERS ──────────────────────────────────────────────────────────────────
 function loadEmailConfig() {
+  // Priority 1: environment variables (Railway / production)
+  if (process.env.EMAIL_PROVIDER) {
+    return {
+      provider: process.env.EMAIL_PROVIDER,
+      user:     process.env.EMAIL_USER,
+      pass:     process.env.EMAIL_PASS,
+      to:       process.env.EMAIL_TO || process.env.EMAIL_USER,
+      smtpHost: process.env.SMTP_HOST,
+      smtpPort: process.env.SMTP_PORT
+    };
+  }
+  // Priority 2: local config file (development)
   try { return JSON.parse(fs.readFileSync(CONFIG_FILE, 'utf8')); }
   catch { return null; }
 }

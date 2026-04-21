@@ -178,6 +178,19 @@ body {
 }
 .btn-outline:hover { border-color: var(--white); background: rgba(255,255,255,0.1); transform: translateY(-3px); }
 
+/* PROBLEMS */
+.problems { background: var(--white); }
+.problems-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+.problem-card {
+  display: flex; align-items: flex-start; gap: 14px;
+  background: #fff5f5; border: 1px solid #fecaca;
+  border-radius: 14px; padding: 20px 18px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.problem-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(239,68,68,0.1); }
+.problem-card span { font-size: 1.6rem; flex-shrink: 0; }
+.problem-card p { font-size: 0.9rem; color: #7f1d1d; font-weight: 500; margin: 0; line-height: 1.5; }
+
 /* TRUST BAR */
 .trust-bar { background: var(--dark); padding: 20px 0; }
 .trust-label { text-align: center; color: #64748b; font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 14px; }
@@ -528,6 +541,7 @@ body {
 
 /* RESPONSIVE */
 @media (max-width: 768px) {
+  .problems-grid { grid-template-columns: 1fr; }
   .why-grid { grid-template-columns: 1fr; }
   .tech-grid { grid-template-columns: repeat(3,1fr); }
   .nav-links { display: none; flex-direction: column; position: absolute; top: 64px; left: 0; right: 0; background: var(--white); padding: 20px; border-bottom: 1px solid var(--border); gap: 16px; }
