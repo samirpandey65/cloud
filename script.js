@@ -9,9 +9,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const waBtn = document.getElementById('whatsapp-btn');
   if (waBtn) waBtn.href = 'https://wa.me/' + c.waNum + '?text=' + encodeURIComponent(c.waMsg);
 
-  const heroWaBtn = document.getElementById('hero-wa-btn');
-  if (heroWaBtn) heroWaBtn.href = 'https://wa.me/' + c.waNum + '?text=' + encodeURIComponent(c.waMsg);
-
   // Social links from admin settings
   const SOCIAL_META = {
     linkedin:  { label: 'LinkedIn' },
