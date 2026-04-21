@@ -193,11 +193,8 @@ const SMART_REPLIES = {
   'Multiple clouds|Monitoring':              'Multi-cloud monitoring often results in fragmented visibility. Based on what you shared, centralising observability across all platforms would improve your response time.',
   'Multiple clouds|Cloud Migration':         'Migrating across multiple cloud environments requires careful orchestration. Based on what you shared, a phased migration plan would reduce risk significantly.',
   'Not using yet|Cloud Migration':           'Moving to cloud for the first time is a big step. Based on what you shared, starting with the right architecture will save time and cost down the line.',
-  'Not using yet|Cost Optimization':         'Cloud cost planning before migration is critical. Based on what you shared, we can help you choose the most cost-efficient setup from day one.',
+  'Not using yet|Cost Optimization':         'Cloud cost planning before migration is critical. Based on what you shared, we can help you choose the most cost-effective setup from day one.',
   'Not using yet|DevOps / CI-CD':            'Setting up DevOps from scratch gives you the advantage of doing it right the first time. Based on what you shared, we can build a clean, automated pipeline for you.',
-  'Not using yet|General Inquiry':           'Great time to explore cloud options. Based on what you shared, we can guide you through the right starting point without overcomplicating things.',
-  'Not using yet|Security':                  'Planning security from the start is the smartest move. Based on what you shared, we can help you build a secure foundation before you go live.',
-  'Not using yet|Monitoring':                'Setting up monitoring early means fewer surprises later. Based on what you shared, we can help you build visibility into your infrastructure from day one.',
 };
 
 // Solution suggestions map
@@ -222,42 +219,13 @@ const SOLUTIONS = {
   'Not using yet|Cloud Migration':           ['Cloud readiness assessment', 'Architecture design for your use case', 'Cost-optimised setup from day one'],
   'Not using yet|Cost Optimization':         ['Right-sized infrastructure planning', 'Reserved vs on-demand cost modelling', 'Budget alert setup'],
   'Not using yet|DevOps / CI-CD':            ['CI/CD pipeline design from scratch', 'Docker & Kubernetes setup', 'Automated testing & deployment'],
-  'Not using yet|General Inquiry':           ['Cloud platform comparison (AWS / Azure / GCP)', 'Starter architecture design', 'Cost & timeline estimate'],
-  'Not using yet|Security':                  ['Security-first architecture design', 'IAM & access control setup', 'Compliance checklist for your industry'],
-  'Not using yet|Monitoring':                ['Monitoring strategy from day one', 'Alerting & dashboard setup', 'Log management planning'],
 };
 
 function buildFinalMessage(d) {
-  var key   = d.cloud + '|' + d.need;
-  var items = SOLUTIONS[key] || ['Infrastructure review', 'Performance improvements', 'Cost & security assessment'];
-
-  // Beginner path
-  if (d.cloud === 'Not using yet') {
-    var bReply = SMART_REPLIES[key] || 'Great time to explore cloud options. Based on what you shared, we can guide you through the right starting point.';
-    return bReply +
-      '\n\nFor beginners, we usually recommend:' +
-      '\n' + items.map(function(i) { return '\u2022 ' + i; }).join('\n') +
-      '\n\nStarting correctly saves a lot of cost and effort later.' +
-      '\n\nAnything specific you would like to add? (or press Enter to skip)';
-  }
-
-  // Low budget path
-  if (d.budget === 'Under \u20b95,000') {
-    return 'Since you are working with a smaller budget, the best approach is to start minimal and scale only when needed.' +
-      '\n\nWe usually recommend:' +
-      '\n\u2022 Using free-tier cloud services (AWS / GCP / Azure)' +
-      '\n\u2022 Starting with basic infrastructure' +
-      '\n\u2022 Avoiding over-scaling early' +
-      '\n\nThis keeps costs low while you validate your setup.' +
-      '\n\nAnything specific you would like to add? (or press Enter to skip)';
-  }
-
-  // Standard path
-  var reply = SMART_REPLIES[key] || ('Based on what you shared about your ' + d.cloud + ' usage and ' + d.need + ' needs, our team can suggest the right improvements.');
-  return reply +
-    '\n\nHere is what we can help with:' +
-    '\n' + items.map(function(i) { return '\u2022 ' + i; }).join('\n') +
-    '\n\nAnything specific you would like to add? (or press Enter to skip)';
+  const key     = d.cloud + '|' + d.need;
+  const reply   = SMART_REPLIES[key] || ('Based on what you shared about your ' + d.cloud + ' usage and ' + d.need + ' needs, our team can suggest the right improvements.');
+  const items   = SOLUTIONS[key]     || ['Infrastructure review', 'Performance improvements', 'Cost & security assessment'];
+  return reply + '\n\nHere is what we can help with:\n' + items.map(function(i){ return '• ' + i; }).join('\n') + '\n\nAnything specific you would like to add?';
 }
 
 function getPersonalizedCTA(d) {
