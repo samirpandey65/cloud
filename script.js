@@ -152,7 +152,14 @@ function handleSubmit(e) {
     message: form.querySelector('[name="message"]').value.trim()
   };
 
-  // Save to localStorage (admin dashboard)
+  // Save to server (persistent CRM)
+  fetch('/save-lead', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(submission)
+  }).catch(() => {});
+
+  // Also save to localStorage (fallback)
   const existing = JSON.parse(localStorage.getItem('cn_submissions') || '[]');
   existing.unshift(submission);
   localStorage.setItem('cn_submissions', JSON.stringify(existing));
@@ -412,6 +419,12 @@ function saveChatLead() {
   const existing = JSON.parse(localStorage.getItem('cn_submissions') || '[]');
   existing.unshift(submission);
   localStorage.setItem('cn_submissions', JSON.stringify(existing));
+  // Save to server (persistent CRM)
+  fetch('/save-lead', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(submission)
+  }).catch(() => {});
   fetch('/send-email', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },

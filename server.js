@@ -4,7 +4,17 @@ const path  = require('path');
 const nodemailer = require('nodemailer');
 
 const CONFIG_FILE = path.join(__dirname, 'email.config.json');
+const LEADS_FILE  = path.join(__dirname, 'leads.json');
 const PORT = process.env.PORT || 3000;
+
+// ─── LEAD HELPERS ───────────────────────────────────────────────────────────────
+function loadLeads() {
+  try { return JSON.parse(fs.readFileSync(LEADS_FILE, 'utf8')); }
+  catch { return []; }
+}
+function saveLeads(leads) {
+  fs.writeFileSync(LEADS_FILE, JSON.stringify(leads, null, 2));
+}
 
 // ─── HELPERS ──────────────────────────────────────────────────────────────────
 function loadEmailConfig() {
@@ -143,6 +153,59 @@ const server = http.createServer(async (req, res) => {
     } catch (e) {
       res.writeHead(500, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ ok: false, error: e.message }));
+    }
+    return;
+  }
+
+  // ── Save lead ──────────────────────────────────────────────────────────────
+  if (req.method === 'POST' && req.url === '/save-lead') {
+    try {
+      const lead = await parseBody(req);
+      const leads = loadLeads();
+      leads.unshift(lead);
+      saveLeads(leads);
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ ok: true }));
+    } catch (e) {
+      res.writeHead(400, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ ok: false }));
+    }
+    return;
+  }
+
+  // ── Get all leads ──────────────────────────────────────────────────────────
+  if (req.method === 'GET' && req.url === '/get-leads') {
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify(loadLeads()));
+    return;
+  }
+
+  // ── Update lead (mark read) ────────────────────────────────────────────────
+  if (req.method === 'POST' && req.url === '/update-lead') {
+    try {
+      const { id, read } = await parseBody(req);
+      const leads = loadLeads();
+      const lead = leads.find(l => l.id === id);
+      if (lead) { lead.read = read; saveLeads(leads); }
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ ok: true }));
+    } catch (e) {
+      res.writeHead(400, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ ok: false }));
+    }
+    return;
+  }
+
+  // ── Delete lead ────────────────────────────────────────────────────────────
+  if (req.method === 'POST' && req.url === '/delete-lead') {
+    try {
+      const { id } = await parseBody(req);
+      saveLeads(loadLeads().filter(l => l.id !== id));
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ ok: true }));
+    } catch (e) {
+      res.writeHead(400, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ ok: false }));
     }
     return;
   }

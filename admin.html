@@ -383,6 +383,16 @@ function switchTab(name, btn) {
 function getSubmissions() { return JSON.parse(localStorage.getItem('cn_submissions') || '[]'); }
 function saveSubmissions(data) { localStorage.setItem('cn_submissions', JSON.stringify(data)); }
 
+async function loadFromServer() {
+  try {
+    const res = await fetch('/get-leads');
+    const data = await res.json();
+    // Merge server leads into localStorage
+    localStorage.setItem('cn_submissions', JSON.stringify(data));
+    renderStats(data); renderTable();
+  } catch { /* server offline, use localStorage */ }
+}
+
 function renderStats(data) {
   document.getElementById('s-total').textContent = data.length;
   document.getElementById('s-unread').textContent = data.filter(d => !d.read).length;
@@ -426,6 +436,8 @@ function viewSubmission(id) {
   if (!d) return;
   d.read = true;
   saveSubmissions(data);
+  // Sync read status to server
+  fetch('/update-lead', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ id, read: true }) }).catch(() => {});
   document.getElementById('v-name').textContent = d.name;
   document.getElementById('v-email').textContent = d.email;
   document.getElementById('v-company').textContent = d.company || '—';
@@ -441,6 +453,8 @@ function delSubmission(e, id) {
   if (!confirm('Delete this submission?')) return;
   const data = getSubmissions().filter(x => x.id !== id);
   saveSubmissions(data);
+  // Sync delete to server
+  fetch('/delete-lead', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ id }) }).catch(() => {});
   renderTable(); renderStats(data);
 }
 
@@ -645,10 +659,11 @@ function saveSocials() {
 
 // ─── INIT ─────────────────────────────────────────────────────────────────────
 function initDashboard() {
+  loadFromServer(); // load from server first
   const data = getSubmissions();
   renderStats(data);
   renderTable();
-  setInterval(() => { renderStats(getSubmissions()); renderTable(); }, 10000);
+  setInterval(loadFromServer, 10000); // auto-refresh from server every 10s
 }
 
 if (document.getElementById('dashboard').style.display === 'block') initDashboard();
