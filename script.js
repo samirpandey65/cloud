@@ -230,18 +230,31 @@ const SOLUTIONS = {
 function buildFinalMessage(d) {
   var key   = d.cloud + '|' + d.need;
   var items = SOLUTIONS[key] || ['Infrastructure review', 'Performance improvements', 'Cost & security assessment'];
+  var reply = SMART_REPLIES[key] || '';
 
-  // Beginner path
+  // Beginner path — not using cloud yet
   if (d.cloud === 'Not using yet') {
-    var bReply = SMART_REPLIES[key] || 'Great time to explore cloud options. Based on what you shared, we can guide you through the right starting point.';
+    var bReply = reply || 'Great time to explore cloud options. Based on what you shared, we can guide you through the right starting point.';
     return bReply +
       '\n\nFor beginners, we usually recommend:' +
       '\n' + items.map(function(i) { return '\u2022 ' + i; }).join('\n') +
       '\n\nStarting correctly saves a lot of cost and effort later.' +
-      '\n\nAnything specific you would like to add? (or press Enter to skip)';
+      '\n\nWould you like help getting started? (or press Enter to skip)';
   }
 
-  // Low budget path
+  // Known cloud + need combination exists — use it regardless of budget
+  if (reply) {
+    var budgetNote = d.budget === 'Under \u20b95,000'
+      ? '\n\nEven with a smaller budget, focusing on the right ' + d.need.toLowerCase() + ' basics can make a big difference.'
+      : '';
+    return reply +
+      '\n\nHere is what we can help with:' +
+      '\n' + items.map(function(i) { return '\u2022 ' + i; }).join('\n') +
+      budgetNote +
+      '\n\nWould you like help improving this? (or press Enter to skip)';
+  }
+
+  // Low budget fallback — only when no specific match
   if (d.budget === 'Under \u20b95,000') {
     return 'Since you are working with a smaller budget, the best approach is to start minimal and scale only when needed.' +
       '\n\nWe usually recommend:' +
@@ -252,9 +265,8 @@ function buildFinalMessage(d) {
       '\n\nAnything specific you would like to add? (or press Enter to skip)';
   }
 
-  // Standard path
-  var reply = SMART_REPLIES[key] || ('Based on what you shared about your ' + d.cloud + ' usage and ' + d.need + ' needs, our team can suggest the right improvements.');
-  return reply +
+  // Generic fallback
+  return 'Based on what you shared about your ' + d.cloud + ' usage and ' + d.need + ' needs, our team can suggest the right improvements.' +
     '\n\nHere is what we can help with:' +
     '\n' + items.map(function(i) { return '\u2022 ' + i; }).join('\n') +
     '\n\nAnything specific you would like to add? (or press Enter to skip)';
