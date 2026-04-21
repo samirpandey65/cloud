@@ -383,19 +383,6 @@ function switchTab(name, btn) {
 function getSubmissions() { return JSON.parse(localStorage.getItem('cn_submissions') || '[]'); }
 function saveSubmissions(data) { localStorage.setItem('cn_submissions', JSON.stringify(data)); }
 
-// API base — set this to your Railway URL when frontend is on Cloudflare
-const ADMIN_API_BASE = '';
-// Example: const ADMIN_API_BASE = 'https://cloudzentra-production.up.railway.app';
-
-async function loadFromServer() {
-  try {
-    const res = await fetch(ADMIN_API_BASE + '/get-leads');
-    const data = await res.json();
-    localStorage.setItem('cn_submissions', JSON.stringify(data));
-    renderStats(data); renderTable();
-  } catch { /* server offline, use localStorage */ }
-}
-
 function renderStats(data) {
   document.getElementById('s-total').textContent = data.length;
   document.getElementById('s-unread').textContent = data.filter(d => !d.read).length;
@@ -439,8 +426,6 @@ function viewSubmission(id) {
   if (!d) return;
   d.read = true;
   saveSubmissions(data);
-  // Sync read status to server
-  fetch(ADMIN_API_BASE + '/update-lead', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ id, read: true }) }).catch(() => {});
   document.getElementById('v-name').textContent = d.name;
   document.getElementById('v-email').textContent = d.email;
   document.getElementById('v-company').textContent = d.company || '—';
@@ -456,8 +441,6 @@ function delSubmission(e, id) {
   if (!confirm('Delete this submission?')) return;
   const data = getSubmissions().filter(x => x.id !== id);
   saveSubmissions(data);
-  // Sync delete to server
-  fetch(ADMIN_API_BASE + '/delete-lead', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ id }) }).catch(() => {});
   renderTable(); renderStats(data);
 }
 
@@ -567,7 +550,7 @@ async function saveEmailSetup() {
   };
   if (!cfg.user || !cfg.pass) { alert('Email and password are required.'); return; }
   try {
-    const res = await fetch(ADMIN_API_BASE + '/save-email-config', {
+    const res = await fetch('/save-email-config', {
       method: 'POST', headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(cfg)
     });
@@ -592,7 +575,7 @@ async function testEmailSetup() {
   msg.style.display = 'block'; msg.style.color = 'var(--gray)';
   msg.textContent = '⏳ Sending test email...';
   try {
-    const res = await fetch(ADMIN_API_BASE + '/send-email', {
+    const res = await fetch('/send-email', {
       method: 'POST', headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name: 'Test Lead', email: 'test@cloudzentra.in', company: 'CloudZentra', cloud: 'AWS', message: 'This is a test email from admin panel.', source: 'Test' })
     });
@@ -607,7 +590,7 @@ async function testEmailSetup() {
 
 async function loadEmailStatus() {
   try {
-    const res  = await fetch(ADMIN_API_BASE + '/email-config-status');
+    const res  = await fetch('/email-config-status');
     const data = await res.json();
     const bar  = document.getElementById('email-status-bar');
     bar.style.display = 'block';
@@ -662,11 +645,10 @@ function saveSocials() {
 
 // ─── INIT ─────────────────────────────────────────────────────────────────────
 function initDashboard() {
-  loadFromServer(); // load from server first
   const data = getSubmissions();
   renderStats(data);
   renderTable();
-  setInterval(loadFromServer, 10000); // auto-refresh from server every 10s
+  setInterval(() => { renderStats(getSubmissions()); renderTable(); }, 10000);
 }
 
 if (document.getElementById('dashboard').style.display === 'block') initDashboard();

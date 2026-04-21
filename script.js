@@ -1,10 +1,3 @@
-// ─── API BASE URL ─────────────────────────────────────────────────────────────────
-// When running locally: leave as ''
-// When frontend on Cloudflare + backend on Railway: set to your Railway URL
-// Example: const API_BASE = 'https://cloudzentra-production.up.railway.app';
-const API_BASE = '';
-// ─────────────────────────────────────────────────────────────────────────────
-
 document.addEventListener('DOMContentLoaded', () => {
   // Contact info from admin settings
   const c = JSON.parse(localStorage.getItem('cz_contact') || '{"email":"info@cloudzentra.in","waNum":"918855865379","waMsg":"Hi CloudZentra! I want a free cloud audit."}');
@@ -157,33 +150,9 @@ function handleSubmit(e) {
     cloud:   form.querySelector('[name="cloud"]').value,
     message: form.querySelector('[name="message"]').value.trim()
   };
-
-  // Save to server (persistent CRM)
-  fetch(API_BASE + '/save-lead', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(submission)
-  }).catch(() => {});
-
-  // Also save to localStorage (fallback)
   const existing = JSON.parse(localStorage.getItem('cn_submissions') || '[]');
   existing.unshift(submission);
   localStorage.setItem('cn_submissions', JSON.stringify(existing));
-
-  // Send email via server
-  fetch(API_BASE + '/send-email', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      name:    submission.name,
-      email:   submission.email,
-      company: submission.company || 'N/A',
-      cloud:   submission.cloud   || 'N/A',
-      message: submission.message || 'N/A',
-      source:  'Contact Form'
-    })
-  }).catch(() => {});
-
   form.style.display = 'none';
   document.getElementById('form-success').style.display = 'block';
 }
@@ -420,22 +389,11 @@ function saveChatLead() {
     email:   chatData.email   || '',
     company: '',
     cloud:   chatData.cloud   || '',
-    message: `[Chatbot] Need: ${chatData.need || ''} | Budget: ${chatData.budget || ''} | Note: ${chatData.message || ''}`
+    message: '[Chatbot] Need: ' + (chatData.need || '') + ' | Budget: ' + (chatData.budget || '') + ' | Note: ' + (chatData.message || '')
   };
   const existing = JSON.parse(localStorage.getItem('cn_submissions') || '[]');
   existing.unshift(submission);
   localStorage.setItem('cn_submissions', JSON.stringify(existing));
-  // Save to server (persistent CRM)
-  fetch(API_BASE + '/save-lead', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(submission)
-  }).catch(() => {});
-  fetch(API_BASE + '/send-email', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ name: submission.name, email: submission.email, company: 'Via Chatbot', cloud: submission.cloud, message: submission.message, source: 'Chatbot' })
-  }).catch(() => {});
 }
 
 // Show badge after 8 seconds if chat not opened
