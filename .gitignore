@@ -2,8 +2,3 @@ node_modules/
 email.config.json
 leads.json
 .env
-wrangler.jsonc
-.wrangler/
-server.js
-package.json
-package-lock.json
