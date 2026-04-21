@@ -178,6 +178,38 @@ body {
 }
 .btn-outline:hover { border-color: var(--white); background: rgba(255,255,255,0.1); transform: translateY(-3px); }
 
+/* TRUST BAR */
+.trust-bar { background: var(--dark); padding: 20px 0; }
+.trust-label { text-align: center; color: #64748b; font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 14px; }
+.trust-logos { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 28px; }
+.trust-logos span { color: #94a3b8; font-size: 0.88rem; font-weight: 700; letter-spacing: 0.3px; opacity: 0.8; transition: opacity 0.2s, color 0.2s; cursor: default; }
+.trust-logos span:hover { opacity: 1; color: #60a5fa; }
+
+/* WHY US */
+.whyus { background: var(--white); }
+.why-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+.why-card {
+  background: var(--light); border: 1px solid var(--border); border-radius: 16px;
+  padding: 28px 24px; transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+}
+.why-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(37,99,235,0.1); border-color: #bfdbfe; }
+.why-icon { font-size: 2rem; margin-bottom: 14px; display: inline-block; }
+.why-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+.why-card p { color: var(--gray); font-size: 0.9rem; line-height: 1.6; }
+
+/* TECH STACK */
+.techstack { background: var(--light); }
+.tech-grid { display: grid; grid-template-columns: repeat(6,1fr); gap: 16px; }
+.tech-item {
+  background: var(--white); border: 1px solid var(--border); border-radius: 14px;
+  padding: 20px 12px; text-align: center; display: flex; flex-direction: column;
+  align-items: center; gap: 6px; transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+.tech-item:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(37,99,235,0.1); border-color: #bfdbfe; }
+.tech-icon { font-size: 1.6rem; }
+.tech-item strong { font-size: 0.85rem; font-weight: 700; color: var(--dark); }
+.tech-item small { font-size: 0.72rem; color: var(--gray); }
+
 /* SERVICES */
 .services { background: var(--light); }
 .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
@@ -421,6 +453,8 @@ body {
 
 /* RESPONSIVE */
 @media (max-width: 768px) {
+  .why-grid { grid-template-columns: 1fr; }
+  .tech-grid { grid-template-columns: repeat(3,1fr); }
   .nav-links { display: none; flex-direction: column; position: absolute; top: 64px; left: 0; right: 0; background: var(--white); padding: 20px; border-bottom: 1px solid var(--border); gap: 16px; }
   .nav-links.open { display: flex; }
   .hamburger { display: block; }
