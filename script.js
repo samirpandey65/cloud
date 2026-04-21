@@ -172,77 +172,15 @@ function handleSubmit(e) {
   document.getElementById('form-success').style.display = 'block';
 }
 
-// Smart reply map: cloud|need -> contextual message
-const SMART_REPLIES = {
-  'AWS|Cost Optimization':                   'Many AWS users overspend due to idle resources and wrong instance types. Based on what you shared, there is likely room to reduce your bill significantly.',
-  'AWS|Security':                            'AWS security often has gaps in IAM policies and open security groups. Based on what you shared, a targeted review could strengthen your setup.',
-  'AWS|DevOps / CI-CD':                      'AWS teams often spend hours on manual deployments. Based on what you shared, automating your pipeline could cut deployment time drastically.',
-  'AWS|Cloud Migration':                     'Migrating to AWS requires careful planning to avoid downtime. Based on what you shared, we can map out a smooth transition.',
-  'AWS|Monitoring':                          'AWS monitoring can get noisy without proper alerting rules. Based on what you shared, we can help improve visibility and reduce alert fatigue.',
-  'Azure|Cost Optimization':                 'Azure environments often have underutilised resources driving up costs. Based on what you shared, better resource management could help.',
-  'Azure|Security':                          'Azure security benefits from tighter policies and Defender configuration. Based on what you shared, there is scope to harden your environment.',
-  'Azure|DevOps / CI-CD':                    'Azure DevOps pipelines can be optimised for faster, more reliable releases. Based on what you shared, we can streamline your workflow.',
-  'Azure|Monitoring':                        'Azure monitoring setups often lack centralised dashboards. Based on what you shared, we can improve observability across your environment.',
-  'Google Cloud|Monitoring':                 'Google Cloud setups often struggle with alert noise and visibility gaps. Based on what you shared, we can help improve observability and real-time insights.',
-  'Google Cloud|Cost Optimization':          'GCP billing can be complex with committed use discounts often missed. Based on what you shared, there is likely savings to unlock.',
-  'Google Cloud|Security':                   'GCP security requires careful IAM and VPC configuration. Based on what you shared, a focused review could close key gaps.',
-  'Google Cloud|DevOps / CI-CD':             'GCP teams benefit greatly from Cloud Build and automated pipelines. Based on what you shared, we can help speed up your delivery.',
-  'Multiple clouds|DevOps / CI-CD':          'Multi-cloud environments often face challenges with deployment consistency and pipeline standardisation. Based on what you shared, having a unified CI/CD strategy across environments makes a significant difference.',
-  'Multiple clouds|Cost Optimization':       'Managing costs across multiple clouds is complex — billing models differ and waste is easy to miss. Based on what you shared, a unified cost visibility approach could help.',
-  'Multiple clouds|Security':                'Security in multi-cloud setups requires consistent policies across all environments. Based on what you shared, a unified security posture review would be valuable.',
-  'Multiple clouds|Monitoring':              'Multi-cloud monitoring often results in fragmented visibility. Based on what you shared, centralising observability across all platforms would improve your response time.',
-  'Multiple clouds|Cloud Migration':         'Migrating across multiple cloud environments requires careful orchestration. Based on what you shared, a phased migration plan would reduce risk significantly.',
-  'Not using yet|Cloud Migration':           'Moving to cloud for the first time is a big step. Based on what you shared, starting with the right architecture will save time and cost down the line.',
-  'Not using yet|Cost Optimization':         'Cloud cost planning before migration is critical. Based on what you shared, we can help you choose the most cost-effective setup from day one.',
-  'Not using yet|DevOps / CI-CD':            'Setting up DevOps from scratch gives you the advantage of doing it right the first time. Based on what you shared, we can build a clean, automated pipeline for you.',
-};
-
-// Solution suggestions map
-const SOLUTIONS = {
-  'AWS|Cost Optimization':                   ['Right-size EC2 instances', 'Remove idle resources', 'Set up budget alerts'],
-  'AWS|Security':                            ['Audit IAM roles & policies', 'Harden security groups', 'Enable GuardDuty'],
-  'AWS|DevOps / CI-CD':                      ['Set up GitHub Actions / CodePipeline', 'Dockerise your application', 'Configure auto-scaling'],
-  'AWS|Monitoring':                          ['Set up CloudWatch dashboards', 'Configure smart alerting rules', 'Centralise log aggregation'],
-  'Azure|Cost Optimization':                 ['Identify underutilised VMs', 'Set up Cost Management alerts', 'Review reserved capacity'],
-  'Azure|Security':                          ['Configure Azure Defender', 'Review RBAC policies', 'Enable Azure Sentinel'],
-  'Azure|DevOps / CI-CD':                    ['Set up Azure DevOps pipelines', 'Containerise with AKS', 'Automate with Terraform'],
-  'Azure|Monitoring':                        ['Set up Azure Monitor dashboards', 'Configure Application Insights', 'Centralise logs with Log Analytics'],
-  'Google Cloud|Monitoring':                 ['Set up Cloud Monitoring dashboards', 'Reduce alert noise with smart policies', 'Centralise logs with Cloud Logging'],
-  'Google Cloud|Cost Optimization':          ['Review committed use discounts', 'Identify idle Compute Engine VMs', 'Set up billing alerts'],
-  'Google Cloud|Security':                   ['Audit IAM bindings', 'Configure VPC firewall rules', 'Enable Security Command Center'],
-  'Google Cloud|DevOps / CI-CD':             ['Set up Cloud Build pipelines', 'Deploy with GKE', 'Automate with Terraform'],
-  'Multiple clouds|DevOps / CI-CD':          ['Standardise CI/CD pipelines across all environments', 'Automate deployments with Jenkins / GitHub Actions', 'Securely manage secrets & configs across clouds', 'Improve build & release reliability'],
-  'Multiple clouds|Cost Optimization':       ['Unified cost visibility across all clouds', 'Identify duplicate or idle resources', 'Set up cross-cloud budget alerts'],
-  'Multiple clouds|Security':                ['Consistent IAM policies across environments', 'Centralised security monitoring', 'Cross-cloud compliance checks'],
-  'Multiple clouds|Monitoring':              ['Centralised observability dashboard (Grafana)', 'Unified alerting across all platforms', 'Cross-cloud log aggregation'],
-  'Multiple clouds|Cloud Migration':         ['Phased migration planning', 'Zero-downtime cutover strategy', 'Post-migration validation & optimisation'],
-  'Not using yet|Cloud Migration':           ['Cloud readiness assessment', 'Architecture design for your use case', 'Cost-optimised setup from day one'],
-  'Not using yet|Cost Optimization':         ['Right-sized infrastructure planning', 'Reserved vs on-demand cost modelling', 'Budget alert setup'],
-  'Not using yet|DevOps / CI-CD':            ['CI/CD pipeline design from scratch', 'Docker & Kubernetes setup', 'Automated testing & deployment'],
-};
-
-function buildFinalMessage(d) {
-  const key     = d.cloud + '|' + d.need;
-  const reply   = SMART_REPLIES[key] || ('Based on what you shared about your ' + d.cloud + ' usage and ' + d.need + ' needs, our team can suggest the right improvements.');
-  const items   = SOLUTIONS[key]     || ['Infrastructure review', 'Performance improvements', 'Cost & security assessment'];
-  return reply + '\n\nHere is what we can help with:\n' + items.map(function(i){ return '• ' + i; }).join('\n') + '\n\nAnything specific you would like to add?';
-}
-
-function getPersonalizedCTA(d) {
-  if (d.budget === 'Above ₹1,00,000')        return '🔥 Book a priority consultation with our cloud expert';
-  if (d.budget === '₹25,000 – ₹1,00,000')   return '📞 Schedule a free call with our team';
-  return '💬 Connect with us on WhatsApp to explore solutions';
-}
-
 // ─── CHATBOT ─────────────────────────────────────────────────────────────────
 const CHAT_STEPS = [
   { key: 'name',    bot: "Hi 👋 I'm the CloudZentra assistant. I help businesses with DevOps & cloud solutions. What's your name?", type: 'input' },
-  { key: 'email',   bot: function(d) { return 'Nice to meet you, ' + d.name + '! 😊 What is your work email so our team can reach you?'; }, type: 'input' },
+  { key: 'email',   bot: (d) => `Nice to meet you, ${d.name}! 😊 What's your work email so our team can reach you?`, type: 'input' },
   { key: 'cloud',   bot: 'Which cloud platform are you using?', type: 'options', options: ['AWS', 'Azure', 'Google Cloud', 'Not using yet', 'Multiple clouds'] },
   { key: 'need',    bot: 'What do you want to improve?', type: 'options', options: ['Cost Optimization', 'DevOps / CI-CD', 'Cloud Migration', 'Security', 'Monitoring', 'General Inquiry'] },
   { key: 'budget',  bot: 'What is your approximate monthly cloud spend?', type: 'options', options: ['Under ₹5,000', '₹5,000 – ₹25,000', '₹25,000 – ₹1,00,000', 'Above ₹1,00,000'] },
-  { key: 'message', bot: function(d) { return buildFinalMessage(d); }, type: 'input', placeholder: 'Type here or press Enter to skip...' },
-  { key: 'done',    bot: function(d) { return '✅ Thanks, ' + d.name + '! Our team will reach out at ' + d.email + ' with tailored recommendations.\n\n' + getPersonalizedCTA(d); }, type: 'done' }
+  { key: 'message', bot: (d) => `Got it 👍 Based on your ${d.cloud} setup and ${d.need} focus, our team can help you improve your infrastructure.\n\nAnything specific you'd like to add?`, type: 'input' },
+  { key: 'done',    bot: (d) => `✅ Thanks, ${d.name}! Our team will reach out at ${d.email} with the best solution for you.\n\nYou can also connect with us instantly on WhatsApp 👇`, type: 'done' }
 ];
 
 let chatData = {};
@@ -293,7 +231,6 @@ function chatNext() {
       wa.textContent = '💬 Chat on WhatsApp';
       opts.appendChild(wa);
     } else {
-      inp.placeholder = step.placeholder || 'Type your answer...';
       inp.style.display = '';
       inp.focus();
     }
