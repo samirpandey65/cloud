@@ -154,136 +154,22 @@ function handleSubmit(e) {
   existing.unshift(submission);
   localStorage.setItem('cn_submissions', JSON.stringify(existing));
 
-  // Send email via server
-  fetch('/send-email', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      name:    submission.name,
-      email:   submission.email,
-      company: submission.company || 'N/A',
-      cloud:   submission.cloud   || 'N/A',
-      message: submission.message || 'N/A',
-      source:  'Contact Form'
-    })
-  }).catch(() => {});
+  // Send email via EmailJS if configured
+  const ejs = JSON.parse(localStorage.getItem('cz_emailjs') || '{}');
+  if (ejs.serviceId && ejs.templateId && ejs.publicKey) {
+    emailjs.send(ejs.serviceId, ejs.templateId, {
+      from_name:    submission.name,
+      from_email:   submission.email,
+      company:      submission.company || 'N/A',
+      cloud:        submission.cloud   || 'N/A',
+      message:      submission.message || 'N/A',
+      submitted_at: new Date().toLocaleString()
+    }, ejs.publicKey).catch(() => {});
+  }
 
   form.style.display = 'none';
   document.getElementById('form-success').style.display = 'block';
 }
-
-// ─── CHATBOT ─────────────────────────────────────────────────────────────────
-const CHAT_STEPS = [
-  { key: 'greeting',  bot: '👋 Hi! I\'m the CloudZentra assistant. I can help you get a free cloud audit or answer questions. What\'s your name?', type: 'input' },
-  { key: 'name',      bot: (d) => `Nice to meet you, ${d.name}! 😊 What\'s your work email so we can send you the audit report?`, type: 'input' },
-  { key: 'email',     bot: 'Which cloud provider are you currently using?', type: 'options', options: ['AWS', 'Azure', 'Google Cloud', 'Not on cloud yet', 'Multiple clouds'] },
-  { key: 'cloud',     bot: 'What do you need help with?', type: 'options', options: ['Cost Optimization', 'DevOps / CI-CD', 'Cloud Migration', 'Security', 'Monitoring', 'General Inquiry'] },
-  { key: 'need',      bot: (d) => `Perfect! 🚀 We\'ll prepare a free audit for you, ${d.name}, and reach out at ${d.email} within 24 hours. Anything else you\'d like to add?`, type: 'input' },
-  { key: 'message',   bot: '✅ All done! Our team will contact you shortly. You can also chat with us on WhatsApp anytime.', type: 'done' }
-];
-
-let chatData = {};
-let chatStep = 0;
-let chatOpened = false;
-
-function toggleChat() {
-  const box = document.getElementById('cz-chatbox');
-  const badge = document.getElementById('cz-chat-badge');
-  box.classList.toggle('open');
-  if (box.classList.contains('open') && !chatOpened) {
-    chatOpened = true;
-    badge.style.display = 'none';
-    setTimeout(() => chatNext(), 400);
-  }
-}
-
-function chatNext() {
-  const step = CHAT_STEPS[chatStep];
-  if (!step) return;
-  const msg = typeof step.bot === 'function' ? step.bot(chatData) : step.bot;
-  addChatMsg(msg, 'bot');
-  const opts = document.getElementById('cz-chat-options');
-  const inp = document.getElementById('cz-chat-input');
-  opts.innerHTML = '';
-  if (step.type === 'options') {
-    inp.style.display = 'none';
-    step.options.forEach(o => {
-      const btn = document.createElement('button');
-      btn.className = 'chat-opt';
-      btn.textContent = o;
-      btn.onclick = () => chatAnswer(o);
-      opts.appendChild(btn);
-    });
-  } else if (step.type === 'done') {
-    inp.style.display = 'none';
-    saveChatLead();
-  } else {
-    inp.style.display = '';
-    inp.focus();
-  }
-}
-
-function chatSend() {
-  const inp = document.getElementById('cz-chat-input');
-  const val = inp.value.trim();
-  if (!val) return;
-  inp.value = '';
-  chatAnswer(val);
-}
-
-function chatAnswer(val) {
-  const step = CHAT_STEPS[chatStep];
-  addChatMsg(val, 'user');
-  document.getElementById('cz-chat-options').innerHTML = '';
-  chatData[step.key] = val;
-  chatStep++;
-  setTimeout(() => chatNext(), 500);
-}
-
-function addChatMsg(text, who) {
-  const msgs = document.getElementById('cz-chat-messages');
-  const div = document.createElement('div');
-  div.className = who === 'bot' ? 'chat-msg-bot' : 'chat-msg-user';
-  div.textContent = text;
-  msgs.appendChild(div);
-  msgs.scrollTop = msgs.scrollHeight;
-}
-
-function saveChatLead() {
-  const submission = {
-    id: Date.now().toString(),
-    date: new Date().toISOString(),
-    read: false,
-    name:    chatData.name    || '',
-    email:   chatData.email   || '',
-    company: '',
-    cloud:   chatData.cloud   || '',
-    message: `[Chatbot] Need: ${chatData.need || ''} | Extra: ${chatData.message || ''}`
-  };
-  const existing = JSON.parse(localStorage.getItem('cn_submissions') || '[]');
-  existing.unshift(submission);
-  localStorage.setItem('cn_submissions', JSON.stringify(existing));
-
-  // Send via server
-  fetch('/send-email', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      name:    submission.name,
-      email:   submission.email,
-      company: 'Via Chatbot',
-      cloud:   submission.cloud,
-      message: submission.message,
-      source:  'Chatbot'
-    })
-  }).catch(() => {});
-}
-
-// Show badge after 8 seconds if chat not opened
-setTimeout(() => {
-  if (!chatOpened) document.getElementById('cz-chat-badge').style.display = 'flex';
-}, 8000);
-// ─────────────────────────────────────────────────────────────────────────────
 
 // Scroll reveal
 const revealObserver = new IntersectionObserver((entries) => {

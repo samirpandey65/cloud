@@ -391,33 +391,13 @@
     </div>
   </footer>
 
-  <!-- CHATBOT -->
-  <div id="cz-chat-bubble" onclick="toggleChat()" title="Chat with us">
-    <span id="cz-chat-icon">&#128172;</span>
-    <span id="cz-chat-badge" style="display:none">1</span>
-  </div>
-  <div id="cz-chatbox">
-    <div id="cz-chat-header">
-      <div>
-        <strong>&#9729;&#65039; CloudZentra Bot</strong>
-        <span>Typically replies instantly</span>
-      </div>
-      <button onclick="toggleChat()">&times;</button>
-    </div>
-    <div id="cz-chat-messages"></div>
-    <div id="cz-chat-options"></div>
-    <div id="cz-chat-input-row">
-      <input type="text" id="cz-chat-input" placeholder="Type your answer..." onkeydown="if(event.key==='Enter')chatSend()"/>
-      <button onclick="chatSend()">&#10148;</button>
-    </div>
-  </div>
-
   <!-- WHATSAPP BUTTON -->
   <a href="https://wa.me/918855865379?text=Hi%20Cloud%20Zentra!%20I%20want%20a%20free%20cloud%20audit." id="whatsapp-btn" class="whatsapp-btn" target="_blank" rel="noopener noreferrer" title="Chat on WhatsApp">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="white" width="28" height="28"><path d="M16 0C7.163 0 0 7.163 0 16c0 2.822.736 5.472 2.027 7.774L0 32l8.437-2.01A15.93 15.93 0 0016 32c8.837 0 16-7.163 16-16S24.837 0 16 0zm0 29.333a13.27 13.27 0 01-6.771-1.854l-.486-.29-5.01 1.194 1.234-4.874-.317-.5A13.267 13.267 0 012.667 16C2.667 8.636 8.636 2.667 16 2.667S29.333 8.636 29.333 16 23.364 29.333 16 29.333zm7.27-9.862c-.398-.199-2.354-1.162-2.719-1.294-.365-.133-.631-.199-.897.199-.266.398-1.03 1.294-1.263 1.56-.232.266-.465.299-.863.1-.398-.2-1.681-.62-3.203-1.977-1.184-1.057-1.983-2.362-2.215-2.76-.232-.398-.025-.613.174-.811.179-.178.398-.465.597-.698.2-.232.266-.398.398-.664.133-.266.067-.498-.033-.697-.1-.2-.897-2.162-1.23-2.96-.324-.778-.653-.673-.897-.686l-.764-.013c-.266 0-.697.1-1.063.498-.365.398-1.395 1.362-1.395 3.323s1.428 3.854 1.627 4.12c.2.266 2.81 4.29 6.808 6.018.951.41 1.694.655 2.272.839.955.304 1.824.261 2.511.158.766-.114 2.354-.962 2.686-1.891.332-.93.332-1.727.232-1.892-.1-.165-.365-.265-.763-.464z"/></svg>
     <span>Chat with us</span>
   </a>
 
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
