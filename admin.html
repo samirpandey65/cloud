@@ -150,6 +150,14 @@
     .toggle input:checked + .slider { background: var(--blue); }
     .toggle input:checked + .slider::before { transform: translateX(18px); }
 
+    .provider-btn {
+      padding: 8px 18px; border: 1.5px solid var(--border); border-radius: 8px;
+      background: var(--light); font-family: inherit; font-size: 0.88rem;
+      font-weight: 600; cursor: pointer; transition: all 0.2s; color: var(--dark);
+    }
+    .provider-btn:hover { border-color: var(--blue); color: var(--blue); }
+    .provider-btn.active { background: var(--blue); color: var(--white); border-color: var(--blue); }
+
     @media (max-width: 768px) {
       .stats-grid { grid-template-columns: 1fr 1fr; }
       .settings-grid { grid-template-columns: 1fr; }
@@ -235,6 +243,59 @@
           <div class="save-msg" id="msg-contact">✅ Contact info updated!</div>
         </div>
 
+        <!-- Email Setup -->
+        <div class="settings-card" style="grid-column:1/-1">
+          <h3>📧 Email Notifications Setup</h3>
+          <p style="font-size:0.82rem;color:var(--gray);margin-bottom:20px;">Configure your email to receive instant notifications for every form submission and chatbot lead.</p>
+
+          <!-- Status -->
+          <div id="email-status-bar" style="display:none;padding:10px 16px;border-radius:8px;font-size:0.85rem;font-weight:600;margin-bottom:18px;"></div>
+
+          <!-- Provider Selector -->
+          <div class="field">
+            <label>Email Provider</label>
+            <div style="display:flex;gap:10px;flex-wrap:wrap;" id="provider-btns">
+              <button class="provider-btn active" data-p="gmail" onclick="selectProvider('gmail',this)">&#128140; Gmail</button>
+              <button class="provider-btn" data-p="outlook" onclick="selectProvider('outlook',this)">&#128231; Outlook</button>
+              <button class="provider-btn" data-p="yahoo" onclick="selectProvider('yahoo',this)">&#128233; Yahoo</button>
+              <button class="provider-btn" data-p="custom" onclick="selectProvider('custom',this)">&#9881;&#65039; Custom SMTP</button>
+            </div>
+          </div>
+
+          <!-- Provider Instructions -->
+          <div id="provider-hint" style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:8px;padding:12px 16px;font-size:0.82rem;color:#1e40af;margin-bottom:16px;line-height:1.6;"></div>
+
+          <!-- Fields -->
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+            <div class="field">
+              <label>Email Address</label>
+              <input type="email" id="em-user" placeholder="you@gmail.com" oninput="updateHint()"/>
+            </div>
+            <div class="field">
+              <label id="em-pass-label">App Password / Password</label>
+              <input type="password" id="em-pass" placeholder="Enter password or app password"/>
+            </div>
+            <div class="field">
+              <label>Send Notifications To <small style="color:var(--gray)">(your inbox)</small></label>
+              <input type="email" id="em-to" placeholder="you@gmail.com"/>
+            </div>
+            <div class="field" id="em-custom-fields" style="display:none;">
+              <label>SMTP Host</label>
+              <input type="text" id="em-host" placeholder="smtp.example.com"/>
+            </div>
+            <div class="field" id="em-port-field" style="display:none;">
+              <label>SMTP Port</label>
+              <input type="text" id="em-port" placeholder="587"/>
+            </div>
+          </div>
+
+          <div style="display:flex;align-items:center;gap:16px;margin-top:8px;flex-wrap:wrap;">
+            <button class="save-btn" onclick="saveEmailSetup()">&#128272; Save &amp; Test Connection</button>
+            <button class="save-btn" style="background:var(--light);color:var(--dark);border:1.5px solid var(--border);" onclick="testEmailSetup()">&#9993;&#65039; Send Test Email</button>
+          </div>
+          <div class="save-msg" id="msg-emailjs"></div>
+        </div>
+
         <!-- Social Links -->
         <div class="settings-card" style="grid-column: 1 / -1;">
           <h3>🔗 Social Media Links <small style="color:var(--gray);font-weight:400;font-size:0.82rem;">— Toggle to show/hide in footer</small></h3>
@@ -315,7 +376,7 @@ function switchTab(name, btn) {
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
   document.getElementById('tab-' + name).classList.add('active');
   btn.classList.add('active');
-  if (name === 'settings') loadSettingsForm();
+  if (name === 'settings') { loadSettingsForm(); loadEmailStatus(); }
 }
 
 // ─── SUBMISSIONS ─────────────────────────────────────────────────────────────
@@ -448,6 +509,113 @@ async function saveCredentials() {
   msg.style.display = 'block';
   setTimeout(() => msg.style.display = 'none', 3000);
 }
+
+const PROVIDER_HINTS = {
+  gmail:   '📌 Gmail requires an <strong>App Password</strong> (not your regular password).<br>Go to: <a href="https://myaccount.google.com/apppasswords" target="_blank" style="color:#1e40af;">myaccount.google.com/apppasswords</a> → Create App Password → paste it above.<br><em>2-Step Verification must be enabled on your Google account.</em>',
+  outlook: '📌 Use your regular <strong>Outlook/Hotmail password</strong>. If you have 2FA enabled, create an App Password at <a href="https://account.microsoft.com/security" target="_blank" style="color:#1e40af;">account.microsoft.com/security</a>.',
+  yahoo:   '📌 Yahoo requires an <strong>App Password</strong>.<br>Go to: Yahoo Account Security → Generate App Password → paste it above.',
+  custom:  '📌 Enter your SMTP server details. Common ports: <strong>587</strong> (TLS) or <strong>465</strong> (SSL). Contact your email provider for SMTP settings.'
+};
+
+let selectedProvider = 'gmail';
+
+function selectProvider(p, btn) {
+  selectedProvider = p;
+  document.querySelectorAll('.provider-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('provider-hint').innerHTML = PROVIDER_HINTS[p];
+  document.getElementById('em-custom-fields').style.display = p === 'custom' ? '' : 'none';
+  document.getElementById('em-port-field').style.display    = p === 'custom' ? '' : 'none';
+  document.getElementById('em-pass-label').textContent =
+    p === 'gmail' ? 'App Password (16 chars)' :
+    p === 'yahoo' ? 'App Password' : 'Password';
+}
+
+function updateHint() {
+  const user = document.getElementById('em-user').value;
+  const to   = document.getElementById('em-to');
+  if (!to.value) to.value = user;
+}
+
+async function saveEmailSetup() {
+  const msg = document.getElementById('msg-emailjs');
+  msg.style.display = 'none';
+  const cfg = {
+    provider: selectedProvider,
+    user:     document.getElementById('em-user').value.trim(),
+    pass:     document.getElementById('em-pass').value,
+    to:       document.getElementById('em-to').value.trim(),
+    smtpHost: document.getElementById('em-host')?.value.trim(),
+    smtpPort: document.getElementById('em-port')?.value.trim()
+  };
+  if (!cfg.user || !cfg.pass) { alert('Email and password are required.'); return; }
+  try {
+    const res = await fetch('/save-email-config', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(cfg)
+    });
+    const data = await res.json();
+    msg.style.display = 'block';
+    if (data.ok) {
+      msg.style.color = 'var(--green)';
+      msg.textContent = '✅ ' + data.message;
+      loadEmailStatus();
+    } else {
+      msg.style.color = 'var(--red)';
+      msg.textContent = '❌ ' + (data.error || 'Failed. Check credentials.');
+    }
+  } catch {
+    msg.style.display = 'block'; msg.style.color = 'var(--red)';
+    msg.textContent = '❌ Server not running. Start server with: npm start';
+  }
+}
+
+async function testEmailSetup() {
+  const msg = document.getElementById('msg-emailjs');
+  msg.style.display = 'block'; msg.style.color = 'var(--gray)';
+  msg.textContent = '⏳ Sending test email...';
+  try {
+    const res = await fetch('/send-email', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name: 'Test Lead', email: 'test@cloudzentra.in', company: 'CloudZentra', cloud: 'AWS', message: 'This is a test email from admin panel.', source: 'Test' })
+    });
+    const data = await res.json();
+    msg.style.color = data.ok ? 'var(--green)' : 'var(--red)';
+    msg.textContent = data.ok ? '✅ Test email sent! Check your inbox.' : '❌ ' + (data.error || 'Failed.');
+  } catch {
+    msg.style.color = 'var(--red)';
+    msg.textContent = '❌ Server not running. Start with: npm start';
+  }
+}
+
+async function loadEmailStatus() {
+  try {
+    const res  = await fetch('/email-config-status');
+    const data = await res.json();
+    const bar  = document.getElementById('email-status-bar');
+    bar.style.display = 'block';
+    if (data.configured) {
+      bar.style.background = '#dcfce7'; bar.style.color = '#16a34a'; bar.style.border = '1px solid #bbf7d0';
+      bar.innerHTML = `✅ Email configured: <strong>${data.provider}</strong> (${data.user})`;
+      document.getElementById('em-user').value = data.user;
+      document.querySelectorAll('.provider-btn').forEach(b => {
+        b.classList.toggle('active', b.dataset.p === data.provider);
+      });
+      selectedProvider = data.provider;
+      document.getElementById('provider-hint').innerHTML = PROVIDER_HINTS[data.provider] || '';
+    } else {
+      bar.style.background = '#fef9c3'; bar.style.color = '#854d0e'; bar.style.border = '1px solid #fde68a';
+      bar.textContent = '⚠️ Email not configured yet. Fill in the details below.';
+    }
+  } catch {
+    const bar = document.getElementById('email-status-bar');
+    bar.style.display = 'block'; bar.style.background = '#fee2e2';
+    bar.style.color = 'var(--red)'; bar.style.border = '1px solid #fecaca';
+    bar.textContent = '❌ Server offline. Run: npm start in the Website folder.';
+  }
+}
+
+function saveEmailJS() {} // legacy stub
 
 function saveContact() {
   const c = {
