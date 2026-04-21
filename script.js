@@ -1,4 +1,10 @@
-// ─── LOAD ADMIN CONFIG ───────────────────────────────────────────────────────
+// ─── API BASE URL ─────────────────────────────────────────────────────────────────
+// When running locally: leave as ''
+// When frontend on Cloudflare + backend on Railway: set to your Railway URL
+// Example: const API_BASE = 'https://cloudzentra-production.up.railway.app';
+const API_BASE = '';
+// ─────────────────────────────────────────────────────────────────────────────
+
 document.addEventListener('DOMContentLoaded', () => {
   // Contact info from admin settings
   const c = JSON.parse(localStorage.getItem('cz_contact') || '{"email":"info@cloudzentra.in","waNum":"918855865379","waMsg":"Hi CloudZentra! I want a free cloud audit."}');
@@ -153,7 +159,7 @@ function handleSubmit(e) {
   };
 
   // Save to server (persistent CRM)
-  fetch('/save-lead', {
+  fetch(API_BASE + '/save-lead', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(submission)
@@ -165,7 +171,7 @@ function handleSubmit(e) {
   localStorage.setItem('cn_submissions', JSON.stringify(existing));
 
   // Send email via server
-  fetch('/send-email', {
+  fetch(API_BASE + '/send-email', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
@@ -420,12 +426,12 @@ function saveChatLead() {
   existing.unshift(submission);
   localStorage.setItem('cn_submissions', JSON.stringify(existing));
   // Save to server (persistent CRM)
-  fetch('/save-lead', {
+  fetch(API_BASE + '/save-lead', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(submission)
   }).catch(() => {});
-  fetch('/send-email', {
+  fetch(API_BASE + '/send-email', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ name: submission.name, email: submission.email, company: 'Via Chatbot', cloud: submission.cloud, message: submission.message, source: 'Chatbot' })

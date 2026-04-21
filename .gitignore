@@ -2,3 +2,4 @@ node_modules/
 email.config.json
 leads.json
 .env
+wrangler.jsonc
