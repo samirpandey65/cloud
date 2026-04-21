@@ -174,13 +174,12 @@ function handleSubmit(e) {
 
 // ─── CHATBOT ─────────────────────────────────────────────────────────────────
 const CHAT_STEPS = [
-  { key: 'name',    bot: "Hi 👋 I'm the CloudZentra assistant. I help businesses with DevOps & cloud solutions. What's your name?", type: 'input' },
-  { key: 'email',   bot: (d) => `Nice to meet you, ${d.name}! 😊 What's your work email so our team can reach you?`, type: 'input' },
-  { key: 'cloud',   bot: 'Which cloud platform are you using?', type: 'options', options: ['AWS', 'Azure', 'Google Cloud', 'Not using yet', 'Multiple clouds'] },
-  { key: 'need',    bot: 'What do you want to improve?', type: 'options', options: ['Cost Optimization', 'DevOps / CI-CD', 'Cloud Migration', 'Security', 'Monitoring', 'General Inquiry'] },
-  { key: 'budget',  bot: 'What is your approximate monthly cloud spend?', type: 'options', options: ['Under ₹5,000', '₹5,000 – ₹25,000', '₹25,000 – ₹1,00,000', 'Above ₹1,00,000'] },
-  { key: 'message', bot: (d) => `Got it 👍 Based on your ${d.cloud} setup and ${d.need} focus, our team can help you improve your infrastructure.\n\nAnything specific you'd like to add?`, type: 'input' },
-  { key: 'done',    bot: (d) => `✅ Thanks, ${d.name}! Our team will reach out at ${d.email} with the best solution for you.\n\nYou can also connect with us instantly on WhatsApp 👇`, type: 'done' }
+  { key: 'greeting',  bot: '👋 Hi! I\'m the CloudZentra assistant. I can help you get a free cloud audit or answer questions. What\'s your name?', type: 'input' },
+  { key: 'name',      bot: (d) => `Nice to meet you, ${d.name}! 😊 What\'s your work email so we can send you the audit report?`, type: 'input' },
+  { key: 'email',     bot: 'Which cloud provider are you currently using?', type: 'options', options: ['AWS', 'Azure', 'Google Cloud', 'Not on cloud yet', 'Multiple clouds'] },
+  { key: 'cloud',     bot: 'What do you need help with?', type: 'options', options: ['Cost Optimization', 'DevOps / CI-CD', 'Cloud Migration', 'Security', 'Monitoring', 'General Inquiry'] },
+  { key: 'need',      bot: (d) => `Perfect! 🚀 We\'ll prepare a free audit for you, ${d.name}, and reach out at ${d.email} within 24 hours. Anything else you\'d like to add?`, type: 'input' },
+  { key: 'message',   bot: '✅ All done! Our team will contact you shortly. You can also chat with us on WhatsApp anytime.', type: 'done' }
 ];
 
 let chatData = {};
@@ -201,55 +200,27 @@ function toggleChat() {
 function chatNext() {
   const step = CHAT_STEPS[chatStep];
   if (!step) return;
-  showTyping();
-  setTimeout(() => {
-    hideTyping();
-    const msg = typeof step.bot === 'function' ? step.bot(chatData) : step.bot;
-    addChatMsg(msg, 'bot');
-    const opts = document.getElementById('cz-chat-options');
-    const inp  = document.getElementById('cz-chat-input');
-    opts.innerHTML = '';
-    if (step.type === 'options') {
-      inp.style.display = 'none';
-      step.options.forEach(o => {
-        const btn = document.createElement('button');
-        btn.className = 'chat-opt';
-        btn.textContent = o;
-        btn.onclick = () => chatAnswer(o);
-        opts.appendChild(btn);
-      });
-    } else if (step.type === 'done') {
-      inp.style.display = 'none';
-      saveChatLead();
-      // Show WhatsApp CTA button
-      const c = JSON.parse(localStorage.getItem('cz_contact') || '{"waNum":"918855865379","waMsg":"Hi CloudZentra! I need help with cloud solutions."}');
-      const wa = document.createElement('a');
-      wa.href = 'https://wa.me/' + c.waNum + '?text=' + encodeURIComponent(c.waMsg);
-      wa.target = '_blank'; wa.rel = 'noopener noreferrer';
-      wa.className = 'chat-opt';
-      wa.style.textDecoration = 'none';
-      wa.textContent = '💬 Chat on WhatsApp';
-      opts.appendChild(wa);
-    } else {
-      inp.style.display = '';
-      inp.focus();
-    }
-  }, 800);
-}
-
-function showTyping() {
-  const msgs = document.getElementById('cz-chat-messages');
-  const div = document.createElement('div');
-  div.className = 'chat-msg-bot chat-typing';
-  div.id = 'cz-typing';
-  div.innerHTML = '<span></span><span></span><span></span>';
-  msgs.appendChild(div);
-  msgs.scrollTop = msgs.scrollHeight;
-}
-
-function hideTyping() {
-  const t = document.getElementById('cz-typing');
-  if (t) t.remove();
+  const msg = typeof step.bot === 'function' ? step.bot(chatData) : step.bot;
+  addChatMsg(msg, 'bot');
+  const opts = document.getElementById('cz-chat-options');
+  const inp = document.getElementById('cz-chat-input');
+  opts.innerHTML = '';
+  if (step.type === 'options') {
+    inp.style.display = 'none';
+    step.options.forEach(o => {
+      const btn = document.createElement('button');
+      btn.className = 'chat-opt';
+      btn.textContent = o;
+      btn.onclick = () => chatAnswer(o);
+      opts.appendChild(btn);
+    });
+  } else if (step.type === 'done') {
+    inp.style.display = 'none';
+    saveChatLead();
+  } else {
+    inp.style.display = '';
+    inp.focus();
+  }
 }
 
 function chatSend() {
@@ -266,7 +237,7 @@ function chatAnswer(val) {
   document.getElementById('cz-chat-options').innerHTML = '';
   chatData[step.key] = val;
   chatStep++;
-  setTimeout(() => chatNext(), 300);
+  setTimeout(() => chatNext(), 500);
 }
 
 function addChatMsg(text, who) {
@@ -280,22 +251,31 @@ function addChatMsg(text, who) {
 
 function saveChatLead() {
   const submission = {
-    id:      Date.now().toString(),
-    date:    new Date().toISOString(),
-    read:    false,
+    id: Date.now().toString(),
+    date: new Date().toISOString(),
+    read: false,
     name:    chatData.name    || '',
     email:   chatData.email   || '',
     company: '',
     cloud:   chatData.cloud   || '',
-    message: `[Chatbot] Need: ${chatData.need || ''} | Budget: ${chatData.budget || ''} | Note: ${chatData.message || ''}`
+    message: `[Chatbot] Need: ${chatData.need || ''} | Extra: ${chatData.message || ''}`
   };
   const existing = JSON.parse(localStorage.getItem('cn_submissions') || '[]');
   existing.unshift(submission);
   localStorage.setItem('cn_submissions', JSON.stringify(existing));
+
+  // Send via server
   fetch('/send-email', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ name: submission.name, email: submission.email, company: 'Via Chatbot', cloud: submission.cloud, message: submission.message, source: 'Chatbot' })
+    body: JSON.stringify({
+      name:    submission.name,
+      email:   submission.email,
+      company: 'Via Chatbot',
+      cloud:   submission.cloud,
+      message: submission.message,
+      source:  'Chatbot'
+    })
   }).catch(() => {});
 }
 
