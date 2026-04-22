@@ -148,25 +148,9 @@ function handleSubmit(e) {
     cloud:   form.querySelector('[name="cloud"]').value,
     message: form.querySelector('[name="message"]').value.trim()
   };
-
-  // Save to localStorage (admin dashboard)
   const existing = JSON.parse(localStorage.getItem('cn_submissions') || '[]');
   existing.unshift(submission);
   localStorage.setItem('cn_submissions', JSON.stringify(existing));
-
-  // Send email via EmailJS if configured
-  const ejs = JSON.parse(localStorage.getItem('cz_emailjs') || '{}');
-  if (ejs.serviceId && ejs.templateId && ejs.publicKey) {
-    emailjs.send(ejs.serviceId, ejs.templateId, {
-      from_name:    submission.name,
-      from_email:   submission.email,
-      company:      submission.company || 'N/A',
-      cloud:        submission.cloud   || 'N/A',
-      message:      submission.message || 'N/A',
-      submitted_at: new Date().toLocaleString()
-    }, ejs.publicKey).catch(() => {});
-  }
-
   form.style.display = 'none';
   document.getElementById('form-success').style.display = 'block';
 }

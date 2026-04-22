@@ -235,17 +235,6 @@
           <div class="save-msg" id="msg-contact">✅ Contact info updated!</div>
         </div>
 
-        <!-- EmailJS -->
-        <div class="settings-card">
-          <h3>📧 EmailJS — Email Notifications</h3>
-          <p style="font-size:0.82rem;color:var(--gray);margin-bottom:16px;">Get an instant email on every form submission. Free at <a href="https://emailjs.com" target="_blank" rel="noopener noreferrer" style="color:var(--blue);">emailjs.com</a></p>
-          <div class="field"><label>Service ID</label><input type="text" id="set-ejs-service" placeholder="service_xxxxxxx"/></div>
-          <div class="field"><label>Template ID</label><input type="text" id="set-ejs-template" placeholder="template_xxxxxxx"/></div>
-          <div class="field"><label>Public Key</label><input type="text" id="set-ejs-pubkey" placeholder="Your EmailJS public key"/></div>
-          <button class="save-btn" onclick="saveEmailJS()">Save EmailJS Config</button>
-          <div class="save-msg" id="msg-emailjs">✅ EmailJS config saved!</div>
-        </div>
-
         <!-- Social Links -->
         <div class="settings-card" style="grid-column: 1 / -1;">
           <h3>🔗 Social Media Links <small style="color:var(--gray);font-weight:400;font-size:0.82rem;">— Toggle to show/hide in footer</small></h3>
@@ -423,11 +412,6 @@ function loadSettingsForm() {
   document.getElementById('set-wa-msg').value = c.waMsg || '';
   // Username
   document.getElementById('set-username').value = getStoredUser();
-  // EmailJS
-  const ejs = JSON.parse(localStorage.getItem('cz_emailjs') || '{}');
-  document.getElementById('set-ejs-service').value  = ejs.serviceId  || '';
-  document.getElementById('set-ejs-template').value = ejs.templateId || '';
-  document.getElementById('set-ejs-pubkey').value   = ejs.publicKey  || '';
   // Socials
   const sc = getSocialConfig();
   document.getElementById('social-rows').innerHTML = SOCIALS.map(s => `
@@ -461,18 +445,6 @@ async function saveCredentials() {
   document.getElementById('set-cur-pass').value = '';
   document.getElementById('set-new-pass').value = '';
   document.getElementById('set-confirm-pass').value = '';
-  msg.style.display = 'block';
-  setTimeout(() => msg.style.display = 'none', 3000);
-}
-
-function saveEmailJS() {
-  const config = {
-    serviceId:  document.getElementById('set-ejs-service').value.trim(),
-    templateId: document.getElementById('set-ejs-template').value.trim(),
-    publicKey:  document.getElementById('set-ejs-pubkey').value.trim()
-  };
-  localStorage.setItem('cz_emailjs', JSON.stringify(config));
-  const msg = document.getElementById('msg-emailjs');
   msg.style.display = 'block';
   setTimeout(() => msg.style.display = 'none', 3000);
 }
