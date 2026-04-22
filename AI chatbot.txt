@@ -1,0 +1,1275 @@
+🤖 
+Full AI chatbot (OpenAI + memory + context)
+📊 
+Lead scoring system (hot/warm/cold)
+🔗 
+CRM auto integration
+💬 
+WhatsApp chatbot integration
+mujhe audit ke liye offer nahi dena hai or nahi hi check karn hai hai isko nikal do
+🤖 
+Chatbot UI (modern floating widget)
+💬 
+WhatsApp + website sync
+📊 
+Chat analytics dashboard
+🎯 
+Conversion tracking per chat
+Hi 👋 I'm the CloudZentra assistant. I help businesses with DevOps & cloud solutions. What's your name?
+suraj
+Nice to meet you, suraj! 😊 What's your work email so our team can reach you?
+suraj@gmail.com
+Which cloud platform are you using?
+Google Cloud
+What do you want to improve?
+Monitoring
+What is your approximate monthly cloud spend?
+Above ₹1,00,000
+Got it 👍 Based on your Google Cloud setup and Monitoring focus, our team can help you improve your infrastructure. Anything specific you'd like to add?
+
+without any credentails or details how we can check details 
+🤖 
+Smart dynamic replies (based on AWS/Azure/GCP)
+📊 
+Auto suggestion engine (pre-built solutions)
+🎯 
+Personalized CTA per user type
+Hi 👋 I'm the CloudZentra assistant. I help businesses with DevOps & cloud solutions. What's your name?
+rohit
+Nice to meet you, rohit! 😊 What is your work email so our team can reach you?
+rohit@presistence.com
+Which cloud platform are you using?
+Multiple clouds
+What do you want to improve?
+DevOps / CI-CD
+What is your approximate monthly cloud spend?
+₹25,000 – ₹1,00,000
+Based on what you shared about your Multiple clouds usage and DevOps / CI-CD needs, our team can suggest the right improvements. Here is what we can help with: • Infrastructure review • Performance improvements • Cost & security assessment Anything specific you would like to add?
+🤖 
+Pre-trained AI responses (real DevOps knowledge)
+📊 
+Industry-specific chatbot (SaaS / eCommerce / Fintech)
+🎯 
+Dynamic pricing suggestion bot
+Hi 👋 I'm the CloudZentra assistant. I help businesses with DevOps & cloud solutions. What's your name?
+ritesh
+Nice to meet you, ritesh! 😊 What is your work email so our team can reach you?
+ritesh@gmail.com
+Which cloud platform are you using?
+Not using yet
+What do you want to improve?
+General Inquiry
+What is your approximate monthly cloud spend?
+Under ₹5,000
+Based on what you shared about your Not using yet usage and General Inquiry needs, our team can suggest the right improvements. Here is what we can help with: • Infrastructure review • Performance improvements • Cost & security assessment Anything specific you would like to add?
+🤖 
+Beginner onboarding chatbot (step-by-step cloud setup)
+📊 
+Startup-specific flow (budget-friendly solutions)
+🎯 
+Free resource system (PDF / guide auto send)
+
+mujhe prper details nahi mil raha hai
+abhi tak jitna share kiya hu uss bessis pe mujhe update karo
+Hi 👋 I'm the CloudZentra assistant. I help businesses with DevOps & cloud solutions. What's your name?
+abc
+Nice to meet you, abc! 😊 What is your work email so our team can reach you?
+abc@yahoo.com
+Which cloud platform are you using?
+Multiple clouds
+What do you want to improve?
+Security
+What is your approximate monthly cloud spend?
+Under ₹5,000
+Since you are working with a smaller budget, the best approach is to start minimal and scale only when needed. We usually recommend: • Using free-tier cloud services (AWS / GCP / Azure) • Starting with basic infrastructure • Avoiding over-scaling early This keeps costs low while you validate your setup. Anything specific you would like to add? (or press Enter to skip)
+🤖 
+100+ ready smart response library
+📊 
+AI decision engine (auto best reply)
+🎯 
+User intent detection system
+🤖 JSON-based response engine (easy to manage)
+📊 Admin panel to edit responses
+🎯 AI learning from chat history
+💬 Multilingual chatbot (Hindi + English)
+Hi 👋 I'm the CloudZentra assistant. I help businesses with DevOps & cloud solutions. What's your name?
+xyz
+Nice to meet you, xyz! 😊 What is your work email so our team can reach you?
+xyz@gmail.com
+Which cloud platform are you using?
+Azure
+What do you want to improve?
+Cloud Migration
+What is your approximate monthly cloud spend?
+₹25,000 – ₹1,00,000
+Based on what you shared about your Azure usage and Cloud Migration needs, our team can suggest the right improvements. Here is what we can help with: • Infrastructure review • Performance improvements • Cost & security assessment Anything specific you would like to add? (or press Enter to skip)
+
+
+https://cloudzentra.in/ check this and suggets the content
+mujhe mere site ke liye prper content write karke do, also local me mera chatbot work kar raha hai but when deploy kiya or live me chatbot aahi nahi raha hai
+Build a complete deployable chatbot
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CloudZentra – Cloud Services &amp; DevOps Solutions</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="container nav-inner">
+      <div class="logo"><a href="index.html" style="text-decoration:none;color:inherit;">&#9729;&#65039; CloudZentra</a></div>
+      <ul class="nav-links">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#packages">Packages</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#testimonials">Reviews</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#contact" class="btn-nav">Get Free Audit</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger">&#9776;</button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container hero-content">
+      <span class="badge">&#128640; India's DevOps &amp; Cloud Partner</span>
+      <h1>Automate. Scale.<br/><span>Dominate the Cloud.</span></h1>
+      <p>DevOps automation, cloud migration &amp; cost optimization for startups &amp; enterprises on AWS, Azure &amp; GCP &mdash; from code to cloud, faster.</p>
+      <div class="hero-btns">
+        <a href="#contact" class="btn-primary">Get Free Cloud Audit</a>
+        <a href="#packages" class="btn-outline">View Packages</a>
+      </div>
+      <div class="hero-stats">
+        <div><strong>30%</strong><span>Avg Cost Saved</span></div>
+        <div><strong>50+</strong><span>Projects Done</span></div>
+        <div><strong>24/7</strong><span>Human Support</span></div>
+        <div><strong>2x</strong><span>Faster Deployments</span></div>
+      </div>
+    </div>
+    <div class="hero-bg"></div>
+  </section>
+
+  <!-- TRUST BAR -->
+  <section class="trust-bar">
+    <div class="container">
+      <p class="trust-label">Trusted Technologies We Work With</p>
+      <div class="trust-logos">
+        <span>&#9729; AWS</span>
+        <span>&#9729; Azure</span>
+        <span>&#9729; GCP</span>
+        <span>&#127381; Docker</span>
+        <span>&#9881; Kubernetes</span>
+        <span>&#128295; Terraform</span>
+        <span>&#9881; GitHub Actions</span>
+        <span>&#128202; Grafana</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section class="whyus section" id="why">
+    <div class="container">
+      <h2 class="section-title">Why CloudZentra?</h2>
+      <p class="section-sub">We're not just another cloud vendor — we're your dedicated DevOps &amp; cloud team.</p>
+      <div class="why-grid">
+        <div class="why-card">
+          <div class="why-icon">&#128222;</div>
+          <h3>24/7 Human Support</h3>
+          <p>Talk to a real engineer, not a chatbot. We're always available via call, chat, or WhatsApp — unlike AWS or Azure support.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">&#128176;</div>
+          <h3>30% Cost Reduction Guarantee</h3>
+          <p>We audit your cloud bill and implement changes that cut costs immediately. Most clients save 20–40% in the first month.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">&#9889;</div>
+          <h3>2x Faster Deployments</h3>
+          <p>Our CI/CD pipelines and automation reduce deployment time from hours to minutes. Ship faster, break nothing.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">&#128272;</div>
+          <h3>NDA &amp; SLA on Every Project</h3>
+          <p>Your data and code are protected. We sign an NDA before every engagement and deliver with a clear SLA.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">&#127758;</div>
+          <h3>India-Focused, Global Standards</h3>
+          <p>We understand Indian startup needs — cost-sensitive, fast-moving, and compliance-aware. Built for the Indian market.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">&#128203;</div>
+          <h3>Transparent Pricing</h3>
+          <p>No hidden fees, no surprise bills. Fixed-price projects with clear scope and delivery timelines upfront.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services section" id="services">
+    <div class="container">
+      <h2 class="section-title">What We Do</h2>
+      <p class="section-sub">End-to-end cloud services tailored for startups and growing businesses.</p>
+      <div class="grid-3">
+        <div class="card" onclick="openService(0)">
+          <div class="icon">&#9729;&#65039;</div>
+          <h3>Cloud Setup &amp; Migration</h3>
+          <p>Move your infrastructure to AWS, Azure, or GCP with zero downtime and full security compliance.</p>
+          <span class="card-link">Learn more &rarr;</span>
+        </div>
+        <div class="card" onclick="openService(1)">
+          <div class="icon">&#9881;&#65039;</div>
+          <h3>DevOps Automation</h3>
+          <p>CI/CD pipelines, Docker, Kubernetes &mdash; automate your deployments and ship faster.</p>
+          <span class="card-link">Learn more &rarr;</span>
+        </div>
+        <div class="card" onclick="openService(2)">
+          <div class="icon">&#128176;</div>
+          <h3>Cost Optimization</h3>
+          <p>Audit your cloud spend and cut bills by up to 30% without sacrificing performance.</p>
+          <span class="card-link">Learn more &rarr;</span>
+        </div>
+        <div class="card" onclick="openService(3)">
+          <div class="icon">&#128202;</div>
+          <h3>Monitoring &amp; Alerts</h3>
+          <p>Real-time dashboards with Grafana, Prometheus &amp; CloudWatch. Know before it breaks.</p>
+          <span class="card-link">Learn more &rarr;</span>
+        </div>
+        <div class="card" onclick="openService(4)">
+          <div class="icon">&#128272;</div>
+          <h3>Cloud Security</h3>
+          <p>IAM policies, VPC hardening, compliance checks &mdash; your data stays safe.</p>
+          <span class="card-link">Learn more &rarr;</span>
+        </div>
+        <div class="card" onclick="openService(5)">
+          <div class="icon">&#128295;</div>
+          <h3>Managed Support</h3>
+          <p>Monthly retainer plans with dedicated support, incident response, and regular reviews.</p>
+          <span class="card-link">Learn more &rarr;</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PACKAGES -->
+  <section class="packages section" id="packages">
+    <div class="container">
+      <h2 class="section-title">Simple Pricing</h2>
+      <p class="section-sub">No hidden fees. Pick a plan that fits your stage.</p>
+      <div class="grid-3">
+        <div class="price-card">
+          <h3>Starter</h3>
+          <div class="price">&#8377;10,000<span>/project</span></div>
+          <ul>
+            <li>&#9989; AWS / Azure basic setup</li>
+            <li>&#9989; EC2 + S3 + IAM</li>
+            <li>&#9989; Security basics</li>
+            <li>&#9989; 1-week delivery</li>
+            <li>&#10060; CI/CD pipeline</li>
+            <li>&#10060; Monitoring</li>
+          </ul>
+          <a href="#contact" class="btn-primary">Get Started</a>
+        </div>
+        <div class="price-card featured">
+          <span class="popular">Most Popular</span>
+          <h3>Growth</h3>
+          <div class="price">&#8377;40,000<span>/project</span></div>
+          <ul>
+            <li>&#9989; Everything in Starter</li>
+            <li>&#9989; CI/CD pipeline setup</li>
+            <li>&#9989; Docker + Kubernetes</li>
+            <li>&#9989; Monitoring + Alerts</li>
+            <li>&#9989; Auto scaling</li>
+            <li>&#9989; 2-week delivery</li>
+          </ul>
+          <a href="#contact" class="btn-primary">Get Started</a>
+        </div>
+        <div class="price-card">
+          <h3>Pro</h3>
+          <div class="price">&#8377;1,00,000<span>/project</span></div>
+          <ul>
+            <li>&#9989; Everything in Growth</li>
+            <li>&#9989; Full DevOps pipeline</li>
+            <li>&#9989; Cost audit &amp; optimization</li>
+            <li>&#9989; Security hardening</li>
+            <li>&#9989; 30-day support</li>
+            <li>&#9989; SLA included</li>
+          </ul>
+          <a href="#contact" class="btn-primary">Get Started</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about section" id="about">
+    <div class="container">
+      <div class="about-wrapper">
+        <div class="about-left">
+          <span class="badge-dark">&#127775; Our Story</span>
+          <h2>Built for Startups.<br/>Trusted by Businesses.</h2>
+          <p>CloudZentra is a cloud services company focused on helping startups and growing businesses build reliable, secure, and cost-efficient infrastructure. We specialize in AWS, Azure, and GCP &mdash; from initial setup to full DevOps automation.</p>
+          <p>Our mission is simple: make enterprise-grade cloud infrastructure accessible and affordable for every business, regardless of size.</p>
+          <a href="#contact" class="btn-primary about-cta">Work With Us &rarr;</a>
+        </div>
+        <div class="about-right">
+          <div class="about-stat-grid">
+            <div class="about-stat"><strong>2+</strong><span>Years in Business</span></div>
+            <div class="about-stat"><strong>50+</strong><span>Projects Delivered</span></div>
+            <div class="about-stat"><strong>30%</strong><span>Avg Cost Reduction</span></div>
+            <div class="about-stat"><strong>100%</strong><span>Client Satisfaction</span></div>
+          </div>
+          <div class="about-values">
+            <div class="value-item">&#9989; AWS, Azure &amp; GCP Certified</div>
+            <div class="value-item">&#9989; NDA &amp; SLA on every project</div>
+            <div class="value-item">&#9989; 24/7 monitoring &amp; support</div>
+            <div class="value-item">&#9989; Transparent pricing, no surprises</div>
+            <div class="value-item">&#9989; Remote-first, available worldwide</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TECH STACK -->
+  <section class="techstack section">
+    <div class="container">
+      <h2 class="section-title">Our Tech Stack</h2>
+      <p class="section-sub">Industry-standard tools used by the world's best engineering teams.</p>
+      <div class="tech-grid">
+        <div class="tech-item"><span class="tech-icon">&#9729;</span><strong>AWS</strong><small>Cloud Infrastructure</small></div>
+        <div class="tech-item"><span class="tech-icon">&#9729;</span><strong>Azure</strong><small>Enterprise Cloud</small></div>
+        <div class="tech-item"><span class="tech-icon">&#9729;</span><strong>GCP</strong><small>Google Cloud</small></div>
+        <div class="tech-item"><span class="tech-icon">&#127381;</span><strong>Docker</strong><small>Containerization</small></div>
+        <div class="tech-item"><span class="tech-icon">&#9881;</span><strong>Kubernetes</strong><small>Orchestration</small></div>
+        <div class="tech-item"><span class="tech-icon">&#128295;</span><strong>Terraform</strong><small>Infrastructure as Code</small></div>
+        <div class="tech-item"><span class="tech-icon">&#9881;</span><strong>GitHub Actions</strong><small>CI/CD Pipelines</small></div>
+        <div class="tech-item"><span class="tech-icon">&#128202;</span><strong>Grafana</strong><small>Monitoring</small></div>
+        <div class="tech-item"><span class="tech-icon">&#128202;</span><strong>Prometheus</strong><small>Metrics</small></div>
+        <div class="tech-item"><span class="tech-icon">&#128274;</span><strong>Vault</strong><small>Secrets Management</small></div>
+        <div class="tech-item"><span class="tech-icon">&#9881;</span><strong>Jenkins</strong><small>Automation</small></div>
+        <div class="tech-item"><span class="tech-icon">&#128295;</span><strong>Helm</strong><small>K8s Packaging</small></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials section" id="testimonials">
+    <div class="container">
+      <h2 class="section-title">What Clients Say</h2>
+      <p class="section-sub">Real feedback from startups and businesses we've helped.</p>
+      <div class="grid-3">
+        <div class="tcard">
+          <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p>"CloudZentra cut our AWS bill by 35% in the first month. Their cost audit was eye-opening &mdash; we had no idea we were wasting that much."</p>
+          <div class="tauthor">
+            <div class="tavatar">&#129489;</div>
+            <div>
+              <strong>Priya Sharma</strong>
+              <span>CTO, FinTrack Startup</span>
+            </div>
+          </div>
+        </div>
+        <div class="tcard featured-t">
+          <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p>"They set up our entire CI/CD pipeline in under a week. Deployments went from 2 hours to 8 minutes. Absolutely worth every rupee."</p>
+          <div class="tauthor">
+            <div class="tavatar">&#128104;</div>
+            <div>
+              <strong>Rohan Mehta</strong>
+              <span>Founder, ShopEasy</span>
+            </div>
+          </div>
+        </div>
+        <div class="tcard">
+          <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p>"Professional, fast, and always available. Our Kubernetes migration was seamless. I'd recommend CloudZentra to any growing startup."</p>
+          <div class="tauthor">
+            <div class="tavatar">&#128105;</div>
+            <div>
+              <strong>Ananya Iyer</strong>
+              <span>VP Engineering, MedApp</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq section" id="faq">
+    <div class="container">
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <p class="section-sub">Got questions? We've got answers.</p>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">Do I need to be technical to work with you? <span>+</span></button>
+          <div class="faq-a">Not at all. We handle all the technical work. You just tell us your goals and we take care of the rest &mdash; from setup to ongoing support.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">Which cloud providers do you support? <span>+</span></button>
+          <div class="faq-a">We work with AWS, Microsoft Azure, and Google Cloud Platform (GCP). We'll recommend the best fit based on your use case and budget.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">How long does a typical project take? <span>+</span></button>
+          <div class="faq-a">Starter projects take 1 week, Growth projects 2 weeks, and Pro engagements 3&ndash;4 weeks. We always give you a clear timeline before starting.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">What is the free cloud audit? <span>+</span></button>
+          <div class="faq-a">We review your current cloud setup &mdash; costs, security, architecture &mdash; and send you a detailed report with recommendations. It's completely free, no commitment required.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">Do you offer monthly support plans? <span>+</span></button>
+          <div class="faq-a">Yes! Our managed support retainer starts at &#8377;5,000/month and includes incident response, monitoring, and regular check-ins.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">Is my data safe with you? <span>+</span></button>
+          <div class="faq-a">Absolutely. We sign an NDA before every engagement. We follow security best practices and never store your credentials or sensitive data.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact section" id="contact">
+    <div class="container">
+      <h2 class="section-title">Get Your Quote</h2>
+      <p class="section-sub">Tell us about your requirements &mdash; we'll get back to you within 24 hours.</p>
+      <form class="contact-form" onsubmit="handleSubmit(event)">
+        <div class="form-row">
+          <input type="text" name="name" placeholder="Your Name" required />
+          <input type="email" name="email" placeholder="Work Email" required />
+        </div>
+        <div class="form-row">
+          <input type="text" name="company" placeholder="Company / Startup Name" />
+          <select name="cloud">
+            <option value="">Current Cloud Provider</option>
+            <option>AWS</option>
+            <option>Azure</option>
+            <option>Google Cloud</option>
+            <option>Not on cloud yet</option>
+          </select>
+        </div>
+        <textarea name="message" placeholder="Describe your current setup or what you need help with..." rows="4"></textarea>
+        <button type="submit" class="btn-primary">Get Quote &rarr;</button>
+      </form>
+      <div id="form-success" class="form-success" style="display:none">
+        &#9989; Thanks! We'll reach out within 24 hours.
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICE MODAL -->
+  <div class="svc-overlay" id="svcOverlay" onclick="closeService(event)">
+    <div class="svc-modal" id="svcModal">
+      <button class="svc-close" onclick="closeService()">&times;</button>
+      <div class="svc-icon" id="svc-icon"></div>
+      <h2 id="svc-title"></h2>
+      <p class="svc-desc" id="svc-desc"></p>
+      <div class="svc-section">
+        <h4>What&rsquo;s Included</h4>
+        <ul id="svc-includes"></ul>
+      </div>
+      <div class="svc-section">
+        <h4>Tools &amp; Technologies</h4>
+        <div class="svc-tags" id="svc-tags"></div>
+      </div>
+      <div class="svc-section">
+        <h4>Ideal For</h4>
+        <p id="svc-ideal"></p>
+      </div>
+      <a href="#contact" class="btn-primary svc-cta" onclick="closeService()">Get Started &rarr;</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="logo"><a href="index.html" style="text-decoration:none;color:inherit;">&#9729;&#65039; CloudZentra</a></div>
+      <p>&copy; 2025 CloudZentra. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="mailto:info@cloudzentra.in" id="footer-email">info@cloudzentra.in</a>
+        <div id="footer-socials" style="display:contents;"></div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WHATSAPP BUTTON -->
+  <a href="https://wa.me/918855865379?text=Hi%20Cloud%20Zentra!%20I%20want%20a%20free%20cloud%20audit." id="whatsapp-btn" class="whatsapp-btn" target="_blank" rel="noopener noreferrer" title="Chat on WhatsApp">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="white" width="28" height="28"><path d="M16 0C7.163 0 0 7.163 0 16c0 2.822.736 5.472 2.027 7.774L0 32l8.437-2.01A15.93 15.93 0 0016 32c8.837 0 16-7.163 16-16S24.837 0 16 0zm0 29.333a13.27 13.27 0 01-6.771-1.854l-.486-.29-5.01 1.194 1.234-4.874-.317-.5A13.267 13.267 0 012.667 16C2.667 8.636 8.636 2.667 16 2.667S29.333 8.636 29.333 16 23.364 29.333 16 29.333zm7.27-9.862c-.398-.199-2.354-1.162-2.719-1.294-.365-.133-.631-.199-.897.199-.266.398-1.03 1.294-1.263 1.56-.232.266-.465.299-.863.1-.398-.2-1.681-.62-3.203-1.977-1.184-1.057-1.983-2.362-2.215-2.76-.232-.398-.025-.613.174-.811.179-.178.398-.465.597-.698.2-.232.266-.398.398-.664.133-.266.067-.498-.033-.697-.1-.2-.897-2.162-1.23-2.96-.324-.778-.653-.673-.897-.686l-.764-.013c-.266 0-.697.1-1.063.498-.365.398-1.395 1.362-1.395 3.323s1.428 3.854 1.627 4.12c.2.266 2.81 4.29 6.808 6.018.951.41 1.694.655 2.272.839.955.304 1.824.261 2.511.158.766-.114 2.354-.962 2.686-1.891.332-.93.332-1.727.232-1.892-.1-.165-.365-.265-.763-.464z"/></svg>
+    <span>Chat with us</span>
+  </a>
+
+  <script src="script.js"></script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9eff6013f8ff4c05',t:'MTc3NjgwNTgyNA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"41023733169748e6ab9d45d387b799bb","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CloudZentra – Cloud Services &amp; DevOps Solutions</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="container nav-inner">
+      <div class="logo"><a href="index.html" style="text-decoration:none;color:inherit;">&#9729;&#65039; CloudZentra</a></div>
+      <ul class="nav-links">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#packages">Packages</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#testimonials">Reviews</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#contact" class="btn-nav">Get Free Audit</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger">&#9776;</button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container hero-content">
+      <span class="badge">&#128640; India's DevOps &amp; Cloud Partner</span>
+      <h1>Simplifying Cloud &amp; DevOps<br/><span>for Growing Businesses.</span></h1>
+      <p>We help startups and businesses design, migrate, and optimize cloud infrastructure across AWS, Azure, and Google Cloud &mdash; with secure, scalable, and cost-efficient solutions.</p>
+      <div class="hero-btns">
+        <a href="#contact" class="btn-primary">Talk to Expert</a>
+        <a id="hero-wa-btn" href="https://wa.me/918855865379" class="btn-outline" target="_blank" rel="noopener noreferrer">&#128172; Chat on WhatsApp</a>
+      </div>
+      <div class="hero-stats">
+        <div><strong>30%</strong><span>Avg Cost Saved</span></div>
+        <div><strong>50+</strong><span>Projects Done</span></div>
+        <div><strong>24/7</strong><span>Human Support</span></div>
+        <div><strong>2x</strong><span>Faster Deployments</span></div>
+      </div>
+    </div>
+    <div class="hero-bg"></div>
+  </section>
+
+  <!-- TRUST BAR -->
+  <section class="trust-bar">
+    <div class="container">
+      <p class="trust-label">Trusted Technologies We Work With</p>
+      <div class="trust-logos">
+        <span>&#9729; AWS</span>
+        <span>&#9729; Azure</span>
+        <span>&#9729; GCP</span>
+        <span>&#127381; Docker</span>
+        <span>&#9881; Kubernetes</span>
+        <span>&#128295; Terraform</span>
+        <span>&#9881; GitHub Actions</span>
+        <span>&#128202; Grafana</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEMS -->
+  <section class="problems section">
+    <div class="container">
+      <h2 class="section-title">Common Challenges We Solve</h2>
+      <p class="section-sub">Sound familiar? You're not alone — these are the problems we fix every day.</p>
+      <div class="problems-grid">
+        <div class="problem-card"><span>&#128200;</span><p>Cloud costs increasing without visibility or control</p></div>
+        <div class="problem-card"><span>&#9203;</span><p>Manual deployments slowing down your release cycle</p></div>
+        <div class="problem-card"><span>&#128274;</span><p>Security risks from misconfigured access and open ports</p></div>
+        <div class="problem-card"><span>&#127760;</span><p>Difficulty managing and scaling multi-cloud environments</p></div>
+        <div class="problem-card"><span>&#128202;</span><p>No visibility into system health until something breaks</p></div>
+        <div class="problem-card"><span>&#128736;</span><p>No dedicated cloud team but growing infrastructure needs</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section class="whyus section" id="why">
+    <div class="container">
+      <h2 class="section-title">Why CloudZentra?</h2>
+      <p class="section-sub">We're not just another cloud vendor — we're your dedicated DevOps &amp; cloud team.</p>
+      <div class="why-grid">
+        <div class="why-card">
+          <div class="why-icon">&#128222;</div>
+          <h3>24/7 Human Support</h3>
+          <p>Talk to a real engineer, not a chatbot. We're always available via call, chat, or WhatsApp — unlike AWS or Azure support.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">&#128176;</div>
+          <h3>30% Cost Reduction Guarantee</h3>
+          <p>We audit your cloud bill and implement changes that cut costs immediately. Most clients save 20–40% in the first month.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">&#9889;</div>
+          <h3>2x Faster Deployments</h3>
+          <p>Our CI/CD pipelines and automation reduce deployment time from hours to minutes. Ship faster, break nothing.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">&#128272;</div>
+          <h3>NDA &amp; SLA on Every Project</h3>
+          <p>Your data and code are protected. We sign an NDA before every engagement and deliver with a clear SLA.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">&#127758;</div>
+          <h3>India-Focused, Global Standards</h3>
+          <p>We understand Indian startup needs — cost-sensitive, fast-moving, and compliance-aware. Built for the Indian market.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">&#128203;</div>
+          <h3>Transparent Pricing</h3>
+          <p>No hidden fees, no surprise bills. Fixed-price projects with clear scope and delivery timelines upfront.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services section" id="services">
+    <div class="container">
+      <h2 class="section-title">What We Do</h2>
+      <p class="section-sub">End-to-end cloud services tailored for startups and growing businesses.</p>
+      <div class="grid-3">
+        <div class="card" onclick="openService(0)">
+          <div class="icon">&#9729;&#65039;</div>
+          <h3>Cloud Setup &amp; Migration</h3>
+          <p>Move your infrastructure to AWS, Azure, or GCP with zero downtime and full security compliance.</p>
+          <span class="card-link">Learn more &rarr;</span>
+        </div>
+        <div class="card" onclick="openService(1)">
+          <div class="icon">&#9881;&#65039;</div>
+          <h3>DevOps Automation</h3>
+          <p>CI/CD pipelines, Docker, Kubernetes &mdash; automate your deployments and ship faster.</p>
+          <span class="card-link">Learn more &rarr;</span>
+        </div>
+        <div class="card" onclick="openService(2)">
+          <div class="icon">&#128176;</div>
+          <h3>Cost Optimization</h3>
+          <p>Audit your cloud spend and cut bills by up to 30% without sacrificing performance.</p>
+          <span class="card-link">Learn more &rarr;</span>
+        </div>
+        <div class="card" onclick="openService(3)">
+          <div class="icon">&#128202;</div>
+          <h3>Monitoring &amp; Alerts</h3>
+          <p>Real-time dashboards with Grafana, Prometheus &amp; CloudWatch. Know before it breaks.</p>
+          <span class="card-link">Learn more &rarr;</span>
+        </div>
+        <div class="card" onclick="openService(4)">
+          <div class="icon">&#128272;</div>
+          <h3>Cloud Security</h3>
+          <p>IAM policies, VPC hardening, compliance checks &mdash; your data stays safe.</p>
+          <span class="card-link">Learn more &rarr;</span>
+        </div>
+        <div class="card" onclick="openService(5)">
+          <div class="icon">&#128295;</div>
+          <h3>Managed Support</h3>
+          <p>Monthly retainer plans with dedicated support, incident response, and regular reviews.</p>
+          <span class="card-link">Learn more &rarr;</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PACKAGES -->
+  <section class="packages section" id="packages">
+    <div class="container">
+      <h2 class="section-title">Simple Pricing</h2>
+      <p class="section-sub">No hidden fees. Pick a plan that fits your stage.</p>
+      <div class="grid-3">
+        <div class="price-card">
+          <h3>Starter</h3>
+          <div class="price">&#8377;10,000<span>/project</span></div>
+          <ul>
+            <li>&#9989; AWS / Azure basic setup</li>
+            <li>&#9989; EC2 + S3 + IAM</li>
+            <li>&#9989; Security basics</li>
+            <li>&#9989; 1-week delivery</li>
+            <li>&#10060; CI/CD pipeline</li>
+            <li>&#10060; Monitoring</li>
+          </ul>
+          <a href="#contact" class="btn-primary">Get Started</a>
+        </div>
+        <div class="price-card featured">
+          <span class="popular">Most Popular</span>
+          <h3>Growth</h3>
+          <div class="price">&#8377;40,000<span>/project</span></div>
+          <ul>
+            <li>&#9989; Everything in Starter</li>
+            <li>&#9989; CI/CD pipeline setup</li>
+            <li>&#9989; Docker + Kubernetes</li>
+            <li>&#9989; Monitoring + Alerts</li>
+            <li>&#9989; Auto scaling</li>
+            <li>&#9989; 2-week delivery</li>
+          </ul>
+          <a href="#contact" class="btn-primary">Get Started</a>
+        </div>
+        <div class="price-card">
+          <h3>Pro</h3>
+          <div class="price">&#8377;1,00,000<span>/project</span></div>
+          <ul>
+            <li>&#9989; Everything in Growth</li>
+            <li>&#9989; Full DevOps pipeline</li>
+            <li>&#9989; Cost audit &amp; optimization</li>
+            <li>&#9989; Security hardening</li>
+            <li>&#9989; 30-day support</li>
+            <li>&#9989; SLA included</li>
+          </ul>
+          <a href="#contact" class="btn-primary">Get Started</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about section" id="about">
+    <div class="container">
+      <div class="about-wrapper">
+        <div class="about-left">
+          <span class="badge-dark">&#127775; Our Story</span>
+          <h2>Built for Startups.<br/>Trusted by Businesses.</h2>
+          <p>CloudZentra is a cloud and DevOps solutions company focused on helping businesses build reliable, scalable, and secure infrastructure. We work with startups and growing teams to simplify cloud complexity, automate deployments, and improve system performance.</p>
+          <p>Our mission is simple: make enterprise-grade cloud infrastructure accessible and affordable for every business, regardless of size.</p>
+          <a href="#contact" class="btn-primary about-cta">Work With Us &rarr;</a>
+        </div>
+        <div class="about-right">
+          <div class="about-stat-grid">
+            <div class="about-stat"><strong>2+</strong><span>Years in Business</span></div>
+            <div class="about-stat"><strong>50+</strong><span>Projects Delivered</span></div>
+            <div class="about-stat"><strong>30%</strong><span>Avg Cost Reduction</span></div>
+            <div class="about-stat"><strong>100%</strong><span>Client Satisfaction</span></div>
+          </div>
+          <div class="about-values">
+            <div class="value-item">&#9989; AWS, Azure &amp; GCP Certified</div>
+            <div class="value-item">&#9989; NDA &amp; SLA on every project</div>
+            <div class="value-item">&#9989; 24/7 monitoring &amp; support</div>
+            <div class="value-item">&#9989; Transparent pricing, no surprises</div>
+            <div class="value-item">&#9989; Remote-first, available worldwide</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TECH STACK -->
+  <section class="techstack section">
+    <div class="container">
+      <h2 class="section-title">Our Tech Stack</h2>
+      <p class="section-sub">Industry-standard tools used by the world's best engineering teams.</p>
+      <div class="tech-grid">
+        <div class="tech-item"><span class="tech-icon">&#9729;</span><strong>AWS</strong><small>Cloud Infrastructure</small></div>
+        <div class="tech-item"><span class="tech-icon">&#9729;</span><strong>Azure</strong><small>Enterprise Cloud</small></div>
+        <div class="tech-item"><span class="tech-icon">&#9729;</span><strong>GCP</strong><small>Google Cloud</small></div>
+        <div class="tech-item"><span class="tech-icon">&#127381;</span><strong>Docker</strong><small>Containerization</small></div>
+        <div class="tech-item"><span class="tech-icon">&#9881;</span><strong>Kubernetes</strong><small>Orchestration</small></div>
+        <div class="tech-item"><span class="tech-icon">&#128295;</span><strong>Terraform</strong><small>Infrastructure as Code</small></div>
+        <div class="tech-item"><span class="tech-icon">&#9881;</span><strong>GitHub Actions</strong><small>CI/CD Pipelines</small></div>
+        <div class="tech-item"><span class="tech-icon">&#128202;</span><strong>Grafana</strong><small>Monitoring</small></div>
+        <div class="tech-item"><span class="tech-icon">&#128202;</span><strong>Prometheus</strong><small>Metrics</small></div>
+        <div class="tech-item"><span class="tech-icon">&#128274;</span><strong>Vault</strong><small>Secrets Management</small></div>
+        <div class="tech-item"><span class="tech-icon">&#9881;</span><strong>Jenkins</strong><small>Automation</small></div>
+        <div class="tech-item"><span class="tech-icon">&#128295;</span><strong>Helm</strong><small>K8s Packaging</small></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials section" id="testimonials">
+    <div class="container">
+      <h2 class="section-title">What Clients Say</h2>
+      <p class="section-sub">Real feedback from startups and businesses we've helped.</p>
+      <div class="grid-3">
+        <div class="tcard">
+          <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p>"CloudZentra cut our AWS bill by 35% in the first month. Their cost audit was eye-opening &mdash; we had no idea we were wasting that much."</p>
+          <div class="tauthor">
+            <div class="tavatar">&#129489;</div>
+            <div>
+              <strong>Priya Sharma</strong>
+              <span>CTO, FinTrack Startup</span>
+            </div>
+          </div>
+        </div>
+        <div class="tcard featured-t">
+          <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p>"They set up our entire CI/CD pipeline in under a week. Deployments went from 2 hours to 8 minutes. Absolutely worth every rupee."</p>
+          <div class="tauthor">
+            <div class="tavatar">&#128104;</div>
+            <div>
+              <strong>Rohan Mehta</strong>
+              <span>Founder, ShopEasy</span>
+            </div>
+          </div>
+        </div>
+        <div class="tcard">
+          <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p>"Professional, fast, and always available. Our Kubernetes migration was seamless. I'd recommend CloudZentra to any growing startup."</p>
+          <div class="tauthor">
+            <div class="tavatar">&#128105;</div>
+            <div>
+              <strong>Ananya Iyer</strong>
+              <span>VP Engineering, MedApp</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq section" id="faq">
+    <div class="container">
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <p class="section-sub">Got questions? We've got answers.</p>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">Do I need to be technical to work with you? <span>+</span></button>
+          <div class="faq-a">Not at all. We handle all the technical work. You just tell us your goals and we take care of the rest &mdash; from setup to ongoing support.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">Which cloud providers do you support? <span>+</span></button>
+          <div class="faq-a">We work with AWS, Microsoft Azure, and Google Cloud Platform (GCP). We'll recommend the best fit based on your use case and budget.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">How long does a typical project take? <span>+</span></button>
+          <div class="faq-a">Starter projects take 1 week, Growth projects 2 weeks, and Pro engagements 3&ndash;4 weeks. We always give you a clear timeline before starting.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">What is the free cloud audit? <span>+</span></button>
+          <div class="faq-a">We review your current cloud setup &mdash; costs, security, architecture &mdash; and send you a detailed report with recommendations. It's completely free, no commitment required.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">Do you offer monthly support plans? <span>+</span></button>
+          <div class="faq-a">Yes! Our managed support retainer starts at &#8377;5,000/month and includes incident response, monitoring, and regular check-ins.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">Is my data safe with you? <span>+</span></button>
+          <div class="faq-a">Absolutely. We sign an NDA before every engagement. We follow security best practices and never store your credentials or sensitive data.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact section" id="contact">
+    <div class="container">
+      <h2 class="section-title">Let's Understand Your Requirements</h2>
+      <p class="section-sub">Tell us about your cloud or DevOps needs &mdash; our team will get back with the right approach.</p>
+      <form class="contact-form" onsubmit="handleSubmit(event)">
+        <div class="form-row">
+          <input type="text" name="name" placeholder="Your Name" required />
+          <input type="email" name="email" placeholder="Work Email" required />
+        </div>
+        <div class="form-row">
+          <input type="text" name="company" placeholder="Company / Startup Name" />
+          <select name="cloud">
+            <option value="">Current Cloud Provider</option>
+            <option>AWS</option>
+            <option>Azure</option>
+            <option>Google Cloud</option>
+            <option>Not on cloud yet</option>
+          </select>
+        </div>
+        <textarea name="message" placeholder="Describe your current setup or what you need help with..." rows="4"></textarea>
+        <button type="submit" class="btn-primary">Get Quote &rarr;</button>
+      </form>
+      <div id="form-success" class="form-success" style="display:none">
+        &#9989; Thanks! We'll reach out within 24 hours.
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICE MODAL -->
+  <div class="svc-overlay" id="svcOverlay" onclick="closeService(event)">
+    <div class="svc-modal" id="svcModal">
+      <button class="svc-close" onclick="closeService()">&times;</button>
+      <div class="svc-icon" id="svc-icon"></div>
+      <h2 id="svc-title"></h2>
+      <p class="svc-desc" id="svc-desc"></p>
+      <div class="svc-section">
+        <h4>What&rsquo;s Included</h4>
+        <ul id="svc-includes"></ul>
+      </div>
+      <div class="svc-section">
+        <h4>Tools &amp; Technologies</h4>
+        <div class="svc-tags" id="svc-tags"></div>
+      </div>
+      <div class="svc-section">
+        <h4>Ideal For</h4>
+        <p id="svc-ideal"></p>
+      </div>
+      <a href="#contact" class="btn-primary svc-cta" onclick="closeService()">Get Started &rarr;</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="logo"><a href="index.html" style="text-decoration:none;color:inherit;">&#9729;&#65039; CloudZentra</a></div>
+      <p>&copy; 2025 CloudZentra. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="mailto:info@cloudzentra.in" id="footer-email">info@cloudzentra.in</a>
+        <div id="footer-socials" style="display:contents;"></div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- CHATBOT -->
+  <div id="cz-chat-bubble" onclick="toggleChat()" title="Chat with us">
+    <span id="cz-chat-icon">&#128172;</span>
+    <span id="cz-chat-badge" style="display:none">1</span>
+  </div>
+  <div id="cz-chatbox">
+    <div id="cz-chat-header">
+      <div>
+        <strong>&#9729;&#65039; CloudZentra Bot</strong>
+        <span>Typically replies instantly</span>
+      </div>
+      <button onclick="toggleChat()">&times;</button>
+    </div>
+    <div id="cz-chat-messages"></div>
+    <div id="cz-chat-options"></div>
+    <div id="cz-chat-input-row">
+      <input type="text" id="cz-chat-input" placeholder="Type your answer..." onkeydown="if(event.key==='Enter')chatSend()"/>
+      <button onclick="chatSend()">&#10148;</button>
+    </div>
+  </div>
+
+  <!-- WHATSAPP BUTTON -->
+  <a href="https://wa.me/918855865379?text=Hi%20Cloud%20Zentra!%20I%20want%20a%20free%20cloud%20audit." id="whatsapp-btn" class="whatsapp-btn" target="_blank" rel="noopener noreferrer" title="Chat on WhatsApp">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="white" width="28" height="28"><path d="M16 0C7.163 0 0 7.163 0 16c0 2.822.736 5.472 2.027 7.774L0 32l8.437-2.01A15.93 15.93 0 0016 32c8.837 0 16-7.163 16-16S24.837 0 16 0zm0 29.333a13.27 13.27 0 01-6.771-1.854l-.486-.29-5.01 1.194 1.234-4.874-.317-.5A13.267 13.267 0 012.667 16C2.667 8.636 8.636 2.667 16 2.667S29.333 8.636 29.333 16 23.364 29.333 16 29.333zm7.27-9.862c-.398-.199-2.354-1.162-2.719-1.294-.365-.133-.631-.199-.897.199-.266.398-1.03 1.294-1.263 1.56-.232.266-.465.299-.863.1-.398-.2-1.681-.62-3.203-1.977-1.184-1.057-1.983-2.362-2.215-2.76-.232-.398-.025-.613.174-.811.179-.178.398-.465.597-.698.2-.232.266-.398.398-.664.133-.266.067-.498-.033-.697-.1-.2-.897-2.162-1.23-2.96-.324-.778-.653-.673-.897-.686l-.764-.013c-.266 0-.697.1-1.063.498-.365.398-1.395 1.362-1.395 3.323s1.428 3.854 1.627 4.12c.2.266 2.81 4.29 6.808 6.018.951.41 1.694.655 2.272.839.955.304 1.824.261 2.511.158.766-.114 2.354-.962 2.686-1.891.332-.93.332-1.727.232-1.892-.1-.165-.365-.265-.763-.464z"/></svg>
+    <span>Chat with us</span>
+  </a>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
+this my local application
+👉 “
+AI chatbot + lead system bana do”
+👉 “
+chatbot ko CRM se connect karo”
+2026-04-21T21:22:05.873Z	Initializing build environment...
+2026-04-21T21:22:05.873Z	Initializing build environment...
+2026-04-21T21:22:07.367Z	Success: Finished initializing build environment
+2026-04-21T21:22:07.901Z	Cloning repository...
+2026-04-21T21:22:08.971Z	Detected the following tools from environment: bun@1.2.15, nodejs@22.16.0
+2026-04-21T21:22:08.974Z	Installing project dependencies: bun install
+2026-04-21T21:22:09.123Z	bun install v1.2.15 (df017990)
+2026-04-21T21:22:09.154Z	Resolving dependencies
+2026-04-21T21:22:09.249Z	Resolved, downloaded and extracted [4]
+2026-04-21T21:22:09.254Z	Saved lockfile
+2026-04-21T21:22:09.256Z	
+2026-04-21T21:22:09.257Z	+ nodemailer@6.10.1 (v8.0.5 available)
+2026-04-21T21:22:09.257Z	
+2026-04-21T21:22:09.257Z	1 package installed [153.00ms]
+2026-04-21T21:22:09.446Z	Executing user deploy command: npx wrangler deploy
+2026-04-21T21:22:11.775Z	npm warn exec The following package was not found and will be installed: wrangler@4.84.1
+2026-04-21T21:22:22.037Z	
+2026-04-21T21:22:22.037Z	 ⛅️ wrangler 4.84.1
+2026-04-21T21:22:22.037Z	───────────────────
+2026-04-21T21:22:22.212Z	
+2026-04-21T21:22:22.213Z	Detected Project Settings:
+2026-04-21T21:22:22.213Z	 - Worker Name: cloudzentra
+2026-04-21T21:22:22.213Z	 - Framework: Static
+2026-04-21T21:22:22.213Z	 - Output Directory: .
+2026-04-21T21:22:22.213Z	
+2026-04-21T21:22:22.214Z	? Do you want to modify these settings?
+2026-04-21T21:22:22.214Z	🤖 Using fallback value in non-interactive context: no
+2026-04-21T21:22:22.214Z	
+2026-04-21T21:22:22.214Z	📦 Install packages:
+2026-04-21T21:22:22.214Z	 - wrangler (devDependency)
+2026-04-21T21:22:22.216Z	
+2026-04-21T21:22:22.216Z	📝 Update package.json scripts:
+2026-04-21T21:22:22.216Z	 - "deploy": "wrangler deploy"
+2026-04-21T21:22:22.216Z	 - "preview": "wrangler dev"
+2026-04-21T21:22:22.216Z	
+2026-04-21T21:22:22.217Z	📄 Create wrangler.jsonc:
+2026-04-21T21:22:22.217Z	  {
+2026-04-21T21:22:22.217Z	    "$schema": "node_modules/wrangler/config-schema.json",
+2026-04-21T21:22:22.217Z	    "name": "cloudzentra",
+2026-04-21T21:22:22.217Z	    "compatibility_date": "2026-04-21",
+2026-04-21T21:22:22.217Z	    "observability": {
+2026-04-21T21:22:22.218Z	      "enabled": true
+2026-04-21T21:22:22.218Z	    },
+2026-04-21T21:22:22.218Z	    "assets": {
+2026-04-21T21:22:22.218Z	      "directory": "."
+2026-04-21T21:22:22.218Z	    },
+2026-04-21T21:22:22.218Z	    "compatibility_flags": [
+2026-04-21T21:22:22.218Z	      "nodejs_compat"
+2026-04-21T21:22:22.218Z	    ]
+2026-04-21T21:22:22.219Z	  }
+2026-04-21T21:22:22.219Z	
+2026-04-21T21:22:22.219Z	? Proceed with setup?
+2026-04-21T21:22:22.219Z	🤖 Using fallback value in non-interactive context: yes
+2026-04-21T21:22:25.441Z	├ Adding Wrangler files to the .gitignore file
+2026-04-21T21:22:25.442Z	│ updated .gitignore file
+2026-04-21T21:22:25.442Z	│
+2026-04-21T21:22:26.040Z	🌀 Building list of assets...
+2026-04-21T21:22:26.108Z	✨ Read 1996 files from the assets directory /opt/buildhome/repo
+2026-04-21T21:22:26.460Z	
+2026-04-21T21:22:26.460Z	Cloudflare collects anonymous telemetry about your usage of Wrangler. Learn more at https://github.com/cloudflare/workers-sdk/tree/main/packages/wrangler/telemetry.md
+2026-04-21T21:22:26.462Z	
+2026-04-21T21:22:26.535Z	✘ [ERROR] Asset too large.
+2026-04-21T21:22:26.536Z	
+2026-04-21T21:22:26.536Z	  Cloudflare Workers supports assets with sizes of up to 25 MiB. We found a file /opt/buildhome/repo/node_modules/workerd/bin/workerd with a size of 118 MiB.
+2026-04-21T21:22:26.536Z	  Ensure all assets in your assets directory "/opt/buildhome/repo" conform with the Workers maximum size requirement.
+2026-04-21T21:22:26.536Z	
+2026-04-21T21:22:26.537Z	
+2026-04-21T21:22:27.264Z	🪵  Logs were written to "/opt/buildhome/.config/.wrangler/logs/wrangler-2026-04-21_21-22-21_643.log"
+2026-04-21T21:22:27.434Z	Failed: error occurred while running deploy command
+
+while deployed 
+Build details
+Repository
+
+samirpandey65/cloud
+Status
+
+Content loading
+In progress
+Branch
+main
+9f6f7e3
+this is update
+Duration
+2m 33s
+Build settings
+Build command
+Deploy command
+npm start
+Root directory
+/
+Build token
+Workers Builds - 2026-04-21 19:23
+Environment variables
+None
+Build log
+Initializing build environment
+5s
+Cloning git repository
+2s
+Installing tools and dependencies
+< 1s
+Building application
+—
+Content loading
+Deploying to Cloudflare's global network
+2m 26s
+
+Download log
+
+Copy log
+03:19:30.278	⚠️  Email not configured yet — set it up in Admin → Settings
+03:19:21.346	Initializing build environment...
+03:19:25.885	Success: Finished initializing build environment
+03:19:26.548	Cloning repository...
+03:19:28.285	Detected the following tools from environment: bun@1.2.15, nodejs@22.16.0
+03:19:28.288	Installing project dependencies: bun install
+03:19:28.619	bun install v1.2.15 (df017990)
+03:19:28.686	Resolving dependencies
+03:19:28.813	Resolved, downloaded and extracted [4]
+03:19:28.823	Saved lockfile
+03:19:28.824	
+03:19:28.824	+ nodemailer@6.10.1 (v8.0.5 available)
+03:19:28.825	
+03:19:28.825	1 package installed [274.00ms]
+03:19:28.971	Executing user deploy command: npm start
+03:19:30.160	
+03:19:30.160	> cloudzentra-website@1.0.0 start
+03:19:30.160	> node server.js
+03:19:30.160	
+03:19:30.278	✅ CloudZentra server running → http://localhost:3000
+03:19:30.278	⚠️  Email not configured yet — set it up in Admin → Settings
+You already successfully deployed on Railway — the log showed ✅ CloudZentra server running. Railway IS a proper Node.js host, not Cloudflare Workers. The server is running correctly there.
+
+The only missing step is getting your public Railway URL.
+
+Do this right now:
+
+Go to railway.app
+
+Click on your cloud project
+
+Click the service inside the project
+
+Click Settings
+
+Scroll to Networking
+
+Click Generate Domain
+
+It will instantly give you a URL like https://cloud-production-abc123.up.railway.app
+
+That URL is your live site. Open it in browser — you should see your CloudZentra website.
+
+Share the URL here and I'll update API_BASE in your code so leads and emails work on the live site.
+There is an internal issue with your Cloudflare Pages Git installation. If this issue persists after reinstalling your installation, contact support: https://cfl.re/3WgEyrH.
+2026-04-21T22:18:03.156Z	Initializing build environment...
+2026-04-21T22:18:05.574Z	Success: Finished initializing build environment
+2026-04-21T22:18:06.585Z	Cloning repository...
+2026-04-21T22:18:08.217Z	No build output detected to cache. Skipping.
+2026-04-21T22:18:08.217Z	No dependencies detected to cache. Skipping.
+2026-04-21T22:18:08.226Z	Detected the following tools from environment: bun@1.2.15, nodejs@22.16.0
+2026-04-21T22:18:08.229Z	Installing project dependencies: bun install
+2026-04-21T22:18:08.610Z	bun install v1.2.15 (df017990)
+2026-04-21T22:18:08.670Z	Resolving dependencies
+2026-04-21T22:18:08.880Z	Resolved, downloaded and extracted [4]
+2026-04-21T22:18:08.891Z	Saved lockfile
+2026-04-21T22:18:08.892Z	
+2026-04-21T22:18:08.893Z	+ nodemailer@6.10.1 (v8.0.5 available)
+2026-04-21T22:18:08.893Z	
+2026-04-21T22:18:08.894Z	1 package installed [340.00ms]
+2026-04-21T22:18:09.123Z	Executing user deploy command: npx wrangler deploy
+2026-04-21T22:18:12.159Z	npm warn exec The following package was not found and will be installed: wrangler@4.84.1
+2026-04-21T22:18:27.260Z	
+2026-04-21T22:18:27.260Z	 ⛅️ wrangler 4.84.1
+2026-04-21T22:18:27.260Z	───────────────────
+2026-04-21T22:18:27.475Z	
+2026-04-21T22:18:27.476Z	Detected Project Settings:
+2026-04-21T22:18:27.476Z	 - Worker Name: cloudzentra
+2026-04-21T22:18:27.476Z	 - Framework: Static
+2026-04-21T22:18:27.481Z	 - Output Directory: .
+2026-04-21T22:18:27.481Z	
+2026-04-21T22:18:27.481Z	? Do you want to modify these settings?
+2026-04-21T22:18:27.482Z	🤖 Using fallback value in non-interactive context: no
+2026-04-21T22:18:27.482Z	
+2026-04-21T22:18:27.482Z	📦 Install packages:
+2026-04-21T22:18:27.482Z	 - wrangler (devDependency)
+2026-04-21T22:18:27.483Z	
+2026-04-21T22:18:27.483Z	📝 Update package.json scripts:
+2026-04-21T22:18:27.483Z	 - "deploy": "wrangler deploy"
+2026-04-21T22:18:27.483Z	 - "preview": "wrangler dev"
+2026-04-21T22:18:27.484Z	
+2026-04-21T22:18:27.484Z	📄 Create wrangler.jsonc:
+2026-04-21T22:18:27.484Z	  {
+2026-04-21T22:18:27.486Z	    "$schema": "node_modules/wrangler/config-schema.json",
+2026-04-21T22:18:27.488Z	    "name": "cloudzentra",
+2026-04-21T22:18:27.488Z	    "compatibility_date": "2026-04-21",
+2026-04-21T22:18:27.488Z	    "observability": {
+2026-04-21T22:18:27.489Z	      "enabled": true
+2026-04-21T22:18:27.489Z	    },
+2026-04-21T22:18:27.489Z	    "assets": {
+2026-04-21T22:18:27.489Z	      "directory": "."
+2026-04-21T22:18:27.489Z	    },
+2026-04-21T22:18:27.489Z	    "compatibility_flags": [
+2026-04-21T22:18:27.490Z	      "nodejs_compat"
+2026-04-21T22:18:27.490Z	    ]
+2026-04-21T22:18:27.490Z	  }
+2026-04-21T22:18:27.490Z	
+2026-04-21T22:18:27.490Z	? Proceed with setup?
+2026-04-21T22:18:27.491Z	🤖 Using fallback value in non-interactive context: yes
+2026-04-21T22:18:31.272Z	├ Adding Wrangler files to the .gitignore file
+2026-04-21T22:18:31.272Z	│ updated .gitignore file
+2026-04-21T22:18:31.273Z	│
+2026-04-21T22:18:32.101Z	🌀 Building list of assets...
+2026-04-21T22:18:32.170Z	✨ Read 1999 files from the assets directory /opt/buildhome/repo
+2026-04-21T22:18:32.491Z	
+2026-04-21T22:18:32.493Z	Cloudflare collects anonymous telemetry about your usage of Wrangler. Learn more at https://github.com/cloudflare/workers-sdk/tree/main/packages/wrangler/telemetry.md
+2026-04-21T22:18:32.494Z	
+2026-04-21T22:18:32.568Z	✘ [ERROR] Asset too large.
+2026-04-21T22:18:32.568Z	
+2026-04-21T22:18:32.568Z	  Cloudflare Workers supports assets with sizes of up to 25 MiB. We found a file /opt/buildhome/repo/node_modules/workerd/bin/workerd with a size of 118 MiB.
+2026-04-21T22:18:32.569Z	  Ensure all assets in your assets directory "/opt/buildhome/repo" conform with the Workers maximum size requirement.
+2026-04-21T22:18:32.569Z	
+2026-04-21T22:18:32.576Z	
+2026-04-21T22:18:33.348Z	🪵  Logs were written to "/opt/buildhome/.config/.wrangler/logs/wrangler-2026-04-21_22-18-26_493.log"
+2026-04-21T22:18:33.498Z	Failed: error occurred while running deploy command
+Build command
+Deploy command
+npx wrangler versions upload
+Root directory
+/
+Build token
+Workers Builds - 2026-04-21 19:23
+Environment variables
+None
+Connect to repository
+Select a repository from your git provider
+
+
+Git configurations
+Git account
+Repository
+cloud
+Branch
+main
+
+
+Build & deploy commands
+Build command
+Optional
+Deploy command
+Required
+
+
+Advanced settings
+Root directory
+API Token
+Build variables
+Build caching
+If you need to run a build prior to deployment, specify a command (e.g. npm run build).
+Specify a command to deploy your project for builds on the production branch (e.g. npx wrangler deploy).
+
+this is block deployment i need just copy my code from github to cloudflare 
+Build command: ❌ empty
+Deploy command: ❌ empty
+ye blank nahi lete hai
+Why this is showing my github
+
+cloudflare-workers-and-pages[bot]
+Add Cloudflare Workers configuration
+ye branch se deploy honga code?
+ git add .
+warning: in the working copy of 'index.html', LF will be replaced by CRLF the next time Git touches it
+
+AzureAD+SamirPandey@VTLP157 MINGW64 /e/Website (main)
+$ git commit -m "clean repo for static deploy"
+[main 536008b] clean repo for static deploy
+ 1 file changed, 1 insertion(+)
+
+AzureAD+SamirPandey@VTLP157 MINGW64 /e/Website (main)
+$ git push
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 301 bytes | 301.00 KiB/s, done.
+Total 3 (delta 2), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+To https://github.com/samirpandey65/cloud.git
+   e26d010..536008b  main -> main
+
+Build
+Connect your Worker to a Git repository for automatic builds and deployments
+
+Git repository
+samirpandey65/cloud
+Build configuration
+Build command:echo "no build"
+Deploy command:echo "no deploy"
+Version command:npx wrangler versions upload
+Root directory:/
+Branch control
+Production branch:main
+Builds for non-production branches:Enabled
+Build watch paths
+Include paths:
+*
+API token
+Name:Workers Builds - 2026-04-21 19:23
+Variables and secrets
+None
+Deploy Hooks
+No deploy hooks defined
+Build cache
+Enabled (Clear Cache)
+mujhe cloudflare pe hi karna hai pahale jab nodjs nahi tha tab proper work kar raha tha
+A

@@ -192,8 +192,8 @@
       <div class="stats-grid">
         <div class="stat-card"><span>Total Requests</span><strong id="s-total">0</strong></div>
         <div class="stat-card"><span>Unread</span><strong id="s-unread">0</strong></div>
-        <div class="stat-card"><span>AWS Clients</span><strong id="s-aws">0</strong></div>
-        <div class="stat-card"><span>Not on Cloud</span><strong id="s-noc">0</strong></div>
+        <div class="stat-card"><span>🔥 HOT Leads</span><strong id="s-hot">0</strong></div>
+        <div class="stat-card"><span>Chatbot Leads</span><strong id="s-chat">0</strong></div>
       </div>
       <div class="table-toolbar">
         <input type="text" id="search-input" placeholder="Search name or email…" oninput="renderTable()"/>
@@ -205,7 +205,7 @@
       </div>
       <div class="table-wrap">
         <table>
-          <thead><tr><th>Name</th><th>Email</th><th>Company</th><th>Cloud</th><th>Date</th><th>Status</th><th></th></tr></thead>
+          <thead><tr><th>Name</th><th>Email</th><th>Company</th><th>Cloud</th><th>Need</th><th>Score</th><th>Source</th><th>Date</th><th>Status</th><th></th></tr></thead>
           <tbody id="submissions-tbody"></tbody>
         </table>
       </div>
@@ -258,6 +258,10 @@
     <div class="detail-row"><label>Email</label><p id="v-email"></p></div>
     <div class="detail-row"><label>Company</label><p id="v-company"></p></div>
     <div class="detail-row"><label>Cloud Provider</label><p id="v-cloud"></p></div>
+    <div class="detail-row"><label>Need</label><p id="v-need"></p></div>
+    <div class="detail-row"><label>Budget</label><p id="v-budget"></p></div>
+    <div class="detail-row"><label>Lead Score</label><p id="v-score"></p></div>
+    <div class="detail-row"><label>Source</label><p id="v-source"></p></div>
     <div class="detail-row"><label>Message</label><p id="v-msg"></p></div>
     <div class="detail-row"><label>Submitted</label><p id="v-date"></p></div>
   </div>
@@ -355,8 +359,8 @@ async function loadFromWorker() {
 function renderStats(data) {
   document.getElementById('s-total').textContent = data.length;
   document.getElementById('s-unread').textContent = data.filter(d => !d.read).length;
-  document.getElementById('s-aws').textContent = data.filter(d => d.cloud === 'AWS').length;
-  document.getElementById('s-noc').textContent = data.filter(d => d.cloud === 'Not on cloud yet').length;
+  document.getElementById('s-hot').textContent = data.filter(d => d.score === 'HOT').length;
+  document.getElementById('s-chat').textContent = data.filter(d => d.source === 'Chatbot').length;
 }
 
 function renderTable() {
@@ -379,6 +383,9 @@ function renderTable() {
       <td>${esc(d.email)}</td>
       <td>${esc(d.company || '—')}</td>
       <td>${esc(d.cloud || '—')}</td>
+      <td>${esc(d.need || '—')}</td>
+      <td><span style="padding:3px 10px;border-radius:20px;font-size:0.75rem;font-weight:700;background:${d.score==='HOT'?'#fee2e2':d.score==='WARM'?'#fef9c3':'#f1f5f9'};color:${d.score==='HOT'?'#dc2626':d.score==='WARM'?'#92400e':'#64748b'}">${d.score||'—'}</span></td>
+      <td><span style="padding:3px 10px;border-radius:20px;font-size:0.75rem;font-weight:700;background:${d.source==='Chatbot'?'#ede9fe':'#dbeafe'};color:${d.source==='Chatbot'?'#7c3aed':'#2563eb'}">${d.source||'Form'}</span></td>
       <td>${new Date(d.date).toLocaleDateString()}</td>
       <td><span class="${d.read ? 'badge-read' : 'badge-unread'}">${d.read ? 'Read' : 'Unread'}</span></td>
       <td><button class="del-btn" onclick="delSubmission(event,'${d.id}')">🗑</button></td>
@@ -400,6 +407,10 @@ function viewSubmission(id) {
   document.getElementById('v-email').textContent = d.email;
   document.getElementById('v-company').textContent = d.company || '—';
   document.getElementById('v-cloud').textContent = d.cloud || '—';
+  document.getElementById('v-need').textContent = d.need || '—';
+  document.getElementById('v-budget').textContent = d.budget || '—';
+  document.getElementById('v-score').textContent = d.score || '—';
+  document.getElementById('v-source').textContent = d.source || '—';
   document.getElementById('v-msg').textContent = d.message || '—';
   document.getElementById('v-date').textContent = new Date(d.date).toLocaleString();
   document.getElementById('viewModal').classList.add('open');

@@ -243,38 +243,109 @@ const SOLUTIONS = {
   'Not using yet|Monitoring': ['Monitoring strategy from day one', 'Alerting & dashboard setup', 'Log management planning'],
 };
 
+function getCloudKey(d) {
+  return d.cloud || '';
+}
+
+function getNeedKey(d) {
+  var map = {
+    'Reduce cloud costs': 'Cost Optimization',
+    'Automate deployments (CI/CD)': 'DevOps / CI-CD',
+    'Improve security': 'Security',
+    'Better monitoring': 'Monitoring',
+    'Cloud migration': 'Cloud Migration',
+    'General inquiry': 'General Inquiry',
+    'Move to cloud': 'Cloud Migration',
+    'Set up DevOps': 'DevOps / CI-CD',
+    'Build new infrastructure': 'Cloud Migration',
+    'Just exploring': 'General Inquiry'
+  };
+  return map[d.need] || d.need;
+}
+
+function scoreLead(d) {
+  var score = 0;
+  var b = d.budget || '';
+  if (b.includes('1,00,000') || b.includes('50,000')) score += 40;
+  else if (b.includes('25,000') || b.includes('10,000')) score += 20;
+  else score += 5;
+  if (d.cloud !== 'Not using yet') score += 20;
+  var highNeeds = ['Reduce cloud costs','Automate deployments (CI/CD)','Improve security','Cloud migration','Move to cloud'];
+  if (highNeeds.indexOf(d.need) !== -1) score += 20;
+  if (score >= 60) return 'HOT';
+  if (score >= 30) return 'WARM';
+  return 'COLD';
+}
+
 function buildFinalMessage(d) {
-  var key = d.cloud + '|' + d.need;
+  var cloud = getCloudKey(d);
+  var need  = getNeedKey(d);
+  var key   = cloud + '|' + need;
   var items = SOLUTIONS[key] || ['Infrastructure review', 'Performance improvements', 'Cost & security assessment'];
   var reply = SMART_REPLIES[key] || '';
-  if (d.cloud === 'Not using yet') {
-    var bReply = reply || 'Great time to explore cloud options. Based on what you shared, we can guide you through the right starting point.';
-    return bReply + '\n\nFor beginners, we usually recommend:\n' + items.map(function(i){ return '\u2022 ' + i; }).join('\n') + '\n\nStarting correctly saves a lot of cost and effort later.\n\nWould you like help getting started? (or press Enter to skip)';
+  if (cloud === 'Not using yet') {
+    var bReply = reply || 'Great time to start with cloud. Based on what you shared, we can guide you through the right starting point.';
+    return bReply + '\n\nFor your use case, we recommend:\n' + items.map(function(i){ return '\u2022 ' + i; }).join('\n') + '\n\nStarting correctly saves a lot of cost and effort later.\n\nAnything specific you would like to add? (or press Enter to skip)';
   }
   if (reply) {
-    var budgetNote = d.budget === 'Under \u20b95,000' ? '\n\nEven with a smaller budget, focusing on the right ' + d.need.toLowerCase() + ' basics can make a big difference.' : '';
-    return reply + '\n\nHere is what we can help with:\n' + items.map(function(i){ return '\u2022 ' + i; }).join('\n') + budgetNote + '\n\nWould you like help improving this? (or press Enter to skip)';
+    return reply + '\n\nHere is what we can help with:\n' + items.map(function(i){ return '\u2022 ' + i; }).join('\n') + '\n\nWould you like to add anything? (or press Enter to skip)';
   }
-  if (d.budget === 'Under \u20b95,000') {
-    return 'Since you are working with a smaller budget, the best approach is to start minimal and scale only when needed.\n\nWe usually recommend:\n\u2022 Using free-tier cloud services (AWS / GCP / Azure)\n\u2022 Starting with basic infrastructure\n\u2022 Avoiding over-scaling early\n\nThis keeps costs low while you validate your setup.\n\nAnything specific you would like to add? (or press Enter to skip)';
-  }
-  return 'Based on what you shared about your ' + d.cloud + ' usage and ' + d.need + ' needs, our team can suggest the right improvements.\n\nHere is what we can help with:\n' + items.map(function(i){ return '\u2022 ' + i; }).join('\n') + '\n\nAnything specific you would like to add? (or press Enter to skip)';
+  return 'Based on what you shared, our team can suggest the right improvements for your ' + cloud + ' setup.\n\nHere is what we can help with:\n' + items.map(function(i){ return '\u2022 ' + i; }).join('\n') + '\n\nAnything specific to add? (or press Enter to skip)';
 }
 
 function getPersonalizedCTA(d) {
-  if (d.budget === 'Above \u20b91,00,000') return '\ud83d\udd25 Book a priority consultation with our cloud expert';
-  if (d.budget === '\u20b925,000 \u2013 \u20b91,00,000') return '\ud83d\udcde Schedule a free call with our team';
-  return '\ud83d\udcac Connect with us on WhatsApp to explore solutions';
+  var score = scoreLead(d);
+  if (score === 'HOT') return '\ud83d\udd25 Our team will prioritise your request. Expect a call within a few hours.';
+  if (score === 'WARM') return '\ud83d\udcde We will reach out within 24 hours to discuss the best approach.';
+  return '\ud83d\udcac Connect with us on WhatsApp anytime for a quick chat.';
 }
 
 const CHAT_STEPS = [
-  { key: 'name',    bot: "Hi \ud83d\udc4b I'm the CloudZentra assistant. I help businesses with DevOps & cloud solutions. What's your name?", type: 'input' },
-  { key: 'email',   bot: function(d) { return 'Nice to meet you, ' + d.name + '! \ud83d\ude0a What is your work email so our team can reach you?'; }, type: 'input' },
-  { key: 'cloud',   bot: 'Which cloud platform are you using?', type: 'options', options: ['AWS', 'Azure', 'Google Cloud', 'Not using yet', 'Multiple clouds'] },
-  { key: 'need',    bot: 'What do you want to improve?', type: 'options', options: ['Cost Optimization', 'DevOps / CI-CD', 'Cloud Migration', 'Security', 'Monitoring', 'General Inquiry'] },
-  { key: 'budget',  bot: 'What is your approximate monthly cloud spend?', type: 'options', options: ['Under \u20b95,000', '\u20b95,000 \u2013 \u20b925,000', '\u20b925,000 \u2013 \u20b91,00,000', 'Above \u20b91,00,000'] },
-  { key: 'message', bot: function(d) { return buildFinalMessage(d); }, type: 'input', placeholder: 'Type here or press Enter to skip...' },
-  { key: 'done',    bot: function(d) { return '\u2705 Thanks, ' + d.name + '! Our team will reach out at ' + d.email + ' with tailored recommendations.\n\n' + getPersonalizedCTA(d); }, type: 'done' }
+  { key: 'name',
+    bot: "Hi \ud83d\udc4b I'm the CloudZentra assistant. What's your name?",
+    type: 'input' },
+
+  { key: 'email',
+    bot: function(d) { return 'Nice to meet you, ' + d.name + '! \ud83d\ude0a What is your work email?'; },
+    type: 'input' },
+
+  { key: 'cloud',
+    bot: 'Are you currently using any cloud platform?',
+    type: 'options',
+    options: ['AWS', 'Azure', 'Google Cloud', 'Multiple clouds', 'Not using yet'] },
+
+  { key: 'need',
+    bot: function(d) {
+      if (d.cloud === 'Not using yet') return 'What are you looking to do?';
+      return 'What is your main challenge right now?';
+    },
+    type: 'options',
+    options: function(d) {
+      if (d.cloud === 'Not using yet')
+        return ['Move to cloud', 'Set up DevOps', 'Build new infrastructure', 'Just exploring'];
+      return ['Reduce cloud costs', 'Automate deployments (CI/CD)', 'Improve security', 'Better monitoring', 'Cloud migration', 'General inquiry'];
+    }},
+
+  { key: 'budget',
+    bot: function(d) {
+      if (d.cloud === 'Not using yet') return 'What is your approximate monthly IT budget?';
+      return 'What is your approximate monthly cloud spend?';
+    },
+    type: 'options',
+    options: function(d) {
+      if (d.cloud === 'Not using yet')
+        return ['Under \u20b910,000', '\u20b910,000 \u2013 \u20b950,000', 'Above \u20b950,000', 'Not sure yet'];
+      return ['Under \u20b95,000', '\u20b95,000 \u2013 \u20b925,000', '\u20b925,000 \u2013 \u20b91,00,000', 'Above \u20b91,00,000'];
+    }},
+
+  { key: 'message',
+    bot: function(d) { return buildFinalMessage(d); },
+    type: 'input',
+    placeholder: 'Type here or press Enter to skip...' },
+
+  { key: 'done',
+    bot: function(d) { return '\u2705 Thanks, ' + d.name + '! Our team will reach out at ' + d.email + ' with the right solution.\n\n' + getPersonalizedCTA(d); },
+    type: 'done' }
 ];
 
 var chatData = {};
@@ -299,20 +370,22 @@ function chatNext() {
   setTimeout(function() {
     hideTyping();
     var msg = typeof step.bot === 'function' ? step.bot(chatData) : step.bot;
+    var stepType = typeof step.type === 'function' ? step.type(chatData) : step.type;
+    var stepOptions = typeof step.options === 'function' ? step.options(chatData) : step.options;
     addChatMsg(msg, 'bot');
     var opts = document.getElementById('cz-chat-options');
     var inp  = document.getElementById('cz-chat-input');
     opts.innerHTML = '';
-    if (step.type === 'options') {
+    if (stepType === 'options') {
       inp.style.display = 'none';
-      step.options.forEach(function(o) {
+      stepOptions.forEach(function(o) {
         var btn = document.createElement('button');
         btn.className = 'chat-opt';
         btn.textContent = o;
         btn.onclick = function(){ chatAnswer(o); };
         opts.appendChild(btn);
       });
-    } else if (step.type === 'done') {
+    } else if (step.type === 'done' || stepType === 'done') {
       inp.style.display = 'none';
       saveChatLead();
       var c = JSON.parse(localStorage.getItem('cz_contact') || '{"waNum":"918855865379","waMsg":"Hi CloudZentra! I need help with cloud solutions."}');
@@ -349,9 +422,8 @@ function hideTyping() {
 function chatSend() {
   var inp = document.getElementById('cz-chat-input');
   var val = inp.value.trim();
-  if (!val) return;
   inp.value = '';
-  chatAnswer(val);
+  chatAnswer(val || '(skipped)');
 }
 
 function chatAnswer(val) {
@@ -380,17 +452,17 @@ function saveChatLead() {
     name: chatData.name || '',
     email: chatData.email || '',
     company: '',
-    cloud: chatData.cloud || '',
+    cloud: getCloudKey(chatData),
+    need: getNeedKey(chatData),
+    budget: chatData.budget || '',
     message: '[Chatbot] Need: ' + (chatData.need || '') + ' | Budget: ' + (chatData.budget || '') + ' | Note: ' + (chatData.message || ''),
-    source: 'Chatbot'
+    source: 'Chatbot',
+    score: scoreLead(chatData)
   };
-  // Save to Worker KV
   fetch('https://cloudzentra-api.samirpandey65.workers.dev/save-lead', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    method: 'POST', headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(submission)
   }).catch(() => {});
-  // Also save to localStorage as fallback
   var existing = JSON.parse(localStorage.getItem('cn_submissions') || '[]');
   existing.unshift(submission);
   localStorage.setItem('cn_submissions', JSON.stringify(existing));
