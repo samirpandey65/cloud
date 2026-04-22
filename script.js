@@ -171,6 +171,220 @@ new Typed('#typed-text', {
   smartBackspace: true
 });
 
+// Smart reply map
+const SMART_REPLIES = {
+  'AWS|Cost Optimization': 'Many AWS users overspend due to idle resources. Based on what you shared, there is likely room to reduce your bill significantly.',
+  'AWS|Security': 'AWS security often has gaps in IAM policies. Based on what you shared, a targeted review could strengthen your setup.',
+  'AWS|DevOps / CI-CD': 'AWS teams often spend hours on manual deployments. Based on what you shared, automating your pipeline could cut deployment time drastically.',
+  'AWS|Cloud Migration': 'Migrating to AWS requires careful planning. Based on what you shared, we can map out a smooth transition.',
+  'AWS|Monitoring': 'AWS monitoring can get noisy without proper alerting rules. Based on what you shared, we can help improve visibility.',
+  'AWS|General Inquiry': 'AWS has a vast range of services. Based on what you shared, we can help identify the right setup for your needs.',
+  'Azure|Cost Optimization': 'Azure environments often have underutilised resources. Based on what you shared, better resource management could help.',
+  'Azure|Security': 'Azure security benefits from tighter policies. Based on what you shared, there is scope to harden your environment.',
+  'Azure|DevOps / CI-CD': 'Azure DevOps pipelines can be optimised for faster releases. Based on what you shared, we can streamline your workflow.',
+  'Azure|Cloud Migration': 'Azure migrations require careful planning. Based on what you shared, a structured migration roadmap would ensure a smooth transition.',
+  'Azure|Monitoring': 'Azure monitoring setups often lack centralised dashboards. Based on what you shared, we can improve observability.',
+  'Azure|General Inquiry': 'Azure is a powerful platform. Based on what you shared, we can help identify the right services for your needs.',
+  'Google Cloud|Monitoring': 'Google Cloud setups often struggle with alert noise. Based on what you shared, we can help improve observability.',
+  'Google Cloud|Cost Optimization': 'GCP billing can be complex. Based on what you shared, there is likely savings to unlock.',
+  'Google Cloud|Security': 'GCP security requires careful IAM configuration. Based on what you shared, a focused review could close key gaps.',
+  'Google Cloud|DevOps / CI-CD': 'GCP teams benefit greatly from Cloud Build. Based on what you shared, we can help speed up your delivery.',
+  'Google Cloud|Cloud Migration': 'Migrating to GCP requires careful workload assessment. Based on what you shared, we can map out a smooth transition.',
+  'Google Cloud|General Inquiry': 'Google Cloud offers strong data capabilities. Based on what you shared, we can help you get started efficiently.',
+  'Multiple clouds|DevOps / CI-CD': 'Multi-cloud environments often face pipeline consistency challenges. Based on what you shared, a unified CI/CD strategy makes a significant difference.',
+  'Multiple clouds|Cost Optimization': 'Managing costs across multiple clouds is complex. Based on what you shared, a unified cost visibility approach could help.',
+  'Multiple clouds|Security': 'Security in multi-cloud setups requires consistent policies. Based on what you shared, a unified security posture review would be valuable.',
+  'Multiple clouds|Monitoring': 'Multi-cloud monitoring often results in fragmented visibility. Based on what you shared, centralising observability would improve your response time.',
+  'Multiple clouds|Cloud Migration': 'Migrating across multiple clouds requires careful orchestration. Based on what you shared, a phased migration plan would reduce risk.',
+  'Not using yet|Cloud Migration': 'Moving to cloud for the first time is a big step. Based on what you shared, starting with the right architecture will save time and cost.',
+  'Not using yet|Cost Optimization': 'Cloud cost planning before migration is critical. Based on what you shared, we can help you choose the most cost-efficient setup.',
+  'Not using yet|DevOps / CI-CD': 'Setting up DevOps from scratch gives you the advantage of doing it right. Based on what you shared, we can build a clean automated pipeline.',
+  'Not using yet|General Inquiry': 'Great time to explore cloud options. Based on what you shared, we can guide you through the right starting point.',
+  'Not using yet|Security': 'Planning security from the start is the smartest move. Based on what you shared, we can help you build a secure foundation.',
+  'Not using yet|Monitoring': 'Setting up monitoring early means fewer surprises later. Based on what you shared, we can help you build visibility from day one.',
+};
+
+const SOLUTIONS = {
+  'AWS|Cost Optimization': ['Right-size EC2 instances', 'Remove idle resources', 'Set up budget alerts'],
+  'AWS|Security': ['Audit IAM roles & policies', 'Harden security groups', 'Enable GuardDuty'],
+  'AWS|DevOps / CI-CD': ['Set up GitHub Actions / CodePipeline', 'Dockerise your application', 'Configure auto-scaling'],
+  'AWS|Monitoring': ['Set up CloudWatch dashboards', 'Configure smart alerting rules', 'Centralise log aggregation'],
+  'AWS|General Inquiry': ['AWS service selection & architecture', 'Cost & performance planning', 'Security & compliance setup'],
+  'Azure|Cost Optimization': ['Identify underutilised VMs', 'Set up Cost Management alerts', 'Review reserved capacity'],
+  'Azure|Security': ['Configure Azure Defender', 'Review RBAC policies', 'Enable Azure Sentinel'],
+  'Azure|DevOps / CI-CD': ['Set up Azure DevOps pipelines', 'Containerise with AKS', 'Automate with Terraform'],
+  'Azure|Cloud Migration': ['Structured migration roadmap', 'Zero-downtime cutover strategy', 'Post-migration optimisation'],
+  'Azure|Monitoring': ['Set up Azure Monitor dashboards', 'Configure Application Insights', 'Centralise logs with Log Analytics'],
+  'Azure|General Inquiry': ['Azure service selection & architecture', 'Cost & performance planning', 'Security & compliance setup'],
+  'Google Cloud|Monitoring': ['Set up Cloud Monitoring dashboards', 'Reduce alert noise', 'Centralise logs with Cloud Logging'],
+  'Google Cloud|Cost Optimization': ['Review committed use discounts', 'Identify idle Compute Engine VMs', 'Set up billing alerts'],
+  'Google Cloud|Security': ['Audit IAM bindings', 'Configure VPC firewall rules', 'Enable Security Command Center'],
+  'Google Cloud|DevOps / CI-CD': ['Set up Cloud Build pipelines', 'Deploy with GKE', 'Automate with Terraform'],
+  'Google Cloud|Cloud Migration': ['Workload assessment & migration planning', 'Zero-downtime migration strategy', 'Post-migration optimisation'],
+  'Google Cloud|General Inquiry': ['GCP service selection & architecture', 'Cost & performance planning', 'Security & compliance setup'],
+  'Multiple clouds|DevOps / CI-CD': ['Standardise CI/CD pipelines across environments', 'Automate deployments with Jenkins / GitHub Actions', 'Securely manage secrets across clouds'],
+  'Multiple clouds|Cost Optimization': ['Unified cost visibility across all clouds', 'Identify duplicate or idle resources', 'Set up cross-cloud budget alerts'],
+  'Multiple clouds|Security': ['Consistent IAM policies across environments', 'Centralised security monitoring', 'Cross-cloud compliance checks'],
+  'Multiple clouds|Monitoring': ['Centralised observability dashboard (Grafana)', 'Unified alerting across all platforms', 'Cross-cloud log aggregation'],
+  'Multiple clouds|Cloud Migration': ['Phased migration planning', 'Zero-downtime cutover strategy', 'Post-migration validation'],
+  'Not using yet|Cloud Migration': ['Cloud readiness assessment', 'Architecture design for your use case', 'Cost-optimised setup from day one'],
+  'Not using yet|Cost Optimization': ['Right-sized infrastructure planning', 'Reserved vs on-demand cost modelling', 'Budget alert setup'],
+  'Not using yet|DevOps / CI-CD': ['CI/CD pipeline design from scratch', 'Docker & Kubernetes setup', 'Automated testing & deployment'],
+  'Not using yet|General Inquiry': ['Cloud platform comparison (AWS / Azure / GCP)', 'Starter architecture design', 'Cost & timeline estimate'],
+  'Not using yet|Security': ['Security-first architecture design', 'IAM & access control setup', 'Compliance checklist for your industry'],
+  'Not using yet|Monitoring': ['Monitoring strategy from day one', 'Alerting & dashboard setup', 'Log management planning'],
+};
+
+function buildFinalMessage(d) {
+  var key = d.cloud + '|' + d.need;
+  var items = SOLUTIONS[key] || ['Infrastructure review', 'Performance improvements', 'Cost & security assessment'];
+  var reply = SMART_REPLIES[key] || '';
+  if (d.cloud === 'Not using yet') {
+    var bReply = reply || 'Great time to explore cloud options. Based on what you shared, we can guide you through the right starting point.';
+    return bReply + '\n\nFor beginners, we usually recommend:\n' + items.map(function(i){ return '\u2022 ' + i; }).join('\n') + '\n\nStarting correctly saves a lot of cost and effort later.\n\nWould you like help getting started? (or press Enter to skip)';
+  }
+  if (reply) {
+    var budgetNote = d.budget === 'Under \u20b95,000' ? '\n\nEven with a smaller budget, focusing on the right ' + d.need.toLowerCase() + ' basics can make a big difference.' : '';
+    return reply + '\n\nHere is what we can help with:\n' + items.map(function(i){ return '\u2022 ' + i; }).join('\n') + budgetNote + '\n\nWould you like help improving this? (or press Enter to skip)';
+  }
+  if (d.budget === 'Under \u20b95,000') {
+    return 'Since you are working with a smaller budget, the best approach is to start minimal and scale only when needed.\n\nWe usually recommend:\n\u2022 Using free-tier cloud services (AWS / GCP / Azure)\n\u2022 Starting with basic infrastructure\n\u2022 Avoiding over-scaling early\n\nThis keeps costs low while you validate your setup.\n\nAnything specific you would like to add? (or press Enter to skip)';
+  }
+  return 'Based on what you shared about your ' + d.cloud + ' usage and ' + d.need + ' needs, our team can suggest the right improvements.\n\nHere is what we can help with:\n' + items.map(function(i){ return '\u2022 ' + i; }).join('\n') + '\n\nAnything specific you would like to add? (or press Enter to skip)';
+}
+
+function getPersonalizedCTA(d) {
+  if (d.budget === 'Above \u20b91,00,000') return '\ud83d\udd25 Book a priority consultation with our cloud expert';
+  if (d.budget === '\u20b925,000 \u2013 \u20b91,00,000') return '\ud83d\udcde Schedule a free call with our team';
+  return '\ud83d\udcac Connect with us on WhatsApp to explore solutions';
+}
+
+const CHAT_STEPS = [
+  { key: 'name',    bot: "Hi \ud83d\udc4b I'm the CloudZentra assistant. I help businesses with DevOps & cloud solutions. What's your name?", type: 'input' },
+  { key: 'email',   bot: function(d) { return 'Nice to meet you, ' + d.name + '! \ud83d\ude0a What is your work email so our team can reach you?'; }, type: 'input' },
+  { key: 'cloud',   bot: 'Which cloud platform are you using?', type: 'options', options: ['AWS', 'Azure', 'Google Cloud', 'Not using yet', 'Multiple clouds'] },
+  { key: 'need',    bot: 'What do you want to improve?', type: 'options', options: ['Cost Optimization', 'DevOps / CI-CD', 'Cloud Migration', 'Security', 'Monitoring', 'General Inquiry'] },
+  { key: 'budget',  bot: 'What is your approximate monthly cloud spend?', type: 'options', options: ['Under \u20b95,000', '\u20b95,000 \u2013 \u20b925,000', '\u20b925,000 \u2013 \u20b91,00,000', 'Above \u20b91,00,000'] },
+  { key: 'message', bot: function(d) { return buildFinalMessage(d); }, type: 'input', placeholder: 'Type here or press Enter to skip...' },
+  { key: 'done',    bot: function(d) { return '\u2705 Thanks, ' + d.name + '! Our team will reach out at ' + d.email + ' with tailored recommendations.\n\n' + getPersonalizedCTA(d); }, type: 'done' }
+];
+
+var chatData = {};
+var chatStep = 0;
+var chatOpened = false;
+
+function toggleChat() {
+  var box = document.getElementById('cz-chatbox');
+  var badge = document.getElementById('cz-chat-badge');
+  box.classList.toggle('open');
+  if (box.classList.contains('open') && !chatOpened) {
+    chatOpened = true;
+    badge.style.display = 'none';
+    setTimeout(function(){ chatNext(); }, 400);
+  }
+}
+
+function chatNext() {
+  var step = CHAT_STEPS[chatStep];
+  if (!step) return;
+  showTyping();
+  setTimeout(function() {
+    hideTyping();
+    var msg = typeof step.bot === 'function' ? step.bot(chatData) : step.bot;
+    addChatMsg(msg, 'bot');
+    var opts = document.getElementById('cz-chat-options');
+    var inp  = document.getElementById('cz-chat-input');
+    opts.innerHTML = '';
+    if (step.type === 'options') {
+      inp.style.display = 'none';
+      step.options.forEach(function(o) {
+        var btn = document.createElement('button');
+        btn.className = 'chat-opt';
+        btn.textContent = o;
+        btn.onclick = function(){ chatAnswer(o); };
+        opts.appendChild(btn);
+      });
+    } else if (step.type === 'done') {
+      inp.style.display = 'none';
+      saveChatLead();
+      var c = JSON.parse(localStorage.getItem('cz_contact') || '{"waNum":"918855865379","waMsg":"Hi CloudZentra! I need help with cloud solutions."}');
+      var wa = document.createElement('a');
+      wa.href = 'https://wa.me/' + c.waNum + '?text=' + encodeURIComponent(c.waMsg);
+      wa.target = '_blank'; wa.rel = 'noopener noreferrer';
+      wa.className = 'chat-opt';
+      wa.style.textDecoration = 'none';
+      wa.textContent = '\ud83d\udcac Chat on WhatsApp';
+      opts.appendChild(wa);
+    } else {
+      inp.placeholder = step.placeholder || 'Type your answer...';
+      inp.style.display = '';
+      inp.focus();
+    }
+  }, 800);
+}
+
+function showTyping() {
+  var msgs = document.getElementById('cz-chat-messages');
+  var div = document.createElement('div');
+  div.className = 'chat-msg-bot chat-typing';
+  div.id = 'cz-typing';
+  div.innerHTML = '<span></span><span></span><span></span>';
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function hideTyping() {
+  var t = document.getElementById('cz-typing');
+  if (t) t.remove();
+}
+
+function chatSend() {
+  var inp = document.getElementById('cz-chat-input');
+  var val = inp.value.trim();
+  if (!val) return;
+  inp.value = '';
+  chatAnswer(val);
+}
+
+function chatAnswer(val) {
+  var step = CHAT_STEPS[chatStep];
+  addChatMsg(val, 'user');
+  document.getElementById('cz-chat-options').innerHTML = '';
+  chatData[step.key] = val;
+  chatStep++;
+  setTimeout(function(){ chatNext(); }, 300);
+}
+
+function addChatMsg(text, who) {
+  var msgs = document.getElementById('cz-chat-messages');
+  var div = document.createElement('div');
+  div.className = who === 'bot' ? 'chat-msg-bot' : 'chat-msg-user';
+  div.textContent = text;
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function saveChatLead() {
+  var submission = {
+    id: Date.now().toString(),
+    date: new Date().toISOString(),
+    read: false,
+    name: chatData.name || '',
+    email: chatData.email || '',
+    company: '',
+    cloud: chatData.cloud || '',
+    message: '[Chatbot] Need: ' + (chatData.need || '') + ' | Budget: ' + (chatData.budget || '') + ' | Note: ' + (chatData.message || '')
+  };
+  var existing = JSON.parse(localStorage.getItem('cn_submissions') || '[]');
+  existing.unshift(submission);
+  localStorage.setItem('cn_submissions', JSON.stringify(existing));
+}
+
+setTimeout(function() {
+  if (!chatOpened) document.getElementById('cz-chat-badge').style.display = 'flex';
+}, 8000);
+
+
 // Scroll reveal
 const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach((entry, i) => {

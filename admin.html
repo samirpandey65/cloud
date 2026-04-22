@@ -162,11 +162,12 @@
 <div id="login-screen">
   <div class="login-box">
     <h1>☁️ CloudZentra</h1>
-    <p>Admin Dashboard — Sign in to continue</p>
+    <p style="display:none"></p>
     <input type="text" id="login-user" placeholder="Username" autocomplete="off"/>
     <input type="password" id="login-pass" placeholder="Password"/>
     <button onclick="doLogin()">Sign In</button>
     <div id="login-error">❌ Invalid username or password.</div>
+    <p style="text-align:center;margin-top:14px;"><a href="#" onclick="forgotPassword()" style="color:var(--blue);font-size:0.85rem;text-decoration:none;">Forgot password?</a></p>
   </div>
 </div>
 
@@ -299,6 +300,18 @@ document.addEventListener('keydown', e => {
 function doLogout() {
   sessionStorage.removeItem('cz_auth');
   location.reload();
+}
+
+function forgotPassword() {
+  var answer = prompt('To reset, type the secret word: CLOUDZENTRA');
+  if (answer && answer.trim().toUpperCase() === 'CLOUDZENTRA') {
+    localStorage.removeItem('cz_pass_hash');
+    localStorage.removeItem('cz_username');
+    alert('\u2705 Reset successful!\n\nUsername: admin\nPassword: CloudZentra@2025');
+    location.reload();
+  } else if (answer !== null) {
+    alert('\u274c Incorrect. Reset cancelled.');
+  }
 }
 
 // Auto-login if session active
