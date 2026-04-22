@@ -146,8 +146,16 @@ function handleSubmit(e) {
     email:   form.querySelector('[name="email"]').value.trim(),
     company: form.querySelector('[name="company"]').value.trim(),
     cloud:   form.querySelector('[name="cloud"]').value,
-    message: form.querySelector('[name="message"]').value.trim()
+    message: form.querySelector('[name="message"]').value.trim(),
+    source:  'Contact Form'
   };
+  // Save to Worker KV (persistent, any device)
+  fetch('https://cloudzentra-api.samirpandey65.workers.dev/save-lead', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(submission)
+  }).catch(() => {});
+  // Also save to localStorage as fallback
   const existing = JSON.parse(localStorage.getItem('cn_submissions') || '[]');
   existing.unshift(submission);
   localStorage.setItem('cn_submissions', JSON.stringify(existing));
@@ -373,8 +381,16 @@ function saveChatLead() {
     email: chatData.email || '',
     company: '',
     cloud: chatData.cloud || '',
-    message: '[Chatbot] Need: ' + (chatData.need || '') + ' | Budget: ' + (chatData.budget || '') + ' | Note: ' + (chatData.message || '')
+    message: '[Chatbot] Need: ' + (chatData.need || '') + ' | Budget: ' + (chatData.budget || '') + ' | Note: ' + (chatData.message || ''),
+    source: 'Chatbot'
   };
+  // Save to Worker KV
+  fetch('https://cloudzentra-api.samirpandey65.workers.dev/save-lead', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(submission)
+  }).catch(() => {});
+  // Also save to localStorage as fallback
   var existing = JSON.parse(localStorage.getItem('cn_submissions') || '[]');
   existing.unshift(submission);
   localStorage.setItem('cn_submissions', JSON.stringify(existing));

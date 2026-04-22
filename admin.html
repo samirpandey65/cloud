@@ -332,8 +332,25 @@ function switchTab(name, btn) {
 }
 
 // ─── SUBMISSIONS ─────────────────────────────────────────────────────────────
+const WORKER_URL = 'https://cloudzentra-api.samirpandey65.workers.dev';
+const ADMIN_TOKEN = 'cz-admin-2025-secret';
+
 function getSubmissions() { return JSON.parse(localStorage.getItem('cn_submissions') || '[]'); }
 function saveSubmissions(data) { localStorage.setItem('cn_submissions', JSON.stringify(data)); }
+
+async function loadFromWorker() {
+  try {
+    const res = await fetch(WORKER_URL + '/get-leads', {
+      headers: { 'X-Admin-Token': ADMIN_TOKEN }
+    });
+    const data = await res.json();
+    if (Array.isArray(data)) {
+      saveSubmissions(data);
+      renderStats(data);
+      renderTable();
+    }
+  } catch { /* fallback to localStorage */ }
+}
 
 function renderStats(data) {
   document.getElementById('s-total').textContent = data.length;
@@ -378,6 +395,7 @@ function viewSubmission(id) {
   if (!d) return;
   d.read = true;
   saveSubmissions(data);
+  fetch(WORKER_URL + '/update-lead', { method: 'POST', headers: { 'Content-Type': 'application/json', 'X-Admin-Token': ADMIN_TOKEN }, body: JSON.stringify({ id, read: true }) }).catch(() => {});
   document.getElementById('v-name').textContent = d.name;
   document.getElementById('v-email').textContent = d.email;
   document.getElementById('v-company').textContent = d.company || '—';
@@ -393,6 +411,7 @@ function delSubmission(e, id) {
   if (!confirm('Delete this submission?')) return;
   const data = getSubmissions().filter(x => x.id !== id);
   saveSubmissions(data);
+  fetch(WORKER_URL + '/delete-lead', { method: 'POST', headers: { 'Content-Type': 'application/json', 'X-Admin-Token': ADMIN_TOKEN }, body: JSON.stringify({ id }) }).catch(() => {});
   renderTable(); renderStats(data);
 }
 
@@ -490,10 +509,11 @@ function saveSocials() {
 
 // ─── INIT ─────────────────────────────────────────────────────────────────────
 function initDashboard() {
+  loadFromWorker();
   const data = getSubmissions();
   renderStats(data);
   renderTable();
-  setInterval(() => { renderStats(getSubmissions()); renderTable(); }, 10000);
+  setInterval(loadFromWorker, 15000);
 }
 
 if (document.getElementById('dashboard').style.display === 'block') initDashboard();
