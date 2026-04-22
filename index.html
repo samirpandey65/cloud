@@ -15,11 +15,10 @@
       <div class="logo"><a href="index.html" style="text-decoration:none;color:inherit;">&#9729;&#65039; CloudZentra</a></div>
       <ul class="nav-links">
         <li><a href="#services">Services</a></li>
-        <li><a href="#packages">Packages</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#testimonials">Reviews</a></li>
         <li><a href="#faq">FAQ</a></li>
-        <li><a href="#contact" class="btn-nav">Get Free Audit</a></li>
+        <li><a href="#contact" class="btn-nav">Get Quote</a></li>
       </ul>
       <button class="hamburger" id="hamburger">&#9776;</button>
     </div>
@@ -28,12 +27,12 @@
   <!-- HERO -->
   <section class="hero">
     <div class="container hero-content">
-      <span class="badge">&#128640; India's DevOps &amp; Cloud Partner</span>
-      <h1>Automate. Scale.<br/><span>Dominate the Cloud.</span></h1>
+      <h1>We Help You</h1>
+      <div class="typed-wrapper"><span id="typed-text"></span></div>
       <p>DevOps automation, cloud migration &amp; cost optimization for startups &amp; enterprises on AWS, Azure &amp; GCP &mdash; from code to cloud, faster.</p>
       <div class="hero-btns">
-        <a href="#contact" class="btn-primary">Get Free Cloud Audit</a>
-        <a href="#packages" class="btn-outline">View Packages</a>
+        <a href="#contact" class="btn-primary">Get Quote</a>
+        <a href="#services" class="btn-outline">View Services</a>
       </div>
       <div class="hero-stats">
         <div><strong>30%</strong><span>Avg Cost Saved</span></div>
@@ -43,23 +42,6 @@
       </div>
     </div>
     <div class="hero-bg"></div>
-  </section>
-
-  <!-- TRUST BAR -->
-  <section class="trust-bar">
-    <div class="container">
-      <p class="trust-label">Trusted Technologies We Work With</p>
-      <div class="trust-logos">
-        <span>&#9729; AWS</span>
-        <span>&#9729; Azure</span>
-        <span>&#9729; GCP</span>
-        <span>&#127381; Docker</span>
-        <span>&#9881; Kubernetes</span>
-        <span>&#128295; Terraform</span>
-        <span>&#9881; GitHub Actions</span>
-        <span>&#128202; Grafana</span>
-      </div>
-    </div>
   </section>
 
   <!-- WHY US -->
@@ -143,56 +125,6 @@
           <h3>Managed Support</h3>
           <p>Monthly retainer plans with dedicated support, incident response, and regular reviews.</p>
           <span class="card-link">Learn more &rarr;</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PACKAGES -->
-  <section class="packages section" id="packages">
-    <div class="container">
-      <h2 class="section-title">Simple Pricing</h2>
-      <p class="section-sub">No hidden fees. Pick a plan that fits your stage.</p>
-      <div class="grid-3">
-        <div class="price-card">
-          <h3>Starter</h3>
-          <div class="price">&#8377;10,000<span>/project</span></div>
-          <ul>
-            <li>&#9989; AWS / Azure basic setup</li>
-            <li>&#9989; EC2 + S3 + IAM</li>
-            <li>&#9989; Security basics</li>
-            <li>&#9989; 1-week delivery</li>
-            <li>&#10060; CI/CD pipeline</li>
-            <li>&#10060; Monitoring</li>
-          </ul>
-          <a href="#contact" class="btn-primary">Get Started</a>
-        </div>
-        <div class="price-card featured">
-          <span class="popular">Most Popular</span>
-          <h3>Growth</h3>
-          <div class="price">&#8377;40,000<span>/project</span></div>
-          <ul>
-            <li>&#9989; Everything in Starter</li>
-            <li>&#9989; CI/CD pipeline setup</li>
-            <li>&#9989; Docker + Kubernetes</li>
-            <li>&#9989; Monitoring + Alerts</li>
-            <li>&#9989; Auto scaling</li>
-            <li>&#9989; 2-week delivery</li>
-          </ul>
-          <a href="#contact" class="btn-primary">Get Started</a>
-        </div>
-        <div class="price-card">
-          <h3>Pro</h3>
-          <div class="price">&#8377;1,00,000<span>/project</span></div>
-          <ul>
-            <li>&#9989; Everything in Growth</li>
-            <li>&#9989; Full DevOps pipeline</li>
-            <li>&#9989; Cost audit &amp; optimization</li>
-            <li>&#9989; Security hardening</li>
-            <li>&#9989; 30-day support</li>
-            <li>&#9989; SLA included</li>
-          </ul>
-          <a href="#contact" class="btn-primary">Get Started</a>
         </div>
       </div>
     </div>
@@ -331,7 +263,7 @@
   <section class="contact section" id="contact">
     <div class="container">
       <h2 class="section-title">Get Your Quote</h2>
-      <p class="section-sub">Tell us about your requirements &mdash; we'll get back to you within 24 hours.</p>
+      <p class="section-sub">Tell us about your cloud or DevOps needs &mdash; our team will get back with the right approach.</p>
       <form class="contact-form" onsubmit="handleSubmit(event)">
         <div class="form-row">
           <input type="text" name="name" placeholder="Your Name" required />
@@ -397,6 +329,7 @@
     <span>Chat with us</span>
   </a>
 
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.1.0/dist/typed.umd.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

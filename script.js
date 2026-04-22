@@ -155,6 +155,22 @@ function handleSubmit(e) {
   document.getElementById('form-success').style.display = 'block';
 }
 
+// Typed.js hero animation
+new Typed('#typed-text', {
+  strings: [
+    'Automate Deployments.',
+    'Migrate to Cloud.',
+    'Cut Cloud Costs.',
+    'Secure Infrastructure.',
+    'Scale Faster.'
+  ],
+  typeSpeed: 55,
+  backSpeed: 30,
+  backDelay: 1800,
+  loop: true,
+  smartBackspace: true
+});
+
 // Scroll reveal
 const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach((entry, i) => {

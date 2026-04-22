@@ -127,7 +127,7 @@ body {
 .hero::before { width: 500px; height: 500px; top: -100px; right: -100px; animation: floatOrb 8s ease-in-out infinite; }
 .hero::after  { width: 300px; height: 300px; bottom: -80px; left: 30%; animation: floatOrb 6s ease-in-out infinite reverse; }
 
-.hero-content { position: relative; z-index: 1; color: var(--white); max-width: 680px; }
+.hero-content { position: relative; z-index: 1; color: var(--white); max-width: 780px; }
 
 .badge {
   display: inline-block;
@@ -139,7 +139,7 @@ body {
   animation: fadeDown 0.7s 0.1s ease both;
 }
 .hero-content h1 {
-  font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 800; line-height: 1.15; margin-bottom: 20px;
+  font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 800; line-height: 1.15; margin-bottom: 0;
   animation: fadeDown 0.7s 0.25s ease both;
 }
 .hero-content h1 span { color: #bfdbfe; }
@@ -178,13 +178,6 @@ body {
 }
 .btn-outline:hover { border-color: var(--white); background: rgba(255,255,255,0.1); transform: translateY(-3px); }
 
-/* TRUST BAR */
-.trust-bar { background: var(--dark); padding: 20px 0; }
-.trust-label { text-align: center; color: #64748b; font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 14px; }
-.trust-logos { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 28px; }
-.trust-logos span { color: #94a3b8; font-size: 0.88rem; font-weight: 700; letter-spacing: 0.3px; opacity: 0.8; transition: opacity 0.2s, color 0.2s; cursor: default; }
-.trust-logos span:hover { opacity: 1; color: #60a5fa; }
-
 /* WHY US */
 .whyus { background: var(--white); }
 .why-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
@@ -209,6 +202,16 @@ body {
 .tech-icon { font-size: 1.6rem; }
 .tech-item strong { font-size: 0.85rem; font-weight: 700; color: var(--dark); }
 .tech-item small { font-size: 0.72rem; color: var(--gray); }
+
+.hero-static { display: block; }
+.typed-wrapper {
+  height: 4rem;
+  margin-top: -12px;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+#typed-text { color: #ffffff; white-space: nowrap; font-size: clamp(1.6rem, 4vw, 3rem); font-weight: 800; line-height: 1.15; }
+.typed-cursor { color: #ffffff; font-weight: 300; }
 
 /* SERVICES */
 .services { background: var(--light); }
