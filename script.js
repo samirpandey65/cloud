@@ -138,6 +138,8 @@ window.addEventListener('scroll', () => {
 function handleSubmit(e) {
   e.preventDefault();
   const form = e.target;
+  // Honeypot spam check
+  if (form.querySelector('[name="_honeypot"]').value) return;
   const submission = {
     id: Date.now().toString(),
     date: new Date().toISOString(),
@@ -300,57 +302,77 @@ function getPersonalizedCTA(d) {
   return '\ud83d\udcac Connect with us on WhatsApp anytime for a quick chat.';
 }
 
-const CHAT_STEPS = [
-  { key: 'name',
-    bot: "Hi \ud83d\udc4b I'm the CloudZentra assistant. What's your name?",
-    type: 'input' },
+// Chatbot modes defined above
 
-  { key: 'email',
-    bot: function(d) { return 'Nice to meet you, ' + d.name + '! \ud83d\ude0a What is your work email?'; },
-    type: 'input' },
+// FAQ Knowledge Base
+var FAQ = {
+  'services': 'We offer: Cloud Setup & Migration, DevOps Automation, Cost Optimization, Monitoring & Alerts, Cloud Security, and Managed Support.',
+  'pricing': 'Our pricing starts at \u20b910,000 for basic cloud setup. Growth plans at \u20b940,000 and Pro at \u20b91,00,000. Contact us for a custom quote.',
+  'aws': 'Yes, we work with AWS. We handle EC2, S3, IAM, VPC, RDS, Route 53 and more.',
+  'azure': 'Yes, we work with Microsoft Azure including AKS, Azure DevOps, Defender, and more.',
+  'gcp': 'Yes, we work with Google Cloud Platform including GKE, Cloud Build, Cloud Monitoring and more.',
+  'devops': 'We set up CI/CD pipelines using GitHub Actions, Jenkins, Docker, Kubernetes and Terraform.',
+  'security': 'We handle IAM hardening, VPC security, encryption, compliance checks and vulnerability scanning.',
+  'cost': 'We audit your cloud bill and typically reduce costs by 20-40% through right-sizing, removing idle resources and setting up budget alerts.',
+  'migration': 'We migrate your infrastructure to AWS, Azure or GCP with zero downtime and full data integrity.',
+  'monitoring': 'We set up real-time dashboards using Grafana, Prometheus and CloudWatch with smart alerting.',
+  'support': 'We offer 24/7 managed support retainer plans starting at \u20b95,000/month.',
+  'time': 'Starter projects take 1 week, Growth 2 weeks, Pro 3-4 weeks.',
+  'contact': 'You can reach us at info@cloudzentra.in or chat with us on WhatsApp.',
+  'about': 'CloudZentra is a cloud and DevOps solutions company helping startups and businesses build reliable, scalable infrastructure on AWS, Azure and GCP.',
+  'nda': 'Yes, we sign an NDA before every engagement. Your data and code are fully protected.',
+  'sla': 'Yes, every project comes with a clear SLA and delivery timeline.',
+};
 
-  { key: 'cloud',
-    bot: 'Are you currently using any cloud platform?',
-    type: 'options',
-    options: ['AWS', 'Azure', 'Google Cloud', 'Multiple clouds', 'Not using yet'] },
+function getAutoReply(text) {
+  var t = text.toLowerCase();
+  if (t.includes('service') || t.includes('what do you do') || t.includes('offer') || t.includes('help')) return FAQ.services;
+  if (t.includes('price') || t.includes('how much') || t.includes('pricing') || t.includes('charge') || t.includes('fee') || t.includes('rate')) return FAQ.pricing;
+  if (t.includes('aws') || t.includes('amazon')) return FAQ.aws;
+  if (t.includes('azure') || t.includes('microsoft')) return FAQ.azure;
+  if (t.includes('gcp') || t.includes('google cloud') || t.includes('google')) return FAQ.gcp;
+  if (t.includes('devops') || t.includes('ci/cd') || t.includes('cicd') || t.includes('pipeline') || t.includes('docker') || t.includes('kubernetes') || t.includes('k8s') || t.includes('deploy') || t.includes('automation')) return FAQ.devops;
+  if (t.includes('secur') || t.includes('iam') || t.includes('compliance') || t.includes('hack') || t.includes('protect') || t.includes('privacy')) return FAQ.security;
+  if (t.includes('reduc') || t.includes('optim') || t.includes('bill') || t.includes('saving') || t.includes('expensive') || t.includes('cheap') || t.includes('budget') || t.includes('cost')) return FAQ.cost;
+  if (t.includes('migrat') || t.includes('move') || t.includes('transfer') || t.includes('shift')) return FAQ.migration;
+  if (t.includes('monitor') || t.includes('alert') || t.includes('grafana') || t.includes('prometheus') || t.includes('dashboard') || t.includes('observ') || t.includes('log')) return FAQ.monitoring;
+  if (t.includes('support') || t.includes('retainer') || t.includes('managed') || t.includes('24/7') || t.includes('247')) return FAQ.support;
+  if (t.includes('how long') || t.includes('duration') || t.includes('week') || t.includes('deliver') || t.includes('timeline')) return FAQ.time;
+  if (t.includes('contact') || t.includes('email') || t.includes('reach') || t.includes('phone') || t.includes('call') || t.includes('whatsapp')) return FAQ.contact;
+  if (t.includes('about') || t.includes('who are') || t.includes('company') || t.includes('cloudzentra') || t.includes('team') || t.includes('founded')) return FAQ.about;
+  if (t.includes('nda') || t.includes('confidential') || t.includes('data safe')) return FAQ.nda;
+  if (t.includes('sla') || t.includes('guarantee') || t.includes('contract') || t.includes('agreement')) return FAQ.sla;
+  if (t.includes('tech') || t.includes('tool') || t.includes('stack') || t.includes('terraform') || t.includes('jenkins') || t.includes('helm') || t.includes('cloud') || t.includes('infrastructure')) return FAQ.services;
+  return null;
+}
 
-  { key: 'need',
-    bot: function(d) {
-      if (d.cloud === 'Not using yet') return 'What are you looking to do?';
-      return 'What is your main challenge right now?';
-    },
-    type: 'options',
-    options: function(d) {
-      if (d.cloud === 'Not using yet')
-        return ['Move to cloud', 'Set up DevOps', 'Build new infrastructure', 'Just exploring'];
-      return ['Reduce cloud costs', 'Automate deployments (CI/CD)', 'Improve security', 'Better monitoring', 'Cloud migration', 'General inquiry'];
-    }},
-
-  { key: 'budget',
-    bot: function(d) {
-      if (d.cloud === 'Not using yet') return 'What is your approximate monthly IT budget?';
-      return 'What is your approximate monthly cloud spend?';
-    },
-    type: 'options',
-    options: function(d) {
-      if (d.cloud === 'Not using yet')
-        return ['Under \u20b910,000', '\u20b910,000 \u2013 \u20b950,000', 'Above \u20b950,000', 'Not sure yet'];
-      return ['Under \u20b95,000', '\u20b95,000 \u2013 \u20b925,000', '\u20b925,000 \u2013 \u20b91,00,000', 'Above \u20b91,00,000'];
-    }},
-
-  { key: 'message',
-    bot: function(d) { return buildFinalMessage(d); },
-    type: 'input',
-    placeholder: 'Type here or press Enter to skip...' },
-
-  { key: 'done',
-    bot: function(d) { return '\u2705 Thanks, ' + d.name + '! Our team will reach out at ' + d.email + ' with the right solution.\n\n' + getPersonalizedCTA(d); },
-    type: 'done' }
-];
-
+// Chatbot mode: 'menu' | 'faq' | 'quote'
+var chatMode = 'menu';
 var chatData = {};
 var chatStep = 0;
 var chatOpened = false;
+
+var QUOTE_STEPS = [
+  { key: 'name',    bot: 'What is your name?', type: 'input' },
+  { key: 'email',   bot: function(d){ return 'Thanks ' + d.name + '! What is your work email?'; }, type: 'input' },
+  { key: 'cloud',   bot: 'Which cloud platform are you using?', type: 'options', options: ['AWS', 'Azure', 'Google Cloud', 'Multiple clouds', 'Not using yet'] },
+  { key: 'need',    bot: function(d){
+      if (d.cloud === 'Not using yet') return 'What are you looking to do?';
+      return 'What is your main challenge?';
+    }, type: 'options', options: function(d){
+      if (d.cloud === 'Not using yet') return ['Move to cloud', 'Set up DevOps', 'Build new infrastructure', 'Just exploring'];
+      return ['Reduce cloud costs', 'Automate deployments (CI/CD)', 'Improve security', 'Better monitoring', 'Cloud migration', 'General inquiry'];
+    }},
+  { key: 'budget',  bot: function(d){
+      if (d.cloud === 'Not using yet') return 'What is your approximate monthly IT budget?';
+      return 'What is your approximate monthly cloud spend?';
+    }, type: 'options', options: function(d){
+      if (d.cloud === 'Not using yet') return ['Under \u20b910,000', '\u20b910,000 \u2013 \u20b950,000', 'Above \u20b950,000', 'Not sure yet'];
+      return ['Under \u20b95,000', '\u20b95,000 \u2013 \u20b925,000', '\u20b925,000 \u2013 \u20b91,00,000', 'Above \u20b91,00,000'];
+    }},
+  { key: 'message', bot: function(d){ return buildFinalMessage(d); }, type: 'input', placeholder: 'Any specific details? (or press Enter to skip)' },
+  { key: 'done',    bot: function(d){ return '\u2705 Thanks, ' + d.name + '! Our team will reach out at ' + d.email + '.\n\n' + getPersonalizedCTA(d); }, type: 'done' }
+];
 
 function toggleChat() {
   var box = document.getElementById('cz-chatbox');
@@ -359,43 +381,79 @@ function toggleChat() {
   if (box.classList.contains('open') && !chatOpened) {
     chatOpened = true;
     badge.style.display = 'none';
-    setTimeout(function(){ chatNext(); }, 400);
+    setTimeout(showMenu, 400);
   }
 }
 
-function chatNext() {
-  var step = CHAT_STEPS[chatStep];
+function showMenu() {
+  chatMode = 'menu';
+  addChatMsg('Hi \ud83d\udc4b Welcome to CloudZentra! How can I help you?', 'bot');
+  var opts = document.getElementById('cz-chat-options');
+  var inp = document.getElementById('cz-chat-input');
+  opts.innerHTML = '';
+  inp.style.display = 'none';
+  [['\ud83d\udcac Ask a question', 'faq'], ['\ud83d� Get a quote', 'quote']].forEach(function(item){
+    var btn = document.createElement('button');
+    btn.className = 'chat-opt';
+    btn.textContent = item[0];
+    btn.onclick = function(){ selectMode(item[1]); };
+    opts.appendChild(btn);
+  });
+}
+
+function selectMode(mode) {
+  chatMode = mode;
+  document.getElementById('cz-chat-options').innerHTML = '';
+  if (mode === 'faq') {
+    addChatMsg('\ud83d\udc4d Sure! Ask me anything about our services, pricing, technologies or how we work.', 'bot');
+    var inp = document.getElementById('cz-chat-input');
+    inp.placeholder = 'Type your question...';
+    inp.style.display = '';
+    inp.focus();
+  } else {
+    chatData = {}; chatStep = 0;
+    addChatMsg('\ud83d� Let me collect a few details to prepare the right solution for you.', 'bot');
+    setTimeout(quoteNext, 500);
+  }
+}
+
+function quoteNext() {
+  var step = QUOTE_STEPS[chatStep];
   if (!step) return;
   showTyping();
-  setTimeout(function() {
+  setTimeout(function(){
     hideTyping();
     var msg = typeof step.bot === 'function' ? step.bot(chatData) : step.bot;
     var stepType = typeof step.type === 'function' ? step.type(chatData) : step.type;
-    var stepOptions = typeof step.options === 'function' ? step.options(chatData) : step.options;
+    var stepOpts = typeof step.options === 'function' ? step.options(chatData) : step.options;
     addChatMsg(msg, 'bot');
     var opts = document.getElementById('cz-chat-options');
     var inp  = document.getElementById('cz-chat-input');
     opts.innerHTML = '';
     if (stepType === 'options') {
       inp.style.display = 'none';
-      stepOptions.forEach(function(o) {
+      stepOpts.forEach(function(o){
         var btn = document.createElement('button');
         btn.className = 'chat-opt';
         btn.textContent = o;
-        btn.onclick = function(){ chatAnswer(o); };
+        btn.onclick = function(){ quoteAnswer(o); };
         opts.appendChild(btn);
       });
-    } else if (step.type === 'done' || stepType === 'done') {
+    } else if (stepType === 'done') {
       inp.style.display = 'none';
       saveChatLead();
-      var c = JSON.parse(localStorage.getItem('cz_contact') || '{"waNum":"918855865379","waMsg":"Hi CloudZentra! I need help with cloud solutions."}');
+      var c = JSON.parse(localStorage.getItem('cz_contact') || '{"waNum":"918855865379"}');
       var wa = document.createElement('a');
-      wa.href = 'https://wa.me/' + c.waNum + '?text=' + encodeURIComponent(c.waMsg);
+      wa.href = 'https://wa.me/' + c.waNum + '?text=' + encodeURIComponent('Hi CloudZentra! I need help.');
       wa.target = '_blank'; wa.rel = 'noopener noreferrer';
-      wa.className = 'chat-opt';
-      wa.style.textDecoration = 'none';
+      wa.className = 'chat-opt'; wa.style.textDecoration = 'none';
       wa.textContent = '\ud83d\udcac Chat on WhatsApp';
       opts.appendChild(wa);
+      var restart = document.createElement('button');
+      restart.className = 'chat-opt';
+      restart.textContent = '\ud83d\udd04 Start over';
+      restart.onclick = function(){ document.getElementById('cz-chat-messages').innerHTML = ''; showMenu(); };
+      opts.appendChild(restart);
     } else {
       inp.placeholder = step.placeholder || 'Type your answer...';
       inp.style.display = '';
@@ -404,35 +462,65 @@ function chatNext() {
   }, 800);
 }
 
-function showTyping() {
-  var msgs = document.getElementById('cz-chat-messages');
-  var div = document.createElement('div');
-  div.className = 'chat-msg-bot chat-typing';
-  div.id = 'cz-typing';
-  div.innerHTML = '<span></span><span></span><span></span>';
-  msgs.appendChild(div);
-  msgs.scrollTop = msgs.scrollHeight;
-}
-
-function hideTyping() {
-  var t = document.getElementById('cz-typing');
-  if (t) t.remove();
+function quoteAnswer(val) {
+  var step = QUOTE_STEPS[chatStep];
+  addChatMsg(val, 'user');
+  document.getElementById('cz-chat-options').innerHTML = '';
+  chatData[step.key] = val;
+  chatStep++;
+  setTimeout(quoteNext, 300);
 }
 
 function chatSend() {
   var inp = document.getElementById('cz-chat-input');
   var val = inp.value.trim();
   inp.value = '';
-  chatAnswer(val || '(skipped)');
-}
-
-function chatAnswer(val) {
-  var step = CHAT_STEPS[chatStep];
+  if (!val) {
+    if (chatMode === 'quote') quoteAnswer('(skipped)');
+    return;
+  }
   addChatMsg(val, 'user');
   document.getElementById('cz-chat-options').innerHTML = '';
-  chatData[step.key] = val;
-  chatStep++;
-  setTimeout(function(){ chatNext(); }, 300);
+  if (chatMode === 'faq') {
+    var reply = getAutoReply(val);
+    showTyping();
+    setTimeout(function(){
+      hideTyping();
+      if (reply) {
+        addChatMsg(reply, 'bot');
+      } else {
+        addChatMsg('I\'m not sure about that specific question. Here\'s what I can help with: services, pricing, AWS/Azure/GCP, DevOps, security, cost optimization, migration, monitoring, or support. Or get a quote directly!', 'bot');
+      }
+      // Show options after reply
+      var opts = document.getElementById('cz-chat-options');
+      opts.innerHTML = '';
+      var more = document.createElement('button');
+      more.className = 'chat-opt'; more.textContent = '\ud83d\udcac Ask another question';
+      more.onclick = function(){ opts.innerHTML = ''; inp.style.display=''; inp.focus(); };
+      opts.appendChild(more);
+      var quote = document.createElement('button');
+      quote.className = 'chat-opt'; quote.textContent = '\ud83d� Get a quote';
+      quote.onclick = function(){ opts.innerHTML=''; selectMode('quote'); };
+      opts.appendChild(quote);
+      inp.style.display = 'none';
+    }, 800);
+  } else if (chatMode === 'quote') {
+    var step = QUOTE_STEPS[chatStep];
+    if (step) { chatData[step.key] = val; chatStep++; setTimeout(quoteNext, 300); }
+  }
+}
+
+function showTyping() {
+  var msgs = document.getElementById('cz-chat-messages');
+  var div = document.createElement('div');
+  div.className = 'chat-msg-bot chat-typing'; div.id = 'cz-typing';
+  div.innerHTML = '<span></span><span></span><span></span>';
+  msgs.appendChild(div); msgs.scrollTop = msgs.scrollHeight;
+}
+
+function hideTyping() {
+  var t = document.getElementById('cz-typing');
+  if (t) t.remove();
 }
 
 function addChatMsg(text, who) {
@@ -455,14 +543,14 @@ function saveChatLead() {
     cloud: getCloudKey(chatData),
     need: getNeedKey(chatData),
     budget: chatData.budget || '',
-    message: '[Chatbot] Need: ' + (chatData.need || '') + ' | Budget: ' + (chatData.budget || '') + ' | Note: ' + (chatData.message || ''),
+    message: '[Chatbot] Need: ' + (chatData.need||'') + ' | Budget: ' + (chatData.budget||'') + ' | Note: ' + (chatData.message||''),
     source: 'Chatbot',
     score: scoreLead(chatData)
   };
   fetch('https://cloudzentra-api.samirpandey65.workers.dev/save-lead', {
-    method: 'POST', headers: { 'Content-Type': 'application/json' },
+    method: 'POST', headers: {'Content-Type':'application/json'},
     body: JSON.stringify(submission)
-  }).catch(() => {});
+  }).catch(function(){});
   var existing = JSON.parse(localStorage.getItem('cn_submissions') || '[]');
   existing.unshift(submission);
   localStorage.setItem('cn_submissions', JSON.stringify(existing));

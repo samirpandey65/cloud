@@ -3,7 +3,36 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>CloudZentra – Cloud Services &amp; DevOps Solutions</title>
+
+  <!-- SEO Meta Tags -->
+  <title>CloudZentra – Cloud Services &amp; DevOps Solutions | AWS, Azure, GCP</title>
+  <meta name="description" content="CloudZentra helps startups and businesses with cloud migration, DevOps automation, cost optimization, and 24/7 managed support on AWS, Azure, and GCP. Get a free cloud audit today."/>
+  <meta name="keywords" content="cloud services, DevOps, AWS, Azure, GCP, cloud migration, cost optimization, Kubernetes, CI/CD, India"/>
+  <meta name="author" content="CloudZentra"/>
+  <meta name="robots" content="index, follow"/>
+  <link rel="canonical" href="https://cloudzentra.in/"/>
+
+  <!-- Open Graph / Social Preview -->
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://cloudzentra.in/"/>
+  <meta property="og:title" content="CloudZentra – Cloud Services &amp; DevOps Solutions"/>
+  <meta property="og:description" content="Cloud migration, DevOps automation &amp; cost optimization for startups on AWS, Azure &amp; GCP. Free cloud audit available."/>
+  <meta property="og:image" content="https://cloudzentra.in/og-image.png"/>
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="CloudZentra – Cloud Services &amp; DevOps Solutions"/>
+  <meta name="twitter:description" content="Cloud migration, DevOps automation &amp; cost optimization for startups on AWS, Azure &amp; GCP."/>
+  <meta name="twitter:image" content="https://cloudzentra.in/og-image.png"/>
+
+  <!-- Google Search Console Verification -->
+  <meta name="google-site-verification" content="XbJLhr4tHAzle5tRT5L1C8c5KDzfjfiyzeN2gtBIDJI" />
+
+  <!-- Security Headers (meta fallbacks) -->
+  <meta http-equiv="X-Content-Type-Options" content="nosniff"/>
+  <meta http-equiv="X-Frame-Options" content="SAMEORIGIN"/>
+  <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin"/>
+
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="style.css"/>
 </head>
@@ -280,6 +309,8 @@
           </select>
         </div>
         <textarea name="message" placeholder="Describe your current setup or what you need help with..." rows="4"></textarea>
+        <!-- Honeypot spam prevention -->
+        <input type="text" name="_honeypot" style="display:none" tabindex="-1" autocomplete="off"/>
         <button type="submit" class="btn-primary">Get Quote &rarr;</button>
       </form>
       <div id="form-success" class="form-success" style="display:none">
