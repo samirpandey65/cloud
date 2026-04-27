@@ -45,7 +45,12 @@
     "email": "info@cloudzentra.in",
     "telephone": "+91-88558-65379",
     "address": { "@type": "PostalAddress", "addressCountry": "IN" },
-    "sameAs": ["https://cloudzentra.in"]
+    "sameAs": [
+      "https://cloudzentra.in",
+      "https://www.linkedin.com/company/cloudzentra",
+      "https://twitter.com/cloudzentra",
+      "https://www.instagram.com/cloudzentra"
+    ]
   }
   </script>
 
@@ -55,7 +60,12 @@
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "CloudZentra",
-    "url": "https://cloudzentra.in"
+    "url": "https://cloudzentra.in",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://cloudzentra.in/?s={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
   }
   </script>
 
@@ -65,9 +75,97 @@
     "@context": "https://schema.org",
     "@type": "Service",
     "serviceType": "Cloud & DevOps Solutions",
-    "provider": { "@type": "Organization", "name": "CloudZentra" },
+    "provider": { "@type": "Organization", "name": "CloudZentra", "url": "https://cloudzentra.in" },
     "areaServed": "IN",
-    "description": "AWS, Azure and GCP cloud setup, DevOps automation, cost optimization, security hardening and 24/7 managed support."
+    "description": "AWS, Azure and GCP cloud setup, DevOps automation, cost optimization, security hardening and 24/7 managed support.",
+    "offers": [
+      { "@type": "Offer", "name": "Cloud Setup & Migration", "url": "https://cloudzentra.in/#services" },
+      { "@type": "Offer", "name": "DevOps Automation",       "url": "https://cloudzentra.in/#services" },
+      { "@type": "Offer", "name": "Cost Optimization",       "url": "https://cloudzentra.in/#services" },
+      { "@type": "Offer", "name": "Cloud Security",          "url": "https://cloudzentra.in/#services" },
+      { "@type": "Offer", "name": "Monitoring & Alerts",     "url": "https://cloudzentra.in/#services" },
+      { "@type": "Offer", "name": "Managed Support",         "url": "https://cloudzentra.in/#services" }
+    ]
+  }
+  </script>
+
+  <!-- Schema Markup - FAQ -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Do I need to be technical to work with CloudZentra?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Not at all. We handle all the technical work. You just tell us your goals and we take care of the rest — from setup to ongoing support." }
+      },
+      {
+        "@type": "Question",
+        "name": "Which cloud providers does CloudZentra support?",
+        "acceptedAnswer": { "@type": "Answer", "text": "We work with AWS, Microsoft Azure, and Google Cloud Platform (GCP). We recommend the best fit based on your use case and budget." }
+      },
+      {
+        "@type": "Question",
+        "name": "How long does a typical cloud project take?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Starter projects take 1 week, Growth projects 2 weeks, and Pro engagements 3–4 weeks. We always give you a clear timeline before starting." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the free cloud audit?",
+        "acceptedAnswer": { "@type": "Answer", "text": "We review your current cloud setup — costs, security, architecture — and send you a detailed report with recommendations. It is completely free, no commitment required." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does CloudZentra offer monthly support plans?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Our managed support retainer starts at ₹5,000/month and includes incident response, monitoring, and regular check-ins." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is my data safe with CloudZentra?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Absolutely. We sign an NDA before every engagement. We follow security best practices and never store your credentials or sensitive data." }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Schema Markup - Reviews -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "CloudZentra",
+    "url": "https://cloudzentra.in",
+    "telephone": "+91-88558-65379",
+    "email": "info@cloudzentra.in",
+    "address": { "@type": "PostalAddress", "addressCountry": "IN" },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5",
+      "reviewCount": "50",
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "review": [
+      {
+        "@type": "Review",
+        "author": { "@type": "Person", "name": "Priya Sharma" },
+        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+        "reviewBody": "CloudZentra cut our AWS bill by 35% in the first month. Their cost audit was eye-opening — we had no idea we were wasting that much."
+      },
+      {
+        "@type": "Review",
+        "author": { "@type": "Person", "name": "Rohan Mehta" },
+        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+        "reviewBody": "They set up our entire CI/CD pipeline in under a week. Deployments went from 2 hours to 8 minutes. Absolutely worth every rupee."
+      },
+      {
+        "@type": "Review",
+        "author": { "@type": "Person", "name": "Ananya Iyer" },
+        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+        "reviewBody": "Professional, fast, and always available. Our Kubernetes migration was seamless. I'd recommend CloudZentra to any growing startup."
+      }
+    ]
   }
   </script>
 
@@ -347,8 +445,8 @@
   <!-- CONTACT -->
   <section class="contact section" id="contact">
     <div class="container">
-      <h2 class="section-title">Get Your Quote</h2>
-      <p class="section-sub">Tell us about your cloud or DevOps needs &mdash; our team will get back with the right approach.</p>
+      <h2 class="section-title">Get Your Free Cloud Audit</h2>
+      <p class="section-sub">Tell us about your cloud or DevOps needs &mdash; our team will get back with the right approach within 2 hours.</p>
       <form class="contact-form" onsubmit="handleSubmit(event)">
         <div class="form-row">
           <input type="text" name="name" placeholder="Your Name" required />
@@ -435,7 +533,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <p>&copy; 2025 CloudZentra. All rights reserved.</p>
+        <p>&copy; 2025 CloudZentra &mdash; <strong>cloudzentra.in</strong> &mdash; All rights reserved.</p>
         <div id="footer-socials" style="display:contents;"></div>
       </div>
     </div>
