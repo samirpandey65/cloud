@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
   <!-- SEO Meta Tags -->
-  <title>CloudZentra – Cloud Services &amp; DevOps Solutions | AWS, Azure, GCP</title>
+  <title>CloudZentra &ndash; Cloud Services &amp; DevOps Solutions | AWS, Azure, GCP</title>
   <meta name="description" content="CloudZentra helps startups and businesses with cloud migration, DevOps automation, cost optimization, and 24/7 managed support on AWS, Azure, and GCP. Get a free cloud audit today."/>
   <meta name="keywords" content="cloud services, DevOps, AWS, Azure, GCP, cloud migration, cost optimization, Kubernetes, CI/CD, India"/>
   <meta name="author" content="CloudZentra"/>
@@ -15,13 +15,13 @@
   <!-- Open Graph / Social Preview -->
   <meta property="og:type" content="website"/>
   <meta property="og:url" content="https://cloudzentra.in/"/>
-  <meta property="og:title" content="CloudZentra – Cloud Services &amp; DevOps Solutions"/>
+  <meta property="og:title" content="CloudZentra &ndash; Cloud Services &amp; DevOps Solutions"/>
   <meta property="og:description" content="Cloud migration, DevOps automation &amp; cost optimization for startups on AWS, Azure &amp; GCP. Free cloud audit available."/>
   <meta property="og:image" content="https://cloudzentra.in/og-image.png"/>
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image"/>
-  <meta name="twitter:title" content="CloudZentra – Cloud Services &amp; DevOps Solutions"/>
+  <meta name="twitter:title" content="CloudZentra &ndash; Cloud Services &amp; DevOps Solutions"/>
   <meta name="twitter:description" content="Cloud migration, DevOps automation &amp; cost optimization for startups on AWS, Azure &amp; GCP."/>
   <meta name="twitter:image" content="https://cloudzentra.in/og-image.png"/>
 
@@ -32,6 +32,44 @@
   <meta http-equiv="X-Content-Type-Options" content="nosniff"/>
   <meta http-equiv="X-Frame-Options" content="SAMEORIGIN"/>
   <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin"/>
+
+  <!-- Schema Markup - Organization -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "CloudZentra",
+    "url": "https://cloudzentra.in",
+    "logo": "https://cloudzentra.in/og-image.png",
+    "description": "Cloud migration, DevOps automation and cost optimization for startups and businesses on AWS, Azure and GCP.",
+    "email": "info@cloudzentra.in",
+    "telephone": "+91-88558-65379",
+    "address": { "@type": "PostalAddress", "addressCountry": "IN" },
+    "sameAs": ["https://cloudzentra.in"]
+  }
+  </script>
+
+  <!-- Schema Markup - WebSite (enables Google Sitelinks search) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "CloudZentra",
+    "url": "https://cloudzentra.in"
+  }
+  </script>
+
+  <!-- Schema Markup - Service -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "Cloud & DevOps Solutions",
+    "provider": { "@type": "Organization", "name": "CloudZentra" },
+    "areaServed": "IN",
+    "description": "AWS, Azure and GCP cloud setup, DevOps automation, cost optimization, security hardening and 24/7 managed support."
+  }
+  </script>
 
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="style.css"/>
@@ -56,11 +94,12 @@
   <!-- HERO -->
   <section class="hero">
     <div class="container hero-content">
-      <h1>We Help You</h1>
+      <div class="badge">&#127775; Trusted by 50+ Startups &amp; Businesses</div>
+      <h1>Cloud Solutions for<br/><span>Growing Businesses</span></h1>
       <div class="typed-wrapper"><span id="typed-text"></span></div>
-      <p>DevOps automation, cloud migration &amp; cost optimization for startups &amp; enterprises on AWS, Azure &amp; GCP &mdash; from code to cloud, faster.</p>
+      <p>Secure &bull; Scalable &bull; Managed Support &mdash; We handle AWS, Azure &amp; GCP so your team can focus on building, not firefighting.</p>
       <div class="hero-btns">
-        <a href="#contact" class="btn-primary">Get Quote</a>
+        <a href="#contact" class="btn-primary">&#128197; Book Free Consultation</a>
         <a href="#services" class="btn-outline">View Services</a>
       </div>
       <div class="hero-stats">
@@ -71,6 +110,23 @@
       </div>
     </div>
     <div class="hero-bg"></div>
+  </section>
+
+  <!-- TRUST BAR -->
+  <section class="trustbar">
+    <div class="container">
+      <p class="trustbar-label">Trusted by teams using</p>
+      <div class="trustbar-logos">
+        <span>&#9729; AWS</span>
+        <span>&#9729; Azure</span>
+        <span>&#9729; Google Cloud</span>
+        <span>&#127381; Docker</span>
+        <span>&#9881; Kubernetes</span>
+        <span>&#128295; Terraform</span>
+        <span>&#9881; GitHub Actions</span>
+        <span>&#128202; Grafana</span>
+      </div>
+    </div>
   </section>
 
   <!-- WHY US -->
@@ -344,11 +400,42 @@
 
   <!-- FOOTER -->
   <footer class="footer">
-    <div class="container footer-inner">
-      <div class="logo"><a href="index.html" style="text-decoration:none;color:inherit;">&#9729;&#65039; CloudZentra</a></div>
-      <p>&copy; 2025 CloudZentra. All rights reserved.</p>
-      <div class="footer-links">
-        <a href="mailto:info@cloudzentra.in" id="footer-email">info@cloudzentra.in</a>
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="logo"><a href="index.html" style="text-decoration:none;color:inherit;">&#9729;&#65039; CloudZentra</a></div>
+          <p>Cloud &amp; DevOps solutions for startups and growing businesses. AWS, Azure &amp; GCP experts.</p>
+          <div class="footer-contact-row">
+            <a href="mailto:info@cloudzentra.in" id="footer-email">&#128231; info@cloudzentra.in</a>
+            <a href="https://wa.me/918855865379" target="_blank" rel="noopener noreferrer">&#128222; +91 88558 65379</a>
+          </div>
+        </div>
+        <div class="footer-links-col">
+          <strong>Services</strong>
+          <a href="#services">Cloud Migration</a>
+          <a href="#services">DevOps Automation</a>
+          <a href="#services">Cost Optimization</a>
+          <a href="#services">Cloud Security</a>
+          <a href="#services">Managed Support</a>
+        </div>
+        <div class="footer-links-col">
+          <strong>Company</strong>
+          <a href="#about">About Us</a>
+          <a href="#testimonials">Reviews</a>
+          <a href="#faq">FAQ</a>
+          <a href="#contact">Contact</a>
+          <a href="#contact">Free Cloud Audit</a>
+        </div>
+        <div class="footer-links-col">
+          <strong>Response Time</strong>
+          <span class="footer-badge">&#9989; Replies within 2 hours</span>
+          <span class="footer-badge">&#128222; Call / WhatsApp available</span>
+          <span class="footer-badge">&#128274; NDA on every project</span>
+          <span class="footer-badge">&#127758; India-based, global standards</span>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 CloudZentra. All rights reserved.</p>
         <div id="footer-socials" style="display:contents;"></div>
       </div>
     </div>
