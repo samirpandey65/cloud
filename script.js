@@ -35,47 +35,46 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 // ─────────────────────────────────────────────────────────────────────────────
 
-// Service modal data
 const services = [
   {
     icon: '&#9729;&#65039;',
-    title: 'Cloud Setup & Migration',
-    desc: 'We design and deploy your entire cloud infrastructure from scratch or migrate your existing on-premise setup to AWS, Azure, or GCP — with zero downtime, full data integrity, and security compliance built in from day one.',
-    includes: ['Cloud architecture design & planning', 'Server & database migration', 'DNS, domain & SSL configuration', 'IAM roles & access control setup', 'VPC, subnets & networking setup', 'Post-migration testing & validation'],
+    title: 'Cloud Solutions (AWS / Azure / GCP)',
+    desc: 'We design, deploy, and manage cloud infrastructure tailored to your business needs. From architecture design to full migration and auto-scaling — with zero downtime, full data integrity, and security compliance built in from day one.',
+    includes: ['Cloud architecture design & planning', 'Migration to AWS / Azure / GCP', 'Auto-scaling infrastructure setup', 'Cost optimization strategies', 'IAM roles, VPC & networking setup', 'Post-migration testing & validation'],
     tags: ['AWS', 'Azure', 'GCP', 'EC2', 'S3', 'RDS', 'VPC', 'Route 53'],
     ideal: 'Startups moving to cloud for the first time, or businesses migrating from on-premise servers to a managed cloud environment.'
   },
   {
-    icon: '&#9881;&#65039;',
-    title: 'DevOps Automation',
-    desc: 'We build fully automated CI/CD pipelines so your team can deploy code in minutes, not hours. From containerization with Docker to orchestration with Kubernetes — we handle the entire DevOps lifecycle.',
-    includes: ['CI/CD pipeline setup (GitHub Actions / Jenkins)', 'Docker containerization', 'Kubernetes cluster setup & management', 'Auto-scaling & load balancing', 'Infrastructure as Code (Terraform)', 'Blue-green & rolling deployments'],
+    icon: '&#9889;',
+    title: 'DevOps & Automation',
+    desc: 'Speed up deployments and improve reliability with modern DevOps practices. We build fully automated CI/CD pipelines, containerize your applications, and manage orchestration — so your team ships faster with fewer errors.',
+    includes: ['CI/CD pipeline setup (GitHub Actions / Jenkins)', 'Infrastructure as Code (Terraform)', 'Docker containerization', 'Kubernetes cluster setup & management', 'Monitoring & logging integration', 'Blue-green & rolling deployments'],
     tags: ['Docker', 'Kubernetes', 'Terraform', 'GitHub Actions', 'Jenkins', 'Helm', 'ArgoCD'],
     ideal: 'Development teams that want faster, reliable deployments and want to eliminate manual release processes.'
   },
   {
-    icon: '&#128176;',
-    title: 'Cost Optimization',
-    desc: 'Most businesses overpay for cloud by 20–40% due to idle resources, wrong instance types, and lack of monitoring. We audit your entire cloud bill and implement changes that reduce costs immediately — without affecting performance.',
-    includes: ['Full cloud cost audit & report', 'Right-sizing EC2 / VM instances', 'Reserved instance & savings plan recommendations', 'Identifying & removing idle resources', 'S3 storage lifecycle policies', 'Budget alerts & cost dashboards'],
-    tags: ['AWS Cost Explorer', 'Azure Cost Management', 'CloudWatch', 'Trusted Advisor', 'Savings Plans'],
-    ideal: 'Any business already on cloud that wants to reduce their monthly bill and get more value from their existing infrastructure.'
-  },
-  {
-    icon: '&#128202;',
-    title: 'Monitoring & Alerts',
-    desc: 'Know about issues before your users do. We set up real-time monitoring dashboards, log aggregation, and intelligent alerting so your team is always aware of system health — and can act fast when something goes wrong.',
-    includes: ['Real-time performance dashboards (Grafana)', 'Infrastructure & application metrics', 'Log aggregation & analysis', 'Uptime monitoring & alerting', 'Custom alert rules (email, Slack, SMS)', 'Monthly health reports'],
-    tags: ['Grafana', 'Prometheus', 'CloudWatch', 'Datadog', 'ELK Stack', 'PagerDuty'],
-    ideal: 'Teams that need full visibility into their infrastructure and want to catch and resolve issues before they impact customers.'
+    icon: '&#128187;',
+    title: 'Web & Application Development',
+    desc: 'We build scalable, high-performance applications designed to grow with your business. From custom web apps to full SaaS platforms — built on modern stacks and deployed on cloud infrastructure.',
+    includes: ['Custom web application development', 'SaaS platform development', 'API development & integration', 'Backend systems & microservices', 'Cloud-native architecture', 'Performance optimization'],
+    tags: ['Node.js', 'Python', 'React', 'REST APIs', 'PostgreSQL', 'AWS Lambda', 'Serverless'],
+    ideal: 'Startups and businesses that need a reliable technical partner to build and scale their product on cloud infrastructure.'
   },
   {
     icon: '&#128272;',
     title: 'Cloud Security',
-    desc: 'Security is not optional. We harden your cloud environment against threats — from misconfigured IAM policies to open ports and unencrypted data. We follow industry best practices and compliance frameworks to keep your data safe.',
-    includes: ['IAM policy audit & hardening', 'VPC security groups & firewall rules', 'Data encryption at rest & in transit', 'Vulnerability scanning & patching', 'Compliance checks (SOC2, GDPR basics)', 'Security incident response plan'],
+    desc: 'Protect your infrastructure and data with enterprise-grade security. We harden your cloud environment against threats — from misconfigured IAM policies to open ports and unencrypted data.',
+    includes: ['IAM & access control audit & hardening', 'Data encryption at rest & in transit', 'VPC security groups & firewall rules', 'Security audits & vulnerability scanning', 'Compliance support (SOC2, GDPR basics)', 'Security incident response plan'],
     tags: ['AWS IAM', 'AWS Shield', 'Azure Defender', 'SSL/TLS', 'WAF', 'GuardDuty', 'Security Hub'],
     ideal: 'Businesses handling sensitive customer data, fintech, healthtech, or any company that needs to meet compliance requirements.'
+  },
+  {
+    icon: '&#128176;',
+    title: 'Cost Optimization',
+    desc: 'Most businesses overpay for cloud by 30–40% due to idle resources, wrong instance types, and lack of monitoring. We audit your entire cloud bill and implement changes that reduce costs immediately — without affecting performance.',
+    includes: ['Full cloud cost audit & report', 'Right-sizing EC2 / VM instances', 'Reserved instance & savings plan recommendations', 'Identifying & removing idle resources', 'S3 storage lifecycle policies', 'Budget alerts & cost dashboards'],
+    tags: ['AWS Cost Explorer', 'Azure Cost Management', 'CloudWatch', 'Trusted Advisor', 'Savings Plans'],
+    ideal: 'Any business already on cloud that wants to reduce their monthly bill and get more value from their existing infrastructure.'
   },
   {
     icon: '&#128295;',
@@ -165,23 +164,47 @@ function handleSubmit(e) {
   document.getElementById('form-success').style.display = 'block';
 }
 
-// Typed.js hero animation
-new Typed('#typed-text', {
-  strings: [
-    'Automate Deployments.',
-    'Migrate to Cloud.',
-    'Cut Cloud Costs.',
-    'Secure Infrastructure.',
-    'Scale Faster.'
-  ],
-  typeSpeed: 55,
-  backSpeed: 30,
-  backDelay: 1800,
-  loop: true,
-  smartBackspace: true
-});
+// Savings Calculator
+function calcSavings() {
+  var input = parseFloat(document.getElementById('calc-input').value) || 0;
+  var result = document.getElementById('calc-result');
+  if (input < 1000) { result.style.display = 'none'; return; }
+  var saving = Math.round(input * 0.33);
+  var optimized = input - saving;
+  document.getElementById('calc-save').textContent    = '\u20b9' + saving.toLocaleString('en-IN') + '/mo';
+  document.getElementById('calc-annual').textContent  = '\u20b9' + (saving * 12).toLocaleString('en-IN') + '/yr';
+  document.getElementById('calc-optimized').textContent = '\u20b9' + optimized.toLocaleString('en-IN') + '/mo';
+  result.style.display = 'flex';
+}
 
-// Smart reply map
+// Lead magnet form
+function handleAuditSubmit(e) {
+  e.preventDefault();
+  var form = e.target;
+  if (form.querySelector('[name="_honeypot"]').value) return;
+  var submission = {
+    id: Date.now().toString(),
+    date: new Date().toISOString(),
+    read: false,
+    name:    form.querySelector('[name="name"]').value.trim(),
+    email:   form.querySelector('[name="email"]').value.trim(),
+    company: form.querySelector('[name="company"]').value.trim(),
+    cloud:   form.querySelector('[name="cloud"]').value,
+    message: '[Audit Request]',
+    source:  'Audit Form'
+  };
+  fetch('https://cloudzentra-api.samirpandey65.workers.dev/save-lead', {
+    method: 'POST', headers: {'Content-Type':'application/json'},
+    body: JSON.stringify(submission)
+  }).catch(function(){});
+  var existing = JSON.parse(localStorage.getItem('cn_submissions') || '[]');
+  existing.unshift(submission);
+  localStorage.setItem('cn_submissions', JSON.stringify(existing));
+  form.style.display = 'none';
+  document.getElementById('audit-success').style.display = 'block';
+}
+
+
 const SMART_REPLIES = {
   'AWS|Cost Optimization': 'Many AWS users overspend due to idle resources. Based on what you shared, there is likely room to reduce your bill significantly.',
   'AWS|Security': 'AWS security often has gaps in IAM policies. Based on what you shared, a targeted review could strengthen your setup.',
@@ -560,6 +583,131 @@ setTimeout(function() {
   if (!chatOpened) document.getElementById('cz-chat-badge').style.display = 'flex';
 }, 8000);
 
+
+// Case Study Chart
+window.addEventListener('load', function() {
+  var canvas = document.getElementById('costChart');
+  if (!canvas) return;
+  var ctx = canvas.getContext('2d');
+  canvas.width = 320; canvas.height = 300;
+  var before = 15000, after = 10500, max = before;
+  ctx.fillStyle = '#1e293b';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  for (var i = 0; i <= 4; i++) {
+    var y = 50 + i * 50;
+    ctx.strokeStyle = 'rgba(255,255,255,0.06)';
+    ctx.beginPath(); ctx.moveTo(20, y); ctx.lineTo(300, y); ctx.stroke();
+  }
+  function drawBar(x, value, label, color) {
+    var height = (value / max) * 200;
+    ctx.fillStyle = color;
+    ctx.beginPath();
+    if (ctx.roundRect) { ctx.roundRect(x, 250 - height, 80, height, 8); } else { ctx.rect(x, 250 - height, 80, height); }
+    ctx.fill();
+    ctx.fillStyle = '#fff';
+    ctx.font = 'bold 13px Inter';
+    ctx.textAlign = 'center';
+    ctx.fillText('\u20b9' + value.toLocaleString('en-IN'), x + 40, 245 - height);
+    ctx.fillStyle = '#94a3b8';
+    ctx.font = '12px Inter';
+    ctx.fillText(label, x + 40, 272);
+  }
+  drawBar(60, before, 'Before', '#ef4444');
+  drawBar(180, after, 'After', '#22c55e');
+  ctx.fillStyle = '#22c55e';
+  ctx.font = 'bold 13px Inter';
+  ctx.textAlign = 'center';
+  ctx.fillText('~30% savings', 160, 295);
+});
+
+// Button ripple effect
+document.querySelectorAll('.btn-primary').forEach(function(btn) {
+  btn.addEventListener('click', function(e) {
+    var circle = document.createElement('span');
+    circle.classList.add('ripple');
+    var rect = this.getBoundingClientRect();
+    circle.style.left = (e.clientX - rect.left) + 'px';
+    circle.style.top  = (e.clientY - rect.top)  + 'px';
+    this.appendChild(circle);
+    setTimeout(function(){ circle.remove(); }, 600);
+  });
+});
+
+// Lead popup — show after 20s, only once per session
+if (!sessionStorage.getItem('cz_popup_shown')) {
+  setTimeout(function() {
+    document.getElementById('cz-popup').style.display = 'flex';
+    sessionStorage.setItem('cz_popup_shown', '1');
+  }, 20000);
+}
+function closePopup() {
+  document.getElementById('cz-popup').style.display = 'none';
+}
+function handlePopupSubmit(e) {
+  e.preventDefault();
+  var form = e.target;
+  if (form.querySelector('[name="_honeypot"]').value) return;
+  var submission = {
+    id: Date.now().toString(), date: new Date().toISOString(), read: false,
+    name: form.querySelector('[name="name"]').value.trim(),
+    email: form.querySelector('[name="email"]').value.trim(),
+    company: '', cloud: '', message: '[Popup Lead]', source: 'Popup'
+  };
+  fetch('https://cloudzentra-api.samirpandey65.workers.dev/save-lead', {
+    method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(submission)
+  }).catch(function(){});
+  var existing = JSON.parse(localStorage.getItem('cn_submissions') || '[]');
+  existing.unshift(submission);
+  localStorage.setItem('cn_submissions', JSON.stringify(existing));
+  form.style.display = 'none';
+  document.getElementById('popup-success').style.display = 'block';
+  setTimeout(closePopup, 2500);
+}
+
+// Scroll story reveal
+var storyItems = document.querySelectorAll('.story-item');
+var storyObserver = new IntersectionObserver(function(entries) {
+  entries.forEach(function(entry) {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      storyObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.3 });
+storyItems.forEach(function(item, i) {
+  item.style.transitionDelay = (i * 0.15) + 's';
+  storyObserver.observe(item);
+});
+
+// Architecture diagram hover
+var archNodes = document.querySelectorAll('.node');
+var archInfo  = document.getElementById('arch-info');
+if (archInfo) {
+  archNodes.forEach(function(node) {
+    node.addEventListener('mouseenter', function() {
+      archInfo.textContent = this.dataset.info;
+      archInfo.style.color = '#38bdf8';
+    });
+    node.addEventListener('mouseleave', function() {
+      archInfo.textContent = '\ud83d\udc49 Hover over any component to learn more';
+      archInfo.style.color = '';
+    });
+  });
+}
+
+// GA4 event tracking
+function safeGtag() {
+  if (typeof gtag === 'function') gtag.apply(null, arguments);
+}
+document.querySelectorAll('.whatsapp-btn').forEach(function(btn) {
+  btn.addEventListener('click', function() { safeGtag('event', 'whatsapp_click'); });
+});
+document.querySelectorAll('.btn-primary').forEach(function(btn) {
+  btn.addEventListener('click', function() { safeGtag('event', 'cta_click', { btn_text: this.textContent.trim() }); });
+});
+document.querySelectorAll('.btn-lm').forEach(function(btn) {
+  btn.addEventListener('click', function() { safeGtag('event', 'consultation_form_submit'); });
+});
 
 // Scroll reveal
 const revealObserver = new IntersectionObserver((entries) => {
