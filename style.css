@@ -40,8 +40,8 @@ body {
   to   { opacity: 1; }
 }
 @keyframes floatOrb {
-  0%, 100% { transform: translateY(0) scale(1); }
-  50%       { transform: translateY(-30px) scale(1.05); }
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50%       { transform: translate3d(0, -28px, 0); }
 }
 @keyframes floatWhatsapp {
   0%, 100% { transform: translateY(0); }
@@ -123,9 +123,10 @@ body {
 .hero::before, .hero::after {
   content: ''; position: absolute; border-radius: 50%;
   background: rgba(255,255,255,0.06); pointer-events: none;
+  will-change: transform;
 }
-.hero::before { width: 500px; height: 500px; top: -100px; right: -100px; animation: floatOrb 8s ease-in-out infinite; }
-.hero::after  { width: 300px; height: 300px; bottom: -80px; left: 30%; animation: floatOrb 6s ease-in-out infinite reverse; }
+.hero::before { width: 600px; height: 600px; top: -150px; right: -150px; z-index: 0; animation: floatOrb 8s ease-in-out infinite; }
+.hero::after  { width: 300px; height: 300px; bottom: -80px; left: 30%; z-index: 0; animation: floatOrb 6s ease-in-out infinite reverse; }
 
 .hero-content { position: relative; z-index: 1; color: var(--white); max-width: 780px; }
 
