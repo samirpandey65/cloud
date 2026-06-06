@@ -174,7 +174,7 @@
 <!-- DASHBOARD -->
 <div id="dashboard">
   <div class="topbar">
-    <div class="logo">☁️ CloudZentra Admin</div>
+    <div class="logo"><img src="logo_without_text.jpeg" alt="CloudZentra" style="height:65px;vertical-align:middle;"><div style="display:inline-flex;flex-direction:column;margin-left:10px;vertical-align:middle;"><span style="font-size:1.2rem;font-weight:800;color:#0f172a;">CloudZentra</span><span style="font-size:0.7rem;color:#64748b;letter-spacing:0.05em;">Optimize. Automate. Elevate.</span></div> Admin</div>
     <div class="topbar-right">
       <span id="topbar-user" style="font-size:0.88rem;color:var(--gray);"></span>
       <button class="logout-btn" onclick="doLogout()">Logout</button>
@@ -438,7 +438,9 @@ const SOCIALS = [
   { key: 'youtube',   label: 'YouTube',   icon: '▶️' },
 ];
 
-function getSocialConfig() { return JSON.parse(localStorage.getItem('cz_socials') || '{}'); }
+function getSocialConfig() { return JSON.parse(localStorage.getItem('cz_socials') || JSON.stringify({
+  linkedin: { url: 'https://www.linkedin.com/company/cloudzentra', enabled: true }
+})); }
 function getContactConfig() {
   return JSON.parse(localStorage.getItem('cz_contact') || JSON.stringify({
     email: 'info@cloudzentra.in',
