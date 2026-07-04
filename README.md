@@ -1,4 +1,4 @@
-# ☁️ CloudNova – Cloud Services & DevOps Solutions Website
+# ☁️ CloudZentra – Cloud Services & DevOps Solutions Website
 
 A fully static, professional business website for a cloud services startup. No frameworks, no dependencies, no server required — just HTML, CSS, and JavaScript.
 
@@ -12,6 +12,7 @@ Website/
 ├── admin.html        → Admin dashboard (login protected)
 ├── style.css         → All styles
 ├── script.js         → All JavaScript logic
+├── worker.js         → Cloudflare Worker API for syncing leads (optional backend)
 └── README.md         → This file
 ```
 
@@ -23,7 +24,7 @@ Website/
 |---|---|
 | Navbar | Fixed top navigation with mobile hamburger menu |
 | Hero | Headline, CTA buttons, stats (30% cost saved, 50+ projects, 24/7 support) |
-| Services | 6 clickable service cards with detailed modals |
+| Services | 5 clickable service cards with detailed modals |
 | Packages | 3 pricing tiers — Starter, Growth, Pro |
 | About | Company story, stats, and trust points |
 | Testimonials | 3 client reviews with star ratings |
@@ -94,13 +95,9 @@ Access the admin panel at `/admin.html`
 | Field | Value |
 |---|---|
 | Username | `admin` |
-| Password | `cloudnova123` |
+| Password | `********` (Refer to source code / reset prompt) |
 
-> ⚠️ Change the password before going live. Open `admin.html` and update:
-> ```js
-> const ADMIN_USER = 'admin';
-> const ADMIN_PASS = 'cloudnova123';
-> ```
+> ⚠️ Change the password before going live. You can update your login credentials directly from the **Settings** tab in the Admin Dashboard.
 
 ### Dashboard Features
 - **Stats** — Total requests, unread count, AWS clients, not-on-cloud count
@@ -130,7 +127,7 @@ All submissions are stored in **browser localStorage** under the key `cn_submiss
 ## ✏️ How to Customize
 
 ### 1. Company Name
-Search and replace `CloudNova` with your company name in `index.html` and `admin.html`.
+Search and replace `CloudZentra` with your company name in `index.html` and `admin.html` if you wish to change it.
 
 ### 2. WhatsApp Number
 In `index.html`, find the WhatsApp button and replace the number:
@@ -143,7 +140,7 @@ Example for `+91 98765 43210` → `919876543210`
 ### 3. Email Address
 In `index.html` footer, update:
 ```html
-<a href="mailto:hello@cloudnova.in">hello@cloudnova.in</a>
+<a href="mailto:info@cloudzentra.in">info@cloudzentra.in</a>
 ```
 
 ### 4. Pricing
@@ -181,10 +178,9 @@ In `style.css`, update the CSS variables at the top:
 ```
 
 ### 9. Admin Password
-In `admin.html`, find and update:
+You can update your credentials via the **Settings** tab in the Admin Dashboard. Alternatively, you can modify the default credentials hash in `admin.html`:
 ```js
-const ADMIN_USER = 'admin';
-const ADMIN_PASS = 'cloudnova123';
+const DEFAULT_HASH = '87349fc7fea04de4845cc4bf2c5a283a955749559c6c45668c067498aa439dbc'; // SHA-256 hash of default password
 ```
 
 ---
@@ -211,29 +207,6 @@ const ADMIN_PASS = 'cloudnova123';
 
 ---
 
-## 🌍 Deploying Online (Free)
-
-Once ready to go live, deploy for free on any of these platforms:
-
-### Netlify (Easiest)
-1. Go to [netlify.com](https://netlify.com)
-2. Drag and drop your `Website` folder
-3. Your site is live instantly with a free URL
-
-### GitHub Pages
-1. Push your files to a GitHub repository
-2. Go to Settings → Pages → select `main` branch
-3. Your site is live at `https://yourusername.github.io/repo-name`
-
-### Vercel
-1. Go to [vercel.com](https://vercel.com)
-2. Import your GitHub repo
-3. Deploy with one click
-
-> ⚠️ Once deployed online, all visitors share the same domain origin, so localStorage will work correctly across `index.html` and `admin.html`.
-
----
-
 ## ⚠️ Known Limitations
 
 | Limitation | Reason | Solution |
@@ -248,9 +221,9 @@ Once ready to go live, deploy for free on any of these platforms:
 ## 📞 Support & Contact
 
 For any questions about this website setup:
-- Email: `hello@cloudnova.in`
+- Email: `info@cloudzentra.in`
 - WhatsApp: Your number
 
 ---
 
-*Built with ❤️ by CloudNova Team*
+*Built with ❤️ by CloudZentra Team*
