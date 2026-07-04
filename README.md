@@ -95,7 +95,7 @@ Access the admin panel at `/admin.html`
 | Field | Value |
 |---|---|
 | Username | `admin` |
-| Password | `CloudZentra@2025` |
+| Password | `********` (Refer to source code / reset prompt) |
 
 > ⚠️ Change the password before going live. You can update your login credentials directly from the **Settings** tab in the Admin Dashboard.
 
@@ -180,7 +180,7 @@ In `style.css`, update the CSS variables at the top:
 ### 9. Admin Password
 You can update your credentials via the **Settings** tab in the Admin Dashboard. Alternatively, you can modify the default credentials hash in `admin.html`:
 ```js
-const DEFAULT_HASH = '87349fc7fea04de4845cc4bf2c5a283a955749559c6c45668c067498aa439dbc'; // SHA-256 hash of CloudZentra@2025
+const DEFAULT_HASH = '87349fc7fea04de4845cc4bf2c5a283a955749559c6c45668c067498aa439dbc'; // SHA-256 hash of default password
 ```
 
 ---
